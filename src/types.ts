@@ -83,5 +83,7 @@ export type CaptureTask = {
   updatedAt: string
   nodes: Array<{ name: string; status: string; note?: string }>
   artifacts?: Array<{ type: string; imagePath: string; createdAt: string; device?: string; label?: string }>
+  publishStatus?: 'published' | 'failed' | 'skipped'
+  publishMessage?: string
   plan?: Record<string, unknown>
 }

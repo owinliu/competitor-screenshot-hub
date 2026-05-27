@@ -560,6 +560,7 @@ function Tasks({ tasks, promoteMessage, onRefresh, onCapture, onPromote }: { tas
               <div className="row between"><h2>{task.title}</h2><span className={`badge ${interruption ? 'danger' : 'warning'}`}>{task.status}</span></div>
               <p>{task.summary}</p>
               {interruption && <TaskInterruptionNotice reason={interruption.reason} latestImage={interruption.latestImage} />}
+              {task.publishStatus && <PublishStatusNotice status={task.publishStatus} message={task.publishMessage} />}
               <small>更新：{task.updatedAt}</small>
               <div className="taskButtons"><button className="ghostButton" onClick={() => onCapture(task.id)}>采集当前页面</button>{task.artifacts && task.artifacts.length > 0 && <button className="ghostButton" onClick={() => setReviewTask(task)}>保存到截图检索</button>}</div>
               {task.artifacts && task.artifacts.length > 0 && (
@@ -595,6 +596,16 @@ function TaskInterruptionNotice({ reason, latestImage }: { reason: string; lates
       <strong>采集已中断，需要人工接管</strong>
       <span>{reason}</span>
       {latestImage && <small>已保留中断前截图，可在下方查看最后一张画面。</small>}
+    </div>
+  )
+}
+
+function PublishStatusNotice({ status, message }: { status: CaptureTask['publishStatus']; message?: string }) {
+  const ok = status === 'published'
+  return (
+    <div className={`publishNotice ${ok ? 'published' : 'failed'}`} role="status">
+      <strong>{ok ? '截图已同步到线上' : '截图同步线上失败'}</strong>
+      <span>{message || (ok ? 'GitHub Pages 正在部署或已部署，可稍后刷新查看。' : '请维护者检查本地 git push / GitHub Actions 状态。')}</span>
     </div>
   )
 }

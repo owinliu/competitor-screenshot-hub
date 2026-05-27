@@ -22,6 +22,21 @@ function writeJson(file, data) {
 }
 function readTasks() { return readJson(tasksPath, []) }
 function writeTasks(tasks) { writeJson(tasksPath, tasks) }
+function publishTaskArtifacts(taskId) {
+  if (process.env.CSH_AUTO_PUBLISH === '0') return { ok: true, skipped: true, reason: 'CSH_AUTO_PUBLISH=0' }
+  const result = spawnSync(process.execPath, ['scripts/publish-task-artifacts.mjs', taskId], { cwd: root, encoding: 'utf8', maxBuffer: 1024 * 1024 })
+  const message = `${result.stdout || ''}${result.stderr || ''}`.trim()
+  return result.status === 0 ? { ok: true, message } : { ok: false, message }
+}
+function appendPublishState(tasks, idx, publishResult) {
+  const node = publishResult.ok
+    ? { name: '同步线上截图', status: publishResult.skipped ? '已跳过' : '已发布', note: publishResult.skipped ? publishResult.reason : '任务状态和截图已推送到 GitHub Pages，等待 Actions 部署生效。' }
+    : { name: '同步线上截图', status: '失败', note: publishResult.message || 'git push failed' }
+  tasks[idx].publishStatus = publishResult.ok ? (publishResult.skipped ? 'skipped' : 'published') : 'failed'
+  tasks[idx].publishMessage = node.note
+  tasks[idx].nodes = [...(tasks[idx].nodes || []), node]
+  tasks[idx].updatedAt = nowText()
+}
 function send(res, status, data) {
   res.writeHead(status, {
     'content-type': 'application/json; charset=utf-8',
@@ -210,6 +225,8 @@ async function handler(req, res) {
         tasks[idx].updatedAt = nowText()
         tasks[idx].nodes = [...(tasks[idx].nodes || []), { name: '本地截图', status: '失败', note: result.reason }]
         writeTasks(tasks)
+        appendPublishState(tasks, idx, publishTaskArtifacts(taskId))
+        writeTasks(tasks)
         return send(res, 200, tasks[idx])
       }
       const artifact = { type: 'screenshot', imagePath: result.imagePath, createdAt: nowText(), device: result.device }
@@ -218,6 +235,8 @@ async function handler(req, res) {
       tasks[idx].updatedAt = nowText()
       tasks[idx].artifacts = [...(tasks[idx].artifacts || []), artifact]
       tasks[idx].nodes = [...(tasks[idx].nodes || []), { name: '当前页面截图', status: '已采集', note: result.imagePath }]
+      writeTasks(tasks)
+      appendPublishState(tasks, idx, publishTaskArtifacts(taskId))
       writeTasks(tasks)
       return send(res, 200, tasks[idx])
     }

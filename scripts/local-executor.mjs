@@ -12,6 +12,7 @@ const capabilities = JSON.parse(fs.readFileSync(path.resolve('data/supported-cap
 const routes = JSON.parse(fs.readFileSync(path.resolve('data/capture-routes.json'), 'utf8'))
 const runnableStatuses = new Set(['已收到', '排队中'])
 const riskPattern = /身份证|人脸|银行卡|借款提交|授信提交|签约|验证码|支付|提现|还款|转账/
+const autoPublish = process.env.CSH_AUTO_PUBLISH !== '0'
 
 function nowText() { return new Date().toLocaleString('zh-CN', { hour12: false }) }
 function readTasks() { try { return JSON.parse(fs.readFileSync(tasksPath, 'utf8')) } catch { return [] } }
@@ -23,6 +24,29 @@ function updateTask(taskId, patch) {
   tasks[idx] = { ...tasks[idx], ...patch, updatedAt: nowText() }
   writeTasks(tasks)
   return tasks[idx]
+}
+
+function publishTaskArtifacts(taskId) {
+  if (!autoPublish) return { ok: true, skipped: true, reason: 'CSH_AUTO_PUBLISH=0' }
+  const result = spawnSync(process.execPath, ['scripts/publish-task-artifacts.mjs', taskId], { cwd: root, encoding: 'utf8', maxBuffer: 1024 * 1024 })
+  const message = `${result.stdout || ''}${result.stderr || ''}`.trim()
+  if (result.status !== 0) {
+    console.error(`[executor] publish failed for ${taskId}: ${message}`)
+    return { ok: false, message }
+  }
+  console.log(`[executor] published task artifacts for ${taskId}`)
+  return { ok: true, message }
+}
+
+function updateTaskPublishState(taskId, publishResult) {
+  const publishNode = publishResult.ok
+    ? { name: '同步线上截图', status: publishResult.skipped ? '已跳过' : '已发布', note: publishResult.skipped ? publishResult.reason : '任务状态和截图已推送到 GitHub Pages，等待 Actions 部署生效。' }
+    : { name: '同步线上截图', status: '失败', note: publishResult.message || 'git push failed' }
+  return updateTask(taskId, {
+    publishStatus: publishResult.ok ? (publishResult.skipped ? 'skipped' : 'published') : 'failed',
+    publishMessage: publishNode.note,
+    nodes: [...(readTasks().find((task) => task.id === taskId)?.nodes || []), publishNode],
+  })
 }
 
 function inferIntentKey(text) {
@@ -274,6 +298,7 @@ async function tick() {
       nodes: [...(task.nodes || []), { name: 'OpenClaw 采集计划', status: '等待人工接管', note: `${plan.routeKey || 'unknown'} · ${plan.captureGoal}` }],
       plan,
     })
+    updateTaskPublishState(task.id, publishTaskArtifacts(task.id))
     return true
   }
 
@@ -291,6 +316,7 @@ async function tick() {
       summary: `采集未完成：${result.reason}`,
       nodes: [...(plannedTask.nodes || []), { name: 'APP流程执行', status: '失败', note: result.reason }],
     })
+    updateTaskPublishState(plannedTask.id, publishTaskArtifacts(plannedTask.id))
     return true
   }
 
@@ -300,6 +326,7 @@ async function tick() {
     artifacts: result.artifacts,
     nodes: [...(plannedTask.nodes || []), ...result.nodes],
   })
+  updateTaskPublishState(plannedTask.id, publishTaskArtifacts(plannedTask.id))
   return true
 }
 
