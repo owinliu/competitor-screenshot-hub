@@ -71,6 +71,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .badge.review { background: #fef3c7; color: #92400e; }
 .badge.success { background: #dcfce7; color: #166534; }
 .badge.warning { background: #fff7ed; color: #c2410c; }
+.badge.danger { background: #fee2e2; color: #b91c1c; }
 .metaLine { display: flex; justify-content: space-between; gap: 10px; margin-top: 12px; color: #64748b; font-size: 12px; border-top: 1px solid #eef2f7; padding-top: 10px; }
 .tagRow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
 .tagRow span { color: #64748b; font-size: 12px; }
@@ -133,8 +134,17 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .taskSummary .miniCard strong { font-size: 28px; }
 .taskActions { margin-bottom: 14px; }
 .taskButtons { margin: 12px 0; }
+.taskPanel.needsAttention { border-color: #fecaca; background: linear-gradient(180deg, rgba(255,247,237,.88), rgba(255,255,255,.9)); }
+.taskAlert { display: grid; gap: 5px; margin: 12px 0 14px; padding: 14px 16px; border: 1px solid #fed7aa; border-radius: 16px; background: #fff7ed; color: #7c2d12; }
+.taskAlert strong { color: #b91c1c; }
+.taskAlert span, .taskAlert small { color: #9a3412; line-height: 1.55; }
 .taskArtifacts { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin: 14px 0; }
+.taskArtifacts figure { margin: 0; }
 .taskArtifacts img { width: 100%; aspect-ratio: 9 / 16; object-fit: contain; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 14px; padding: 6px; }
+.taskArtifacts figcaption { margin-top: 6px; color: #64748b; font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.taskArtifacts .latestArtifact img { border-color: #fb923c; box-shadow: 0 0 0 3px rgba(251,146,60,.16); }
+.timelineItem.blockedNode > span { background: #fee2e2; color: #b91c1c; }
+.timelineItem.blockedNode strong { color: #991b1b; }
 .compactMessage { padding: 12px 14px; margin-bottom: 14px; text-align: left; }
 .taskButtons { display: flex; flex-wrap: wrap; gap: 10px; }
 .reviewPanel { position: relative; width: min(1080px, 96vw); max-height: 92vh; overflow: auto; background: white; border-radius: 24px; padding: 28px; box-shadow: 0 30px 100px rgba(15,23,42,.28); }

@@ -553,33 +553,65 @@ function Tasks({ tasks, promoteMessage, onRefresh, onCapture, onPromote }: { tas
         ))}
       </div>
       <div className="flowList">
-        {tasks.map((task) => (
-          <article className="panel" key={task.id}>
-            <div className="row between"><h2>{task.title}</h2><span className="badge warning">{task.status}</span></div>
-            <p>{task.summary}</p>
-            <small>更新：{task.updatedAt}</small>
-            <div className="taskButtons"><button className="ghostButton" onClick={() => onCapture(task.id)}>采集当前页面</button>{task.artifacts && task.artifacts.length > 0 && <button className="ghostButton" onClick={() => setReviewTask(task)}>保存到截图检索</button>}</div>
-            {task.artifacts && task.artifacts.length > 0 && (
-              <div className="taskArtifacts">
-                {task.artifacts.map((artifact) => (
-                  <img key={artifact.imagePath} src={withBase(artifact.imagePath)} alt="任务截图" loading="lazy" />
+        {tasks.map((task) => {
+          const interruption = getTaskInterruption(task)
+          return (
+            <article className={`panel taskPanel ${interruption ? 'needsAttention' : ''}`} key={task.id}>
+              <div className="row between"><h2>{task.title}</h2><span className={`badge ${interruption ? 'danger' : 'warning'}`}>{task.status}</span></div>
+              <p>{task.summary}</p>
+              {interruption && <TaskInterruptionNotice reason={interruption.reason} latestImage={interruption.latestImage} />}
+              <small>更新：{task.updatedAt}</small>
+              <div className="taskButtons"><button className="ghostButton" onClick={() => onCapture(task.id)}>采集当前页面</button>{task.artifacts && task.artifacts.length > 0 && <button className="ghostButton" onClick={() => setReviewTask(task)}>保存到截图检索</button>}</div>
+              {task.artifacts && task.artifacts.length > 0 && (
+                <div className="taskArtifacts">
+                  {task.artifacts.map((artifact) => (
+                    <figure key={artifact.imagePath} className={interruption?.latestImage === artifact.imagePath ? 'latestArtifact' : ''}>
+                      <img src={withBase(artifact.imagePath)} alt={artifact.label || '任务截图'} loading="lazy" />
+                      <figcaption>{artifact.label || artifact.createdAt}</figcaption>
+                    </figure>
+                  ))}
+                </div>
+              )}
+              <div className="timeline">
+                {task.nodes.map((node, index) => (
+                  <div className={`timelineItem ${isBlockingNode(node.status) ? 'blockedNode' : ''}`} key={`${task.id}-${node.name}-${index}`}>
+                    <span>{index + 1}</span>
+                    <div><strong>{node.name}</strong><small>{node.status}{node.note ? ` · ${node.note}` : ''}</small></div>
+                  </div>
                 ))}
               </div>
-            )}
-            <div className="timeline">
-              {task.nodes.map((node, index) => (
-                <div className="timelineItem" key={`${task.id}-${node.name}-${index}`}>
-                  <span>{index + 1}</span>
-                  <div><strong>{node.name}</strong><small>{node.status}{node.note ? ` · ${node.note}` : ''}</small></div>
-                </div>
-              ))}
-            </div>
-          </article>
-        ))}
+            </article>
+          )
+        })}
       </div>
       {reviewTask && <PromoteReviewDialog task={reviewTask} onClose={() => setReviewTask(null)} onConfirm={(review) => { onPromote(reviewTask.id, review); setReviewTask(null) }} />}
     </section>
   )
+}
+
+function TaskInterruptionNotice({ reason, latestImage }: { reason: string; latestImage?: string }) {
+  return (
+    <div className="taskAlert" role="status">
+      <strong>采集已中断，需要人工接管</strong>
+      <span>{reason}</span>
+      {latestImage && <small>已保留中断前截图，可在下方查看最后一张画面。</small>}
+    </div>
+  )
+}
+
+function getTaskInterruption(task: CaptureTask) {
+  const blockingNode = [...task.nodes].reverse().find((node) => isBlockingNode(node.status) || /未找到|弹窗|阻断|中断|失败/.test(`${node.name} ${node.note || ''}`))
+  const taskBlocked = /部分完成|等待人工|失败|中断/.test(task.status)
+  if (!blockingNode && !taskBlocked) return null
+  const latestImage = task.artifacts?.[task.artifacts.length - 1]?.imagePath
+  return {
+    reason: blockingNode?.note || task.summary || '自动采集没有继续推进，请查看最后截图并人工判断下一步。',
+    latestImage,
+  }
+}
+
+function isBlockingNode(status: string) {
+  return /等待人工|失败|中断|阻断/.test(status)
 }
 
 function PromoteReviewDialog({ task, onClose, onConfirm }: { task: CaptureTask; onClose: () => void; onConfirm: (review: PromoteReview) => void }) {
