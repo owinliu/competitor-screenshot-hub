@@ -180,22 +180,107 @@ function parseNodes(xml) {
   }).filter((node) => node.bounds)
 }
 
-function findNode(xml, candidates) {
+function nodeLabel(node) {
+  return `${node.text || ''} ${node.desc || ''}`.trim()
+}
+
+function findNode(xml, candidates, options = {}) {
   const nodes = parseNodes(xml)
+  const blocked = options.exclude || []
   for (const candidate of candidates) {
-    const found = nodes.find((node) => `${node.text} ${node.desc}`.includes(candidate))
+    const found = nodes.find((node) => {
+      const label = nodeLabel(node)
+      return label.includes(candidate) && !blocked.some((word) => label.includes(word))
+    })
     if (found) return { node: found, candidate }
   }
   return null
 }
 
-function tapNode(adb, found) {
+function dismissObstacles(adb, nodes, maxRounds = 3) {
+  const safeClose = ['我知道了', '知道了', '关闭', '取消', '稍后再说', '暂不', '跳过', '下次再说', '以后再说', '不允许', '暂不开启', '放弃', '忽略']
+  const risky = ['去借款', '立即借款', '确认借款', '申请借款', '提交', '授权', '同意协议', '确认授权', '支付', '提现', '还款']
+  let closed = 0
+  for (let round = 0; round < maxRounds; round += 1) {
+    const xml = dumpUi(adb)
+    const text = xml.replace(/\s+/g, '')
+    const hasOverlayHint = /弹窗|dialog|提额|降息|优惠|活动|奖励|更新|权限|通知|您已|恭喜|领取|借款/.test(text)
+    const found = findNode(xml, safeClose, { exclude: risky })
+    if (found) {
+      const tapped = tapNode(adb, found, 1)
+      closed += 1
+      nodes.push({ name: '弹窗/浮层处理', status: '已关闭', note: `点击「${tapped.candidate}」(${tapped.x},${tapped.y})` })
+      continue
+    }
+
+    const closeIcon = parseNodes(xml).find((node) => {
+      const label = nodeLabel(node)
+      if (!/[×xX✕]|关闭/.test(label)) return false
+      if (risky.some((word) => label.includes(word))) return false
+      const [x1, y1, x2, y2] = node.bounds
+      const width = x2 - x1
+      const height = y2 - y1
+      return width <= 140 && height <= 140
+    })
+    if (closeIcon && hasOverlayHint) {
+      const tapped = tapNode(adb, { node: closeIcon, candidate: nodeLabel(closeIcon) || '关闭图标' }, 1)
+      closed += 1
+      nodes.push({ name: '弹窗/浮层处理', status: '已关闭', note: `点击关闭图标「${tapped.candidate}」(${tapped.x},${tapped.y})` })
+      continue
+    }
+    break
+  }
+  return closed
+}
+
+function tapNode(adb, found, waitSeconds = 2) {
   const [x1, y1, x2, y2] = found.node.bounds
   const x = Math.round((x1 + x2) / 2)
   const y = Math.round((y1 + y2) / 2)
   adbShell(adb, ['input', 'tap', String(x), String(y)])
-  adbShell(adb, ['sleep', '2'])
+  adbShell(adb, ['sleep', String(waitSeconds)])
   return { x, y, candidate: found.candidate }
+}
+
+function findAndTapWithRecovery(adb, taskId, step, artifacts, nodes, device, routeKey) {
+  const candidates = step.candidates || []
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    dismissObstacles(adb, nodes)
+    const xml = dumpUi(adb)
+    const found = findNode(xml, candidates)
+    if (found) {
+      const tapped = tapNode(adb, found)
+      nodes.push({ name: step.label, status: '已点击', note: `点击「${tapped.candidate}」(${tapped.x},${tapped.y})` })
+      screenshot(adb, taskId, step.label, artifacts, nodes, device)
+      return { ok: true }
+    }
+    if (attempt < 2) adbShell(adb, ['sleep', '1'])
+  }
+
+  if (routeKey === 'customer_entry' && step.key === 'service-entry') {
+    const explorationEntries = ['我的', '全部服务', '服务', '帮助', '设置', '消息']
+    for (const entry of explorationEntries) {
+      dismissObstacles(adb, nodes)
+      const entryNode = findNode(dumpUi(adb), [entry])
+      if (!entryNode) continue
+      const tappedEntry = tapNode(adb, entryNode)
+      nodes.push({ name: '客服入口探索', status: '已进入候选页面', note: `点击「${tappedEntry.candidate}」(${tappedEntry.x},${tappedEntry.y})` })
+      screenshot(adb, taskId, `探索-${entry}`, artifacts, nodes, device)
+      dismissObstacles(adb, nodes)
+      const serviceNode = findNode(dumpUi(adb), candidates.filter((item) => item !== entry))
+      if (serviceNode) {
+        const tappedService = tapNode(adb, serviceNode)
+        nodes.push({ name: step.label, status: '已点击', note: `在「${entry}」后点击「${tappedService.candidate}」(${tappedService.x},${tappedService.y})` })
+        screenshot(adb, taskId, step.label, artifacts, nodes, device)
+        return { ok: true }
+      }
+      adbShell(adb, ['input', 'keyevent', '4'])
+      adbShell(adb, ['sleep', '1'])
+    }
+  }
+
+  screenshot(adb, taskId, `${step.label}-未找到入口`, artifacts, nodes, device)
+  return { ok: false, reason: `关闭弹窗并重试后仍未找到可点击文本：${candidates.join(' / ')}` }
 }
 
 function runRouteWithAdb(taskId, plan, previousArtifacts = []) {
@@ -212,12 +297,15 @@ function runRouteWithAdb(taskId, plan, previousArtifacts = []) {
   if (launch.status !== 0) return { ok: false, reason: launch.stderr || `无法启动 APP：${plan.packageName}` }
   adbShell(adb, ['sleep', '3'])
 
+  dismissObstacles(adb, nodes)
+
   if (!route) {
     screenshot(adb, taskId, `${plan.appName}入口截图`, artifacts, nodes, check.device)
     return { ok: true, status: '已完成', summary: `已按 OpenClaw 规划启动 ${plan.appName} 并完成入口截图。`, artifacts, nodes }
   }
 
   for (const step of route.steps) {
+    dismissObstacles(adb, nodes)
     const xml = dumpUi(adb)
     if (route.stopPoints?.some((word) => xml.includes(word))) {
       nodes.push({ name: step.label, status: '等待人工接管', note: '页面出现高风险/认证关键词，自动采集暂停。' })
@@ -230,20 +318,17 @@ function runRouteWithAdb(taskId, plan, previousArtifacts = []) {
     }
 
     if (step.action === 'tapText') {
-      const found = findNode(xml, step.candidates || [])
-      if (!found) {
-        screenshot(adb, taskId, `${step.label}-未找到入口`, artifacts, nodes, check.device)
-        nodes.push({ name: step.label, status: '等待人工接管', note: `未找到可点击文本：${(step.candidates || []).join(' / ')}` })
+      const result = findAndTapWithRecovery(adb, taskId, step, artifacts, nodes, check.device, route.routeKey)
+      if (!result.ok) {
+        nodes.push({ name: step.label, status: '等待人工接管', note: result.reason })
         return { ok: true, status: artifacts.length > 0 ? '部分完成' : '等待人工接管', summary: `部分完成：未找到「${step.label}」入口。已采集 ${artifacts.length} 张。`, artifacts, nodes }
       }
-      const tapped = tapNode(adb, found)
-      nodes.push({ name: step.label, status: '已点击', note: `点击「${tapped.candidate}」(${tapped.x},${tapped.y})` })
-      screenshot(adb, taskId, step.label, artifacts, nodes, check.device)
       continue
     }
 
     if (step.action === 'inputAndEnter' || step.action === 'tapOrInputHuman') {
-      const found = findNode(xml, ['人工客服', '转人工', '人工服务', '联系人工', ...(step.inputCandidates || [])])
+      dismissObstacles(adb, nodes)
+      const found = findNode(dumpUi(adb), ['人工客服', '转人工', '人工服务', '联系人工', ...(step.inputCandidates || [])])
       if (found) {
         const tapped = tapNode(adb, found)
         nodes.push({ name: step.label, status: '已点击', note: `点击「${tapped.candidate}」(${tapped.x},${tapped.y})` })
