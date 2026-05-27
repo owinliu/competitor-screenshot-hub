@@ -1,0 +1,32 @@
+[
+  {
+    "intentKey": "customer_entry",
+    "intentName": "客服入口采集",
+    "description": "只要求找到客服/帮助/服务入口，不要求进入会话或转人工。",
+    "expectedNodes": ["APP首页", "客服/服务入口"]
+  },
+  {
+    "intentKey": "customer_chat_flow",
+    "intentName": "客服会话流程采集",
+    "description": "要求从客服入口进入在线客服/客服会话页，记录会话入口与页面承接。",
+    "expectedNodes": ["APP首页", "客服/服务入口", "在线客服/客服中心", "客服会话页"]
+  },
+  {
+    "intentKey": "customer_chat_to_human_flow",
+    "intentName": "客服会话转人工流程采集",
+    "description": "要求从客服入口进入客服会话，并尝试触发人工客服，记录转人工结果/排队/失败/人工承接。",
+    "expectedNodes": ["APP首页", "客服/服务入口", "在线客服/客服中心", "客服会话页", "触发人工客服", "转人工结果/排队/人工承接页"]
+  },
+  {
+    "intentKey": "complaint_feedback_flow",
+    "intentName": "投诉反馈流程采集",
+    "description": "要求找到投诉、反馈、消保相关入口与只读说明页面。",
+    "expectedNodes": ["APP首页", "客服/服务入口", "投诉/反馈/消保入口", "投诉反馈说明页"]
+  },
+  {
+    "intentKey": "generic_app_flow",
+    "intentName": "通用页面采集",
+    "description": "未命中专项流程时，按通用低风险入口采集。",
+    "expectedNodes": ["APP首页/启动后页面"]
+  }
+]

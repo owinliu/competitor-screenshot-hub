@@ -1,0 +1,2259 @@
+[
+  {
+    "id": "fenqile-app-loan-entry",
+    "competitor": "分期乐",
+    "flowName": "APP-借钱入口",
+    "status": "captured",
+    "summary": "分期乐 APP-借钱入口 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0323-001-6c25f50d"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0402-007-41b9401d"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0428-014-4219ba62"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-app-account",
+    "competitor": "分期乐",
+    "flowName": "APP-我的/账户",
+    "status": "captured",
+    "summary": "分期乐 APP-我的/账户 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "我的页面",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0323-002-2a96cf39"
+        ]
+      },
+      {
+        "name": "我的页面",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0402-008-b73c9c9b"
+        ]
+      },
+      {
+        "name": "我的页面",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0428-013-94d36f3c"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-app-message",
+    "competitor": "分期乐",
+    "flowName": "APP-消息",
+    "status": "captured",
+    "summary": "分期乐 APP-消息 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "消息页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0323-003-f8034776"
+        ]
+      },
+      {
+        "name": "消息页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0402-009-18bd6b52"
+        ]
+      },
+      {
+        "name": "消息页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0428-015-52d3b29b"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-app-shopping",
+    "competitor": "分期乐",
+    "flowName": "APP-购物/商城",
+    "status": "captured",
+    "summary": "分期乐 APP-购物/商城 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "购物页 买吖超市",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0323-004-98e6e621"
+        ]
+      },
+      {
+        "name": "购物页推荐",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0323-005-e0adfd24"
+        ]
+      },
+      {
+        "name": "购物推荐页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0402-010-57605d42"
+        ]
+      },
+      {
+        "name": "购物页 买吖超市",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0402-011-a8e4d6e1"
+        ]
+      },
+      {
+        "name": "购物推荐页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0428-016-6a4aba43"
+        ]
+      },
+      {
+        "name": "购物页 买吖超市",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0428-017-702b6c96"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-app-home",
+    "competitor": "分期乐",
+    "flowName": "APP-首页",
+    "status": "captured",
+    "summary": "分期乐 APP-首页 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0323-006-b387a2f5"
+        ]
+      },
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0402-012-8b032050"
+        ]
+      },
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-app-general-0428-018-f5ad55a0"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-customer-service",
+    "competitor": "分期乐",
+    "flowName": "客服/消保",
+    "status": "captured",
+    "summary": "分期乐 客服/消保 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "im半浮层",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-customer-service-0323-019-51caf5c6"
+        ]
+      },
+      {
+        "name": "服务大厅",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-customer-service-0323-020-06f5fb06"
+        ]
+      },
+      {
+        "name": "im半浮层",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-customer-service-0402-021-4a63aa20"
+        ]
+      },
+      {
+        "name": "服务大厅",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-customer-service-0402-022-0202614e"
+        ]
+      },
+      {
+        "name": "服务大厅",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-customer-service-0428-023-f440e177"
+        ]
+      },
+      {
+        "name": "im半浮层",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-customer-service-0428-024-bdd830ed"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-consumer-finance",
+    "competitor": "分期乐",
+    "flowName": "消金/借款",
+    "status": "captured",
+    "summary": "分期乐 消金/借款 已导入 15 张截图。",
+    "nodes": [
+      {
+        "name": "plus活动",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0323-025-fdf2e22e"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0323-026-4db3862d"
+        ]
+      },
+      {
+        "name": "减息金活动",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0323-027-c039e410"
+        ]
+      },
+      {
+        "name": "减息金活动2",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0323-028-32937148"
+        ]
+      },
+      {
+        "name": "额度中心",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0323-029-d9a5b085"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0402-030-4d00cf74"
+        ]
+      },
+      {
+        "name": "减息金活动",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0402-031-1e6c0c03"
+        ]
+      },
+      {
+        "name": "减息金活动2",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0402-032-a8a8179b"
+        ]
+      },
+      {
+        "name": "额度中心",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0402-033-2f879d15"
+        ]
+      },
+      {
+        "name": "040plus活动",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0402-034-b67fea55"
+        ]
+      },
+      {
+        "name": "040plus活动",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0428-035-17062b40"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0428-036-aa472de0"
+        ]
+      },
+      {
+        "name": "减息金活动",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0428-037-b7cec6ce"
+        ]
+      },
+      {
+        "name": "减息金活动2",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0428-038-61283355"
+        ]
+      },
+      {
+        "name": "额度中心",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-consumer-finance-0428-039-c9b514f5"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fenqile-campaign",
+    "competitor": "分期乐",
+    "flowName": "运营活动",
+    "status": "captured",
+    "summary": "分期乐 运营活动 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "活动页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-campaign-0323-040-81f209a9"
+        ]
+      },
+      {
+        "name": "活动页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-campaign-0402-041-e2a0c36e"
+        ]
+      },
+      {
+        "name": "活动页",
+        "status": "captured",
+        "screenshotIds": [
+          "fenqile-campaign-0428-042-7c490603"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-app-wealth-insurance",
+    "competitor": "度小满金融",
+    "flowName": "APP-理财/保险",
+    "status": "captured",
+    "summary": "度小满金融 APP-理财/保险 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "保险",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0323-001-ab88de04"
+        ]
+      },
+      {
+        "name": "理财",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0323-004-a4dd7eee"
+        ]
+      },
+      {
+        "name": "保险",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0402-007-d8f86406"
+        ]
+      },
+      {
+        "name": "理财",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0402-010-ba4d93af"
+        ]
+      },
+      {
+        "name": "保险",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0428-013-23526802"
+        ]
+      },
+      {
+        "name": "理财",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0428-016-ada90589"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-app-loan-entry",
+    "competitor": "度小满金融",
+    "flowName": "APP-借钱入口",
+    "status": "captured",
+    "summary": "度小满金融 APP-借钱入口 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "借钱",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0323-002-0555572e"
+        ]
+      },
+      {
+        "name": "借钱",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0402-008-bc31e807"
+        ]
+      },
+      {
+        "name": "借钱",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0428-014-aab361d1"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-app-account",
+    "competitor": "度小满金融",
+    "flowName": "APP-我的/账户",
+    "status": "captured",
+    "summary": "度小满金融 APP-我的/账户 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "我的",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0323-003-b094aa96"
+        ]
+      },
+      {
+        "name": "我的",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0402-009-a85c609e"
+        ]
+      },
+      {
+        "name": "我的",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0428-015-034ef4cc"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-app-home",
+    "competitor": "度小满金融",
+    "flowName": "APP-首页",
+    "status": "captured",
+    "summary": "度小满金融 APP-首页 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "首页1",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0323-005-412dddfa"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0323-006-2fba6cb1"
+        ]
+      },
+      {
+        "name": "首页1",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0402-011-fbf92f11"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0402-012-c98d756a"
+        ]
+      },
+      {
+        "name": "首页1",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0428-017-815b2f94"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-app-general-0428-018-e00fb6d8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-needs-classification",
+    "competitor": "度小满金融",
+    "flowName": "待分类",
+    "status": "needs-review",
+    "summary": "度小满金融 待分类 已导入 7 张截图，其中 7 张待分类复核。",
+    "nodes": [
+      {
+        "name": "wecom temp 148788 96a0e5d3970c566e1990af74b8ceb75a",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-148788-96a0e5d3970c566e1990af74b8ceb75a-unknown-019-4231ab44"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 223456 60b7ac7f7cc0e07d06fd99d7f727bf78",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-223456-60b7ac7f7cc0e07d06fd99d7f727bf78-unknown-020-c0434e87"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 256807 9685b4afdb3e0e42c3efc3e9db39f93d",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-256807-9685b4afdb3e0e42c3efc3e9db39f93d-unknown-021-1a93d357"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 264577 bd5df0f3500a7e0fc53c0b606903d269",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-264577-bd5df0f3500a7e0fc53c0b606903d269-unknown-022-3177e389"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 268749 7675edceefb3c3cdd269dbf50e5a37be",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-268749-7675edceefb3c3cdd269dbf50e5a37be-unknown-023-ea28caf6"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 288829 04acfc88ee6492616eba9e03f436a1f1",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-288829-04acfc88ee6492616eba9e03f436a1f1-unknown-024-45012ac1"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 360797 6c818bf8fe149c256f0a1f11b2081042",
+        "status": "needs-review",
+        "screenshotIds": [
+          "duxiaoman-wecom-temp-360797-6c818bf8fe149c256f0a1f11b2081042-unknown-025-c57878a1"
+        ],
+        "note": "待人工分类复核"
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-customer-service",
+    "competitor": "度小满金融",
+    "flowName": "客服/消保",
+    "status": "captured",
+    "summary": "度小满金融 客服/消保 已导入 12 张截图。",
+    "nodes": [
+      {
+        "name": "对话页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0323-026-6d4a8735"
+        ]
+      },
+      {
+        "name": "对话页初始",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0323-027-aaacee34"
+        ]
+      },
+      {
+        "name": "消息中心",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0323-028-3cb04706"
+        ]
+      },
+      {
+        "name": "消息中心2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0323-029-84db524d"
+        ]
+      },
+      {
+        "name": "对话页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0407-030-42e5364d"
+        ]
+      },
+      {
+        "name": "对话页初始",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0407-031-c449b882"
+        ]
+      },
+      {
+        "name": "消息中心",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0407-032-de5f5b9b"
+        ]
+      },
+      {
+        "name": "消息中心2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0407-033-94da6c28"
+        ]
+      },
+      {
+        "name": "对话页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0428-034-499c4c46"
+        ]
+      },
+      {
+        "name": "对话页初始",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0428-035-3b335c18"
+        ]
+      },
+      {
+        "name": "消息中心",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0428-036-33f0e302"
+        ]
+      },
+      {
+        "name": "消息中心2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-customer-service-0428-037-eed62f21"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-consumer-finance",
+    "competitor": "度小满金融",
+    "flowName": "消金/借款",
+    "status": "captured",
+    "summary": "度小满金融 消金/借款 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "借钱",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-consumer-finance-0323-038-047e0519"
+        ]
+      },
+      {
+        "name": "额度页面",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-consumer-finance-0323-039-deb0f820"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-consumer-finance-0402-040-01feba70"
+        ]
+      },
+      {
+        "name": "额度页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-consumer-finance-0402-041-589d157c"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-consumer-finance-0428-042-b6a6f96b"
+        ]
+      },
+      {
+        "name": "额度页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-consumer-finance-0428-043-12244408"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "duxiaoman-campaign",
+    "competitor": "度小满金融",
+    "flowName": "运营活动",
+    "status": "captured",
+    "summary": "度小满金融 运营活动 已导入 9 张截图。",
+    "nodes": [
+      {
+        "name": "活动落地页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0323-044-a4ae2ffe"
+        ]
+      },
+      {
+        "name": "代言人活动弹窗",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0402-045-81e4bf4f"
+        ]
+      },
+      {
+        "name": "代言人活动落地页2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0402-046-49d73d1e"
+        ]
+      },
+      {
+        "name": "活动浮层奖励",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0402-047-77b691df"
+        ]
+      },
+      {
+        "name": "活动落地页",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0402-048-525067cc"
+        ]
+      },
+      {
+        "name": "代言人活动弹窗",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0428-049-7ba9199a"
+        ]
+      },
+      {
+        "name": "活动浮层奖励",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0428-050-5707784a"
+        ]
+      },
+      {
+        "name": "代言人活动落地页2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0428-051-61cb14fb"
+        ]
+      },
+      {
+        "name": "代言人活动落地页2",
+        "status": "captured",
+        "screenshotIds": [
+          "duxiaoman-campaign-0428-052-d6f6bdf3"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-app-account",
+    "competitor": "小赢",
+    "flowName": "APP-我的/账户",
+    "status": "captured",
+    "summary": "小赢 APP-我的/账户 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0323-001-8e4594cf"
+        ]
+      },
+      {
+        "name": "我的页面2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0323-002-02cd12d9"
+        ]
+      },
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0407-006-00f46deb"
+        ]
+      },
+      {
+        "name": "我的页面2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0407-007-fea6964f"
+        ]
+      },
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0428-011-382ad9b4"
+        ]
+      },
+      {
+        "name": "我的页面2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0428-012-72693514"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-app-benefits",
+    "competitor": "小赢",
+    "flowName": "APP-生活/权益",
+    "status": "captured",
+    "summary": "小赢 APP-生活/权益 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "权益页",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0323-003-6e658db2"
+        ]
+      },
+      {
+        "name": "权益页",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0407-008-76a7c99d"
+        ]
+      },
+      {
+        "name": "权益页",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0428-013-c123dcad"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-app-home",
+    "competitor": "小赢",
+    "flowName": "APP-首页",
+    "status": "captured",
+    "summary": "小赢 APP-首页 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0323-004-86b1fbdd"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0323-005-719d9eea"
+        ]
+      },
+      {
+        "name": "首页1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0407-009-85993f38"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0407-010-742e3629"
+        ]
+      },
+      {
+        "name": "首页1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0428-014-1d26c6ab"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-app-general-0428-015-d6b52bab"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-customer-service",
+    "competitor": "小赢",
+    "flowName": "客服/消保",
+    "status": "captured",
+    "summary": "小赢 客服/消保 已导入 15 张截图。",
+    "nodes": [
+      {
+        "name": "对话框1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0323-016-09193e69"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0323-017-51f9a3f7"
+        ]
+      },
+      {
+        "name": "对话框3",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0323-018-df238df4"
+        ]
+      },
+      {
+        "name": "帮助中心",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0323-019-bea99458"
+        ]
+      },
+      {
+        "name": "联系客服",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0323-020-e7638205"
+        ]
+      },
+      {
+        "name": "对话框1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0407-021-a2b24762"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0407-022-52c4f427"
+        ]
+      },
+      {
+        "name": "对话框3",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0407-023-614220ef"
+        ]
+      },
+      {
+        "name": "帮助中心",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0407-024-56dc758d"
+        ]
+      },
+      {
+        "name": "联系客服",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0407-025-20e7e209"
+        ]
+      },
+      {
+        "name": "对话框1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0428-026-507ca07c"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0428-027-bc130373"
+        ]
+      },
+      {
+        "name": "对话框3",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0428-028-cb2c395d"
+        ]
+      },
+      {
+        "name": "帮助中心",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0428-029-78170922"
+        ]
+      },
+      {
+        "name": "联系客服",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-customer-service-0428-030-e0ff7ab8"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-consumer-finance",
+    "competitor": "小赢",
+    "flowName": "消金/借款",
+    "status": "captured",
+    "summary": "小赢 消金/借款 已导入 18 张截图。",
+    "nodes": [
+      {
+        "name": "借款申请",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0323-031-ea1c4a6f"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0323-032-b1f33040"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0323-033-3a312504"
+        ]
+      },
+      {
+        "name": "我的账单",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0323-034-54eccebd"
+        ]
+      },
+      {
+        "name": "申请记录",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0323-035-12c1d091"
+        ]
+      },
+      {
+        "name": "额度提升",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0323-036-63230f57"
+        ]
+      },
+      {
+        "name": "借款申请",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0407-037-2ff57b5b"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0407-038-cb7503cb"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0407-039-7d1428e6"
+        ]
+      },
+      {
+        "name": "我的账单",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0407-040-21ccd5c0"
+        ]
+      },
+      {
+        "name": "申请记录",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0407-041-8d142727"
+        ]
+      },
+      {
+        "name": "额度提升",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0407-042-bbda7a3f"
+        ]
+      },
+      {
+        "name": "借款申请",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0428-043-5b8c02a6"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0428-044-a12b90a7"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0428-045-356179df"
+        ]
+      },
+      {
+        "name": "我的账单",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0428-046-4536d242"
+        ]
+      },
+      {
+        "name": "申请记录",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0428-047-25bbe78e"
+        ]
+      },
+      {
+        "name": "额度提升",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-consumer-finance-0428-048-6f01df82"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-campaign",
+    "competitor": "小赢",
+    "flowName": "运营活动",
+    "status": "captured",
+    "summary": "小赢 运营活动 已导入 16 张截图。",
+    "nodes": [
+      {
+        "name": "春分落地页",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0323-049-76c8d489"
+        ]
+      },
+      {
+        "name": "活动1",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0323-050-c6ce9ea1"
+        ]
+      },
+      {
+        "name": "活动2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0323-051-e667c167"
+        ]
+      },
+      {
+        "name": "活动3",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0323-052-a8b6c770"
+        ]
+      },
+      {
+        "name": "红包卡券",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0323-053-f3a41d23"
+        ]
+      },
+      {
+        "name": "活动2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0407-054-ccfb6fcd"
+        ]
+      },
+      {
+        "name": "活动3",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0407-055-100ef3a1"
+        ]
+      },
+      {
+        "name": "活动4",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0407-056-bf0fe233"
+        ]
+      },
+      {
+        "name": "活动5",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0407-057-1f5a66bb"
+        ]
+      },
+      {
+        "name": "红包卡券",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0407-058-78db5cd8"
+        ]
+      },
+      {
+        "name": "活动2",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0428-059-b355115f"
+        ]
+      },
+      {
+        "name": "活动3",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0428-060-0f3cf025"
+        ]
+      },
+      {
+        "name": "活动4",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0428-061-a1ad635c"
+        ]
+      },
+      {
+        "name": "活动5",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0428-062-3ec6a6db"
+        ]
+      },
+      {
+        "name": "活动6",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0428-063-20bbca5c"
+        ]
+      },
+      {
+        "name": "红包卡券",
+        "status": "captured",
+        "screenshotIds": [
+          "xiaoying-campaign-0428-064-55ee191b"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "xiaoying-needs-classification",
+    "competitor": "小赢",
+    "flowName": "待分类",
+    "status": "needs-review",
+    "summary": "小赢 待分类 已导入 3 张截图，其中 3 张待分类复核。",
+    "nodes": [
+      {
+        "name": "wecom temp 213753 4aa915a9968f69df89f33d69deaa58f9",
+        "status": "needs-review",
+        "screenshotIds": [
+          "xiaoying-risk-control-0323-065-e7864448"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 202140 a072aa1431d28fae89b855d1d4432654",
+        "status": "needs-review",
+        "screenshotIds": [
+          "xiaoying-risk-control-0407-066-bdf37c4e"
+        ],
+        "note": "待人工分类复核"
+      },
+      {
+        "name": "wecom temp 81166 3a6abd410554c12408787d21da7318ca",
+        "status": "needs-review",
+        "screenshotIds": [
+          "xiaoying-risk-control-0428-067-c208b79a"
+        ],
+        "note": "待人工分类复核"
+      }
+    ]
+  },
+  {
+    "id": "qifu-app-loan-entry",
+    "competitor": "奇富借条",
+    "flowName": "APP-借钱入口",
+    "status": "captured",
+    "summary": "奇富借条 APP-借钱入口 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-001-8d8cd140"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-002-7d507337"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-008-13ac2ef1"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-009-0cf33b02"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-015-64403770"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-016-3915b6bd"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qifu-app-account",
+    "competitor": "奇富借条",
+    "flowName": "APP-我的/账户",
+    "status": "captured",
+    "summary": "奇富借条 APP-我的/账户 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-003-7e007e3d"
+        ]
+      },
+      {
+        "name": "我的页面2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-004-1c8fa9d4"
+        ]
+      },
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-010-0067c2b9"
+        ]
+      },
+      {
+        "name": "我的页面2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-011-e1e22875"
+        ]
+      },
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-017-94d80aa1"
+        ]
+      },
+      {
+        "name": "我的页面2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-018-80201f21"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qifu-app-service-entry",
+    "competitor": "奇富借条",
+    "flowName": "APP-服务入口",
+    "status": "captured",
+    "summary": "奇富借条 APP-服务入口 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "服务页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-005-2eebedaf"
+        ]
+      },
+      {
+        "name": "服务页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-006-2295bd3d"
+        ]
+      },
+      {
+        "name": "服务页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-012-8ab47c5d"
+        ]
+      },
+      {
+        "name": "服务页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-013-0edfbc6a"
+        ]
+      },
+      {
+        "name": "服务页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-019-acb110fb"
+        ]
+      },
+      {
+        "name": "服务页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-020-8ac812d4"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qifu-app-benefits",
+    "competitor": "奇富借条",
+    "flowName": "APP-生活/权益",
+    "status": "captured",
+    "summary": "奇富借条 APP-生活/权益 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "生活页",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0323-007-7ffbf215"
+        ]
+      },
+      {
+        "name": "生活页",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0407-014-b2b412fd"
+        ]
+      },
+      {
+        "name": "生活页",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-app-general-0428-021-367b6d2b"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qifu-customer-service",
+    "competitor": "奇富借条",
+    "flowName": "客服/消保",
+    "status": "captured",
+    "summary": "奇富借条 客服/消保 已导入 15 张截图。",
+    "nodes": [
+      {
+        "name": "客服弹窗",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0323-022-d90d00d6"
+        ]
+      },
+      {
+        "name": "对话框",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0323-023-1a95f683"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0323-024-23bd46fb"
+        ]
+      },
+      {
+        "name": "我的客服",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0323-025-6855ce22"
+        ]
+      },
+      {
+        "name": "消息中心",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0323-026-2553602f"
+        ]
+      },
+      {
+        "name": "客服弹窗",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0407-027-d0c7ac82"
+        ]
+      },
+      {
+        "name": "对话框",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0407-028-cdf57f6f"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0407-029-c4794934"
+        ]
+      },
+      {
+        "name": "我的客服",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0407-030-79073925"
+        ]
+      },
+      {
+        "name": "消息中心",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0407-031-2166ee1d"
+        ]
+      },
+      {
+        "name": "客服弹窗",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0428-032-4cfbf128"
+        ]
+      },
+      {
+        "name": "对话框",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0428-033-343f6c7a"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0428-034-be72a541"
+        ]
+      },
+      {
+        "name": "我的客服",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0428-035-8ae7aed9"
+        ]
+      },
+      {
+        "name": "消息中心",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-customer-service-0428-036-66d6e010"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qifu-consumer-finance",
+    "competitor": "奇富借条",
+    "flowName": "消金/借款",
+    "status": "captured",
+    "summary": "奇富借条 消金/借款 已导入 14 张截图。",
+    "nodes": [
+      {
+        "name": "优惠券",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0323-037-e2d1c5d8"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0323-038-2c815d86"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0323-039-0c1af533"
+        ]
+      },
+      {
+        "name": "账单页",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0323-040-a076e011"
+        ]
+      },
+      {
+        "name": "优惠券",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0407-041-8fada49d"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0407-042-4355f4bc"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0407-043-4155b3fe"
+        ]
+      },
+      {
+        "name": "账单页",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0407-044-45cd1ae0"
+        ]
+      },
+      {
+        "name": "优惠券",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0428-045-03a521fd"
+        ]
+      },
+      {
+        "name": "借钱页1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0428-046-0ccc9567"
+        ]
+      },
+      {
+        "name": "借钱页2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0428-047-3317a500"
+        ]
+      },
+      {
+        "name": "富能计划1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0428-048-9121bac4"
+        ]
+      },
+      {
+        "name": "富能计划2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0428-049-d3a88e9e"
+        ]
+      },
+      {
+        "name": "账单页",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-consumer-finance-0428-050-4ec2894b"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "qifu-campaign",
+    "competitor": "奇富借条",
+    "flowName": "运营活动",
+    "status": "captured",
+    "summary": "奇富借条 运营活动 已导入 12 张截图。",
+    "nodes": [
+      {
+        "name": "借钱折扣",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0323-051-4e471b25"
+        ]
+      },
+      {
+        "name": "免息券1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0323-052-5fdef8ac"
+        ]
+      },
+      {
+        "name": "免息券2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0323-053-f18eabc8"
+        ]
+      },
+      {
+        "name": "免息券3",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0323-054-b8160c97"
+        ]
+      },
+      {
+        "name": "借钱折扣",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0407-055-c7eae34d"
+        ]
+      },
+      {
+        "name": "免息券1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0407-056-0d907403"
+        ]
+      },
+      {
+        "name": "免息券2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0407-057-68b64494"
+        ]
+      },
+      {
+        "name": "免息券3",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0407-058-b482e044"
+        ]
+      },
+      {
+        "name": "借钱折扣",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0428-059-91e2a263"
+        ]
+      },
+      {
+        "name": "免息券1",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0428-060-4ce7620f"
+        ]
+      },
+      {
+        "name": "免息券2",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0428-061-b856a0af"
+        ]
+      },
+      {
+        "name": "免息券3",
+        "status": "captured",
+        "screenshotIds": [
+          "qifu-campaign-0428-062-c82259ef"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anyihua-app-account",
+    "competitor": "安逸花",
+    "flowName": "APP-我的/账户",
+    "status": "captured",
+    "summary": "安逸花 APP-我的/账户 已导入 3 张截图。",
+    "nodes": [
+      {
+        "name": "我的页面1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0323-001-b9f8062e"
+        ]
+      },
+      {
+        "name": "我的页1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0407-004-f4923004"
+        ]
+      },
+      {
+        "name": "我的页1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0428-007-92f09f7b"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anyihua-app-home",
+    "competitor": "安逸花",
+    "flowName": "APP-首页",
+    "status": "captured",
+    "summary": "安逸花 APP-首页 已导入 6 张截图。",
+    "nodes": [
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0323-002-81b92d63"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0323-003-07686a5b"
+        ]
+      },
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0407-005-c2d47bfa"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0407-006-34beef5e"
+        ]
+      },
+      {
+        "name": "首页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0428-008-1afc6c52"
+        ]
+      },
+      {
+        "name": "首页2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-app-general-0428-009-bdaa9975"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anyihua-customer-service",
+    "competitor": "安逸花",
+    "flowName": "客服/消保",
+    "status": "captured",
+    "summary": "安逸花 客服/消保 已导入 15 张截图。",
+    "nodes": [
+      {
+        "name": "ai客服",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0323-010-495c4a06"
+        ]
+      },
+      {
+        "name": "对话框1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0323-011-fe59a93f"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0323-012-3a96f295"
+        ]
+      },
+      {
+        "name": "对话框3",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0323-013-cac16eb6"
+        ]
+      },
+      {
+        "name": "消息页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0323-014-f8cb6329"
+        ]
+      },
+      {
+        "name": "ai客服",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0407-015-712cd754"
+        ]
+      },
+      {
+        "name": "对话框1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0407-016-969a678e"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0407-017-01bf9cd6"
+        ]
+      },
+      {
+        "name": "对话框3",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0407-018-3a39e071"
+        ]
+      },
+      {
+        "name": "消息页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0407-019-a2cc496d"
+        ]
+      },
+      {
+        "name": "ai客服",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0428-020-c35682b8"
+        ]
+      },
+      {
+        "name": "在线客服页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0428-021-9393e82e"
+        ]
+      },
+      {
+        "name": "对话框1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0428-022-41212cac"
+        ]
+      },
+      {
+        "name": "对话框2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0428-023-1bc71abd"
+        ]
+      },
+      {
+        "name": "消息页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-customer-service-0428-024-a4844d3f"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anyihua-consumer-finance",
+    "competitor": "安逸花",
+    "flowName": "消金/借款",
+    "status": "captured",
+    "summary": "安逸花 消金/借款 已导入 18 张截图。",
+    "nodes": [
+      {
+        "name": "人脸识别",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0323-025-ab4b5440"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0323-026-54488b33"
+        ]
+      },
+      {
+        "name": "挽留",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0323-027-b04e2193"
+        ]
+      },
+      {
+        "name": "账单助手",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0323-028-081dce69"
+        ]
+      },
+      {
+        "name": "额度成长",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0323-029-4f07e553"
+        ]
+      },
+      {
+        "name": "额度提示",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0323-030-e3ca4c18"
+        ]
+      },
+      {
+        "name": "人脸识别",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0407-031-8e05891d"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0407-032-e4b41a48"
+        ]
+      },
+      {
+        "name": "挽留",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0407-033-20566ffc"
+        ]
+      },
+      {
+        "name": "账单助手",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0407-034-40c1e790"
+        ]
+      },
+      {
+        "name": "额度成长",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0407-035-eb3f3b81"
+        ]
+      },
+      {
+        "name": "额度提示",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0407-036-1497b677"
+        ]
+      },
+      {
+        "name": "人脸识别",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0428-037-067b76c0"
+        ]
+      },
+      {
+        "name": "借钱页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0428-038-c287f5a2"
+        ]
+      },
+      {
+        "name": "挽留",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0428-039-3cf48d38"
+        ]
+      },
+      {
+        "name": "账单助手",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0428-040-9d7b2081"
+        ]
+      },
+      {
+        "name": "额度成长",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0428-041-77ec95e2"
+        ]
+      },
+      {
+        "name": "额度提示",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-consumer-finance-0428-042-1836d21c"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "anyihua-campaign",
+    "competitor": "安逸花",
+    "flowName": "运营活动",
+    "status": "captured",
+    "summary": "安逸花 运营活动 已导入 11 张截图。",
+    "nodes": [
+      {
+        "name": "优惠券页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0323-043-e59abed9"
+        ]
+      },
+      {
+        "name": "额度成长1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0323-044-761f6d93"
+        ]
+      },
+      {
+        "name": "额度成长2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0323-045-25475914"
+        ]
+      },
+      {
+        "name": "优惠券页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0407-046-06175fdc"
+        ]
+      },
+      {
+        "name": "额度成长1",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0407-047-e134e34a"
+        ]
+      },
+      {
+        "name": "额度成长2",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0407-048-15e97553"
+        ]
+      },
+      {
+        "name": "优惠券页",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0428-049-bfba3e10"
+        ]
+      },
+      {
+        "name": "智慧养鸡",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0428-050-bc6ceb4b"
+        ]
+      },
+      {
+        "name": "英才学堂",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0428-051-6789afcc"
+        ]
+      },
+      {
+        "name": "马上小镇",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0428-052-2faf7a51"
+        ]
+      },
+      {
+        "name": "马上绿洲",
+        "status": "captured",
+        "screenshotIds": [
+          "anyihua-campaign-0428-053-6771013c"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "flowId": "duxiaoman-consumer-finance",
+    "appKey": "duxiaoman",
+    "competitor": "度小满金融",
+    "flowName": "度小满授信黄金流程",
+    "flowType": "授信 / 查看额度 / 额度申请",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "额度结果页",
+    "summary": "已形成度小满授信黄金流程三件套：文字版黄金流程、流程证据图、页面转译描述。人脸识别过程页与审核等待页为口述确认/待补采节点。",
+    "displayImagePath": "/golden-flows/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-node-map-v4-corrected.png",
+    "primaryPath": ["首页/借钱入口", "额度申请信息填写", "协议授权", "人脸识别", "审核等待", "额度结果页"],
+    "branchPaths": ["额度结果页后可继续进入借款链路", "人脸识别与审核等待环节需要用户配合完成"],
+    "textOutput": {
+      "status": "available",
+      "label": "黄金流程文字版 V2（流程校正版）",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-text-output-v2-corrected.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "流程证据图 V4 corrected",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-node-map-v4-corrected.png",
+      "pdfPath": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-node-map-v4-corrected.pdf"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-05-14",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-page-translation-2026-05-14.md"
+    },
+    "missingNodes": ["人脸识别过程页", "审核等待页"],
+    "oralConfirmedNodes": ["人脸识别", "审核等待页"],
+    "humanRequiredNodes": ["协议授权", "真实姓名/身份证号填写", "人脸识别", "权限确认", "去借款分支"]
+  },
+  {
+    "flowId": "fenqile-consumer-finance",
+    "appKey": "fenqile",
+    "competitor": "分期乐",
+    "flowName": "分期乐授信黄金流程",
+    "flowType": "授信 / 激活额度",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "partial",
+    "currentEndpoint": "身份证原件识别阻断 / 待人工配合",
+    "summary": "已形成分期乐授信黄金流程文字版与多版流程证据图；当前终点为身份证原件识别等人工配合/敏感节点，页面转译待补齐。",
+    "displayImagePath": "/golden-flows/fenqile-credit-flow-2026-05-13/fenqile-credit-flow-node-map-v5-orthogonal-routed.png",
+    "primaryPath": ["借钱页", "点击「已完成90%，继续激活」", "极速激活 / 实名认证页", "点击身份证人像面区域", "证件上传选择弹层", "上传身份证人像面", "上传身份证国徽面", "身份证原件识别阻断"],
+    "branchPaths": ["未上传身份证直接点「下一步」：页面不推进，仍停留实名认证页", "点击身份证区域：出现拍照 / 从相册中选择 / 取消弹层", "点击「没带身份证？稍后提醒我」：进入稍后提醒分支"],
+    "textOutput": {
+      "status": "available",
+      "label": "黄金流程文字版",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/fenqile-credit-flow-2026-05-13/fenqile-credit-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "流程证据图 V5 orthogonal routed",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/fenqile-credit-flow-2026-05-13/fenqile-credit-flow-node-map-v5-orthogonal-routed.png",
+      "pdfPath": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/fenqile-credit-flow-2026-05-13/fenqile-credit-flow-node-map-v5-orthogonal-routed.pdf"
+    },
+    "pageTranslation": {
+      "status": "missing",
+      "label": "页面转译待补齐"
+    },
+    "missingNodes": ["身份证原件识别后续", "授信结果页"],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": ["身份证上传/拍照", "身份证原件识别", "协议授权", "后续授信提交"]
+  }
+]

@@ -1,0 +1,77 @@
+[
+  {
+    "routeKey": "customer_chat_to_human_flow",
+    "routeName": "客服会话转人工流程",
+    "intentKey": "customer_chat_to_human_flow",
+    "category": "客服/消保",
+    "description": "从 APP 首页进入客服入口，打开在线客服/客服会话，并尝试触发转人工。",
+    "completionPolicy": "all_or_partial",
+    "stopPoints": ["身份证", "人脸", "银行卡", "验证码", "支付密码", "借款提交", "授信提交"],
+    "expectedNodes": [
+      "APP首页/启动后页面",
+      "客服入口或服务入口",
+      "在线客服/客服中心页面",
+      "客服会话页",
+      "触发人工客服",
+      "转人工结果/排队/人工客服承接页"
+    ],
+    "steps": [
+      { "key": "home", "label": "APP首页/启动后页面", "action": "screenshot" },
+      {
+        "key": "service-entry",
+        "label": "客服入口或服务入口",
+        "action": "tapText",
+        "candidates": ["客服", "我的客服", "在线客服", "联系客服", "客服中心", "帮助中心", "服务", "我的", "全部服务"]
+      },
+      {
+        "key": "chat-entry",
+        "label": "在线客服/客服中心页面",
+        "action": "tapText",
+        "candidates": ["在线客服", "联系客服", "智能客服", "客服中心", "咨询客服", "帮助与客服", "客户服务"]
+      },
+      {
+        "key": "chat-page",
+        "label": "客服会话页",
+        "action": "screenshot"
+      },
+      {
+        "key": "human-transfer",
+        "label": "触发人工客服",
+        "action": "tapOrInputHuman",
+        "text": "人工客服",
+        "candidates": ["人工客服", "转人工", "人工服务", "联系人工", "人工"]
+      },
+      { "key": "human-result", "label": "转人工结果/排队/人工客服承接页", "action": "screenshot" }
+    ]
+  },
+  {
+    "routeKey": "customer_chat_flow",
+    "routeName": "客服会话流程",
+    "intentKey": "customer_chat_flow",
+    "category": "客服/消保",
+    "description": "从 APP 首页进入客服入口并打开在线客服/客服会话页。",
+    "completionPolicy": "all_or_partial",
+    "stopPoints": ["身份证", "人脸", "银行卡", "验证码", "支付密码", "借款提交", "授信提交"],
+    "expectedNodes": ["APP首页/启动后页面", "客服入口或服务入口", "在线客服/客服中心页面", "客服会话页"],
+    "steps": [
+      { "key": "home", "label": "APP首页/启动后页面", "action": "screenshot" },
+      { "key": "service-entry", "label": "客服入口或服务入口", "action": "tapText", "candidates": ["客服", "我的客服", "在线客服", "联系客服", "客服中心", "帮助中心", "服务", "我的", "全部服务"] },
+      { "key": "chat-entry", "label": "在线客服/客服中心页面", "action": "tapText", "candidates": ["在线客服", "联系客服", "智能客服", "客服中心", "咨询客服", "帮助与客服", "客户服务"] },
+      { "key": "chat-page", "label": "客服会话页", "action": "screenshot" }
+    ]
+  },
+  {
+    "routeKey": "customer_entry",
+    "routeName": "客服入口采集",
+    "intentKey": "customer_entry",
+    "category": "客服/消保",
+    "description": "只采集客服/服务入口。",
+    "completionPolicy": "all_or_partial",
+    "stopPoints": ["身份证", "人脸", "银行卡", "验证码", "支付密码", "借款提交", "授信提交"],
+    "expectedNodes": ["APP首页/启动后页面", "客服入口或服务入口"],
+    "steps": [
+      { "key": "home", "label": "APP首页/启动后页面", "action": "screenshot" },
+      { "key": "service-entry", "label": "客服入口或服务入口", "action": "tapText", "candidates": ["客服", "我的客服", "在线客服", "联系客服", "客服中心", "帮助中心", "服务", "我的", "全部服务"] }
+    ]
+  }
+]

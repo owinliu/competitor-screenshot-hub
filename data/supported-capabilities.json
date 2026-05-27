@@ -1,0 +1,234 @@
+[
+  {
+    "appKey": "xiaoying",
+    "appName": "小赢卡贷",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "loan-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.xiaoying.cardloan"
+  },
+  {
+    "appKey": "duxiaoman",
+    "appName": "度小满",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "credit-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.duxiaoman.wallet"
+  },
+  {
+    "appKey": "anyihua",
+    "appName": "安逸花",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "loan-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.msxf.ayh"
+  },
+  {
+    "appKey": "qifu",
+    "appName": "奇富借条",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "loan-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.qihoo.loan"
+  },
+  {
+    "appKey": "fenqile",
+    "appName": "分期乐",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "credit-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.fenqile.fenqile"
+  },
+  {
+    "appKey": "paipaidai",
+    "appName": "拍拍贷",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "loan-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.ppdai.loan"
+  },
+  {
+    "appKey": "jd-finance",
+    "appName": "京东金融",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "loan-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.jd.jrapp"
+  },
+  {
+    "appKey": "mashang",
+    "appName": "马上金融",
+    "installed": true,
+    "loggedIn": true,
+    "supportedFlows": [
+      "home",
+      "loan-entry",
+      "customer-service",
+      "activity",
+      "settings-readonly"
+    ],
+    "lowRiskActions": [
+      "open_app",
+      "screenshot_current_page",
+      "tap_known_navigation",
+      "scroll_readonly_page"
+    ],
+    "stopPoints": [
+      "id_input",
+      "face_recognition",
+      "bank_card",
+      "agreement_submit",
+      "loan_submit",
+      "payment_action",
+      "verification_code"
+    ],
+    "packageName": "com.msxf.loan"
+  }
+]

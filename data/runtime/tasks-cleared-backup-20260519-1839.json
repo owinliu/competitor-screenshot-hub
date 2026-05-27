@@ -1,0 +1,337 @@
+[
+  {
+    "id": "task-test-human-1779186754736",
+    "title": "采集马上金融：客服会话流程",
+    "competitor": "马上金融",
+    "flow": "客服会话流程",
+    "status": "部分完成",
+    "summary": "部分完成：已进入马上金融在线客服机器人页面，但未成功触发人工客服/转人工/排队/人工承接；截图不能作为人工客服流程完成证据。",
+    "requestText": "采集马上金融：客服会话流程，而且需要到人工客服流程",
+    "priority": "中",
+    "updatedAt": "2026/5/19 18:33:21",
+    "nodes": [
+      {
+        "name": "需求提交",
+        "status": "已收到"
+      },
+      {
+        "name": "OpenClaw 采集计划",
+        "status": "可自动采集",
+        "note": "APP首页/启动后页面 -> 客服入口或服务入口 -> 在线客服/客服中心页面 -> 客服会话页 -> 触发人工客服 -> 转人工结果/排队/人工客服承接页"
+      },
+      {
+        "name": "APP首页/启动后页面",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/01-APP首页-启动后页面-1779186775468.png"
+      },
+      {
+        "name": "客服入口或服务入口",
+        "status": "已点击",
+        "note": "点击「客服」(945,428)"
+      },
+      {
+        "name": "客服入口或服务入口",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/02-客服入口或服务入口-1779186780162.png"
+      },
+      {
+        "name": "在线客服/客服中心页面",
+        "status": "已点击",
+        "note": "点击「在线客服」(540,187)"
+      },
+      {
+        "name": "在线客服/客服中心页面",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/03-在线客服-客服中心页面-1779186789856.png"
+      },
+      {
+        "name": "客服会话页",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/04-客服会话页-1779186792623.png"
+      },
+      {
+        "name": "触发人工客服-未找到转人工",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/05-触发人工客服-未找到转人工-1779186795332.png"
+      },
+      {
+        "name": "触发人工客服",
+        "status": "已输入",
+        "note": "输入「人工客服」并发送"
+      },
+      {
+        "name": "触发人工客服",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/06-触发人工客服-1779186797933.png"
+      },
+      {
+        "name": "转人工结果/排队/人工客服承接页",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-human-1779186754736/07-转人工结果-排队-人工客服承接页-1779186800666.png"
+      },
+      {
+        "name": "证据复核",
+        "status": "未通过",
+        "note": "7张截图仅证明进入在线客服机器人页面；未见人工客服、转人工、排队或人工承接提示。"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/01-APP首页-启动后页面-1779186775468.png",
+        "label": "APP首页/启动后页面",
+        "createdAt": "2026/5/19 18:32:55",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/02-客服入口或服务入口-1779186780162.png",
+        "label": "客服入口或服务入口",
+        "createdAt": "2026/5/19 18:33:00",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/03-在线客服-客服中心页面-1779186789856.png",
+        "label": "在线客服/客服中心页面",
+        "createdAt": "2026/5/19 18:33:10",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/04-客服会话页-1779186792623.png",
+        "label": "客服会话页",
+        "createdAt": "2026/5/19 18:33:12",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/05-触发人工客服-未找到转人工-1779186795332.png",
+        "label": "触发人工客服-未找到转人工",
+        "createdAt": "2026/5/19 18:33:15",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/06-触发人工客服-1779186797933.png",
+        "label": "触发人工客服",
+        "createdAt": "2026/5/19 18:33:18",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-human-1779186754736/07-转人工结果-排队-人工客服承接页-1779186800666.png",
+        "label": "转人工结果/排队/人工客服承接页",
+        "createdAt": "2026/5/19 18:33:21",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ],
+    "plan": {
+      "appKey": "mashang",
+      "appName": "马上金融",
+      "packageName": "com.msxf.loan",
+      "intentKey": "customer_chat_to_human_flow",
+      "routeKey": "customer_chat_to_human_flow",
+      "requestType": "客服会话流程",
+      "riskLevel": "medium",
+      "canAutoCapture": true,
+      "stopReason": null,
+      "captureGoal": "采集马上金融APP从首页进入客服入口、进入在线客服/客服中心、发起客服会话，并进一步触发转人工客服直到出现转人工结果、排队状态或人工客服承接页的完整流程截图",
+      "expectedNodes": [
+        "APP首页",
+        "客服/服务入口",
+        "在线客服/客服中心",
+        "客服会话页",
+        "触发人工客服",
+        "转人工结果/排队/人工承接页"
+      ],
+      "steps": [
+        "APP首页/启动后页面",
+        "客服入口或服务入口",
+        "在线客服/客服中心页面",
+        "客服会话页",
+        "触发人工客服",
+        "转人工结果/排队/人工客服承接页"
+      ],
+      "planner": "openclaw"
+    },
+    "reviewConclusion": "未触发人工客服；需继续优化输入/发送动作或人工接管。"
+  },
+  {
+    "id": "task-1779184952329",
+    "title": "采集马上金融：客服会话流程",
+    "competitor": "马上金融",
+    "flow": "客服会话流程",
+    "status": "已完成",
+    "summary": "已按 OpenClaw 规划启动 马上金融 并完成入口截图。",
+    "updatedAt": "2026/5/19 18:02:54",
+    "nodes": [
+      {
+        "name": "需求提交",
+        "status": "已收到"
+      },
+      {
+        "name": "等待排队",
+        "status": "排队中",
+        "note": "待本地执行器处理"
+      },
+      {
+        "name": "OpenClaw 采集计划",
+        "status": "可自动采集",
+        "note": "启动马上金融APP（com.msxf.loan） -> 等待页面稳定 -> 截取当前首页/入口证据图 -> 如首页可见客服入口，仅记录入口位置与页面状态，不执行身份证、人脸、银行卡、协议签署、授信提交、借款提交、支付、提现、还款、转账、验证码、密码等高风险操作"
+      },
+      {
+        "name": "马上金融 入口截图",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-1779184952329/capture-1779184973924.png"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-1779184952329/capture-1779184973924.png",
+        "createdAt": "2026/5/19 18:02:54",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ],
+    "plan": {
+      "appKey": "mashang",
+      "appName": "马上金融",
+      "packageName": "com.msxf.loan",
+      "requestType": "customer-service",
+      "riskLevel": "low",
+      "canAutoCapture": true,
+      "stopReason": "",
+      "captureGoal": "采集马上金融客服入口/客服会话流程的入口证据图；当前执行器仅保证启动APP并等待首页稳定后先截取入口/当前首页证据图，不承诺进入深层客服会话页面。",
+      "steps": [
+        "启动马上金融APP（com.msxf.loan）",
+        "等待页面稳定",
+        "截取当前首页/入口证据图",
+        "如首页可见客服入口，仅记录入口位置与页面状态，不执行身份证、人脸、银行卡、协议签署、授信提交、借款提交、支付、提现、还款、转账、验证码、密码等高风险操作"
+      ],
+      "planner": "openclaw"
+    }
+  },
+  {
+    "id": "task-1779183794863",
+    "title": "采集度小满：客服入口",
+    "competitor": "度小满",
+    "flow": "客服入口",
+    "status": "已完成",
+    "summary": "已按 OpenClaw 规划启动 度小满 并完成入口截图。",
+    "updatedAt": "2026/5/19 17:55:36",
+    "nodes": [
+      {
+        "name": "OpenClaw 采集计划",
+        "status": "可自动采集",
+        "note": "启动目标APP：com.duxiaoman.wallet -> 等待页面加载完成并稳定 -> 截取一张入口/当前首页证据图 -> 停止自动采集；不得进入身份证、人脸、银行卡、协议签署、授信提交、借款提交、支付、提现、还款、转账、验证码或密码等高风险页面"
+      },
+      {
+        "name": "度小满 入口截图",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-1779183794863/capture-1779184536260.png"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-1779183794863/capture-1779184536260.png",
+        "createdAt": "2026/5/19 17:55:36",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ],
+    "plan": {
+      "appKey": "duxiaoman",
+      "appName": "度小满",
+      "packageName": "com.duxiaoman.wallet",
+      "requestType": "customer-service",
+      "riskLevel": "low",
+      "canAutoCapture": true,
+      "stopReason": "客服入口属于只读通用页面，且度小满已支持 customer-service 流程；当前执行器能力仅限启动APP、等待页面稳定并截取入口/当前首页证据图，不承诺已进入深层客服页面。",
+      "captureGoal": "启动度小满APP并等待页面稳定，采集一张首页或客服入口相关的入口证据截图。",
+      "steps": [
+        "启动目标APP：com.duxiaoman.wallet",
+        "等待页面加载完成并稳定",
+        "截取一张入口/当前首页证据图",
+        "停止自动采集；不得进入身份证、人脸、银行卡、协议签署、授信提交、借款提交、支付、提现、还款、转账、验证码或密码等高风险页面"
+      ],
+      "planner": "openclaw"
+    }
+  },
+  {
+    "id": "task-1779183197153",
+    "title": "采集度小满：客服入口",
+    "competitor": "度小满",
+    "flow": "客服入口",
+    "status": "已完成",
+    "summary": "已完成一次当前页面截图采集。",
+    "updatedAt": "2026/5/19 17:36:39",
+    "nodes": [
+      {
+        "name": "需求提交",
+        "status": "已收到"
+      },
+      {
+        "name": "等待排队",
+        "status": "排队中",
+        "note": "待本地执行器处理"
+      },
+      {
+        "name": "本地执行器",
+        "status": "执行中",
+        "note": "开始采集当前手机页"
+      },
+      {
+        "name": "当前页面截图",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-1779183197153/capture-1779183397706.png"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-1779183197153/capture-1779183397706.png",
+        "createdAt": "2026/5/19 17:36:39",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ]
+  },
+  {
+    "id": "task-1779182957821",
+    "title": "采集度小满：客服入口",
+    "competitor": "度小满",
+    "flow": "客服入口",
+    "status": "已完成",
+    "summary": "已完成一次当前页面截图采集。",
+    "updatedAt": "2026/5/19 17:36:43",
+    "nodes": [
+      {
+        "name": "需求提交",
+        "status": "已收到"
+      },
+      {
+        "name": "等待排队",
+        "status": "排队中",
+        "note": "待本地执行器处理"
+      },
+      {
+        "name": "本地执行器",
+        "status": "执行中",
+        "note": "开始采集当前手机页"
+      },
+      {
+        "name": "当前页面截图",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-1779182957821/capture-1779183402261.png"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-1779182957821/capture-1779183402261.png",
+        "createdAt": "2026/5/19 17:36:43",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ]
+  }
+]

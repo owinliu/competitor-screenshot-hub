@@ -1,0 +1,65 @@
+[
+  {
+    "appKey": "fenqile",
+    "appName": "分期乐",
+    "screenshotCount": 42,
+    "modules": [
+      "APP",
+      "客服",
+      "消金",
+      "运营"
+    ]
+  },
+  {
+    "appKey": "duxiaoman",
+    "appName": "度小满金融",
+    "screenshotCount": 52,
+    "modules": [
+      "APP",
+      "wecom-temp-148788-96a0e5d3970c566e1990af74b8ceb75a.jpg",
+      "wecom-temp-223456-60b7ac7f7cc0e07d06fd99d7f727bf78.jpg",
+      "wecom-temp-256807-9685b4afdb3e0e42c3efc3e9db39f93d.jpg",
+      "wecom-temp-264577-bd5df0f3500a7e0fc53c0b606903d269.jpg",
+      "wecom-temp-268749-7675edceefb3c3cdd269dbf50e5a37be.jpg",
+      "wecom-temp-288829-04acfc88ee6492616eba9e03f436a1f1.jpg",
+      "wecom-temp-360797-6c818bf8fe149c256f0a1f11b2081042.jpg",
+      "客服",
+      "消金",
+      "运营"
+    ]
+  },
+  {
+    "appKey": "xiaoying",
+    "appName": "小赢",
+    "screenshotCount": 67,
+    "modules": [
+      "APP",
+      "客服",
+      "消金",
+      "运营",
+      "风控"
+    ]
+  },
+  {
+    "appKey": "qifu",
+    "appName": "奇富借条",
+    "screenshotCount": 62,
+    "modules": [
+      "APP",
+      "客服",
+      "消金",
+      "运营"
+    ]
+  },
+  {
+    "appKey": "anyihua",
+    "appName": "安逸花",
+    "screenshotCount": 53,
+    "modules": [
+      "APP",
+      "客服",
+      "消金",
+      "运营"
+    ]
+  }
+]
