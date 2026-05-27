@@ -242,6 +242,59 @@ function tapNode(adb, found, waitSeconds = 2) {
   return { x, y, candidate: found.candidate }
 }
 
+function screenSize(adb) {
+  const result = adbShell(adb, ['wm', 'size'])
+  const match = `${result.stdout || ''}${result.stderr || ''}`.match(/Physical size:\s*(\d+)x(\d+)/)
+  return match ? { width: Number(match[1]), height: Number(match[2]) } : { width: 1080, height: 2400 }
+}
+
+function tapRatio(adb, xRatio, yRatio, waitSeconds = 2) {
+  const size = screenSize(adb)
+  const x = Math.round(size.width * xRatio)
+  const y = Math.round(size.height * yRatio)
+  adbShell(adb, ['input', 'tap', String(x), String(y)])
+  adbShell(adb, ['sleep', String(waitSeconds)])
+  return { x, y }
+}
+
+function hasOnlyOpaqueWebView(xml) {
+  const parsed = parseNodes(xml)
+  const labelled = parsed.filter((node) => nodeLabel(node))
+  return labelled.length === 0 && /android\.webkit\.WebView/.test(xml)
+}
+
+function coordinateExploreCustomerEntry(adb, taskId, artifacts, nodes, device) {
+  const bottomTabs = [
+    { label: '底部Tab-首页', x: 0.10, y: 0.955 },
+    { label: '底部Tab-借钱', x: 0.30, y: 0.955 },
+    { label: '底部Tab-理财', x: 0.50, y: 0.955 },
+    { label: '底部Tab-保险', x: 0.70, y: 0.955 },
+    { label: '底部Tab-我', x: 0.90, y: 0.955 },
+  ]
+  const topShortcuts = [
+    { label: '顶部右侧入口1', x: 0.82, y: 0.13 },
+    { label: '顶部右侧入口2', x: 0.93, y: 0.13 },
+  ]
+  nodes.push({ name: '客服入口坐标探索', status: '开始', note: '当前页面未暴露可访问文本，改用底部 Tab / 顶部图标坐标探索并截图。' })
+  for (const tab of bottomTabs) {
+    dismissObstacles(adb, nodes)
+    const tapped = tapRatio(adb, tab.x, tab.y)
+    nodes.push({ name: '客服入口坐标探索', status: '已点击', note: `${tab.label} (${tapped.x},${tapped.y})` })
+    dismissObstacles(adb, nodes)
+    screenshot(adb, taskId, `探索-${tab.label}`, artifacts, nodes, device)
+  }
+  for (const shortcut of topShortcuts) {
+    dismissObstacles(adb, nodes)
+    const tapped = tapRatio(adb, shortcut.x, shortcut.y)
+    nodes.push({ name: '客服入口坐标探索', status: '已点击', note: `${shortcut.label} (${tapped.x},${tapped.y})` })
+    dismissObstacles(adb, nodes)
+    screenshot(adb, taskId, `探索-${shortcut.label}`, artifacts, nodes, device)
+    adbShell(adb, ['input', 'keyevent', '4'])
+    adbShell(adb, ['sleep', '1'])
+  }
+  return { ok: false, reason: '页面为 WebView/自定义控件，未暴露可访问文本；已完成底部 Tab 和顶部图标坐标探索截图，需要人工在截图中确认客服入口。' }
+}
+
 function findAndTapWithRecovery(adb, taskId, step, artifacts, nodes, device, routeKey) {
   const candidates = step.candidates || []
   for (let attempt = 0; attempt < 3; attempt += 1) {
@@ -258,7 +311,9 @@ function findAndTapWithRecovery(adb, taskId, step, artifacts, nodes, device, rou
   }
 
   if (routeKey === 'customer_entry' && step.key === 'service-entry') {
-    const explorationEntries = ['我的', '全部服务', '服务', '帮助', '设置', '消息']
+    if (hasOnlyOpaqueWebView(dumpUi(adb))) return coordinateExploreCustomerEntry(adb, taskId, artifacts, nodes, device)
+
+    const explorationEntries = ['我的', '我', '全部服务', '服务', '帮助', '设置', '消息']
     for (const entry of explorationEntries) {
       dismissObstacles(adb, nodes)
       const entryNode = findNode(dumpUi(adb), [entry])
@@ -267,7 +322,7 @@ function findAndTapWithRecovery(adb, taskId, step, artifacts, nodes, device, rou
       nodes.push({ name: '客服入口探索', status: '已进入候选页面', note: `点击「${tappedEntry.candidate}」(${tappedEntry.x},${tappedEntry.y})` })
       screenshot(adb, taskId, `探索-${entry}`, artifacts, nodes, device)
       dismissObstacles(adb, nodes)
-      const serviceNode = findNode(dumpUi(adb), candidates.filter((item) => item !== entry))
+      const serviceNode = findNode(dumpUi(adb), candidates.filter((item) => item !== entry && item !== '我的'))
       if (serviceNode) {
         const tappedService = tapNode(adb, serviceNode)
         nodes.push({ name: step.label, status: '已点击', note: `在「${entry}」后点击「${tappedService.candidate}」(${tappedService.x},${tappedService.y})` })
@@ -278,6 +333,8 @@ function findAndTapWithRecovery(adb, taskId, step, artifacts, nodes, device, rou
       adbShell(adb, ['sleep', '1'])
     }
   }
+
+  if (routeKey === 'customer_entry' && step.key === 'service-entry') return coordinateExploreCustomerEntry(adb, taskId, artifacts, nodes, device)
 
   screenshot(adb, taskId, `${step.label}-未找到入口`, artifacts, nodes, device)
   return { ok: false, reason: `关闭弹窗并重试后仍未找到可点击文本：${candidates.join(' / ')}` }
