@@ -1,5 +1,195 @@
 [
   {
+    "id": "task-test-coordinate-fallback",
+    "title": "采集度小满：客服入口坐标探索验证",
+    "competitor": "度小满",
+    "flow": "客服入口",
+    "status": "部分完成",
+    "summary": "部分完成：未找到「客服入口或服务入口」入口。已采集 8 张。",
+    "requestText": "找一下app里的客服入口",
+    "priority": "中",
+    "updatedAt": "2026/5/27 16:39:51",
+    "nodes": [
+      {
+        "name": "需求提交",
+        "status": "已收到"
+      },
+      {
+        "name": "等待处理",
+        "status": "排队中"
+      },
+      {
+        "name": "OpenClaw 采集计划",
+        "status": "可自动采集",
+        "note": "APP首页/启动后页面 -> 客服入口或服务入口"
+      },
+      {
+        "name": "APP首页/启动后页面",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/01-APP首页-启动后页面-1779870994410.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "开始",
+        "note": "当前页面未暴露可访问文本，改用底部 Tab / 顶部图标坐标探索并截图。"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "底部Tab-首页 (108,2239)"
+      },
+      {
+        "name": "探索-底部Tab-首页",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/02-探索-底部Tab-首页-1779871126669.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "底部Tab-借钱 (324,2239)"
+      },
+      {
+        "name": "探索-底部Tab-借钱",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/03-探索-底部Tab-借钱-1779871136976.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "底部Tab-理财 (540,2239)"
+      },
+      {
+        "name": "探索-底部Tab-理财",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/04-探索-底部Tab-理财-1779871144615.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "底部Tab-保险 (756,2239)"
+      },
+      {
+        "name": "探索-底部Tab-保险",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/05-探索-底部Tab-保险-1779871155453.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "底部Tab-我 (972,2239)"
+      },
+      {
+        "name": "探索-底部Tab-我",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/06-探索-底部Tab-我-1779871168290.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "顶部右侧入口1 (886,305)"
+      },
+      {
+        "name": "探索-顶部右侧入口1",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/07-探索-顶部右侧入口1-1779871178499.png"
+      },
+      {
+        "name": "客服入口坐标探索",
+        "status": "已点击",
+        "note": "顶部右侧入口2 (1004,305)"
+      },
+      {
+        "name": "探索-顶部右侧入口2",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-test-coordinate-fallback/08-探索-顶部右侧入口2-1779871189674.png"
+      },
+      {
+        "name": "客服入口或服务入口",
+        "status": "等待人工接管",
+        "note": "页面为 WebView/自定义控件，未暴露可访问文本；已完成底部 Tab 和顶部图标坐标探索截图，需要人工在截图中确认客服入口。"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/01-APP首页-启动后页面-1779870994410.png",
+        "label": "APP首页/启动后页面",
+        "createdAt": "2026/5/27 16:36:34",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/02-探索-底部Tab-首页-1779871126669.png",
+        "label": "探索-底部Tab-首页",
+        "createdAt": "2026/5/27 16:38:47",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/03-探索-底部Tab-借钱-1779871136976.png",
+        "label": "探索-底部Tab-借钱",
+        "createdAt": "2026/5/27 16:38:57",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/04-探索-底部Tab-理财-1779871144615.png",
+        "label": "探索-底部Tab-理财",
+        "createdAt": "2026/5/27 16:39:05",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/05-探索-底部Tab-保险-1779871155453.png",
+        "label": "探索-底部Tab-保险",
+        "createdAt": "2026/5/27 16:39:15",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/06-探索-底部Tab-我-1779871168290.png",
+        "label": "探索-底部Tab-我",
+        "createdAt": "2026/5/27 16:39:28",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/07-探索-顶部右侧入口1-1779871178499.png",
+        "label": "探索-顶部右侧入口1",
+        "createdAt": "2026/5/27 16:39:38",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-test-coordinate-fallback/08-探索-顶部右侧入口2-1779871189674.png",
+        "label": "探索-顶部右侧入口2",
+        "createdAt": "2026/5/27 16:39:50",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ],
+    "plan": {
+      "appKey": "duxiaoman",
+      "appName": "度小满",
+      "packageName": "com.duxiaoman.wallet",
+      "intentKey": "customer_entry",
+      "routeKey": "customer_entry",
+      "requestType": "客服入口",
+      "riskLevel": "medium",
+      "canAutoCapture": true,
+      "stopReason": "未指定目标APP，需从可选APP中选择一个",
+      "captureGoal": "采集指定APP内客服入口的位置与进入路径",
+      "expectedNodes": [
+        "APP首页",
+        "客服/服务入口"
+      ],
+      "steps": [
+        "APP首页/启动后页面",
+        "客服入口或服务入口"
+      ],
+      "planner": "openclaw"
+    }
+  },
+  {
     "id": "task-1779869047180",
     "title": "采集度小满：客服入口",
     "competitor": "度小满",
@@ -8,7 +198,7 @@
     "summary": "部分完成：未找到「客服入口或服务入口」入口。已采集 2 张。",
     "requestText": "找一下app里的入口",
     "priority": "中",
-    "updatedAt": "2026/5/27 16:09:06",
+    "updatedAt": "2026/5/27 16:09:21",
     "nodes": [
       {
         "name": "需求提交",
@@ -37,6 +227,11 @@
         "name": "客服入口或服务入口",
         "status": "等待人工接管",
         "note": "关闭弹窗并重试后仍未找到可点击文本：客服 / 我的客服 / 在线客服 / 联系客服 / 客服中心 / 帮助中心 / 服务 / 我的 / 全部服务"
+      },
+      {
+        "name": "同步线上截图",
+        "status": "已发布",
+        "note": "任务状态和截图已推送到 GitHub Pages，等待 Actions 部署生效。"
       }
     ],
     "artifacts": [
@@ -75,7 +270,9 @@
         "客服入口或服务入口"
       ],
       "planner": "openclaw"
-    }
+    },
+    "publishStatus": "published",
+    "publishMessage": "任务状态和截图已推送到 GitHub Pages，等待 Actions 部署生效。"
   },
   {
     "id": "task-1779867440508",
