@@ -1,1 +1,80 @@
-[]
+[
+  {
+    "id": "task-1779867440508",
+    "title": "采集度小满：客服入口",
+    "competitor": "度小满",
+    "flow": "客服入口",
+    "status": "部分完成",
+    "summary": "部分完成：未找到「客服入口或服务入口」入口。已采集 2 张。",
+    "requestText": "看看app里各种客服的入口",
+    "priority": "中",
+    "updatedAt": "2026/5/27 15:37:57",
+    "nodes": [
+      {
+        "name": "需求提交",
+        "status": "已收到"
+      },
+      {
+        "name": "等待处理",
+        "status": "排队中"
+      },
+      {
+        "name": "OpenClaw 采集计划",
+        "status": "可自动采集",
+        "note": "APP首页/启动后页面 -> 客服入口或服务入口"
+      },
+      {
+        "name": "APP首页/启动后页面",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-1779867440508/01-APP首页-启动后页面-1779867471754.png"
+      },
+      {
+        "name": "客服入口或服务入口-未找到入口",
+        "status": "已采集",
+        "note": "/screenshots/tasks/task-1779867440508/02-客服入口或服务入口-未找到入口-1779867476932.png"
+      },
+      {
+        "name": "客服入口或服务入口",
+        "status": "等待人工接管",
+        "note": "未找到可点击文本：客服 / 我的客服 / 在线客服 / 联系客服 / 客服中心 / 帮助中心 / 服务 / 我的 / 全部服务"
+      }
+    ],
+    "artifacts": [
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-1779867440508/01-APP首页-启动后页面-1779867471754.png",
+        "label": "APP首页/启动后页面",
+        "createdAt": "2026/5/27 15:37:52",
+        "device": "T8OF8TPNZPQOWGUW"
+      },
+      {
+        "type": "screenshot",
+        "imagePath": "/screenshots/tasks/task-1779867440508/02-客服入口或服务入口-未找到入口-1779867476932.png",
+        "label": "客服入口或服务入口-未找到入口",
+        "createdAt": "2026/5/27 15:37:57",
+        "device": "T8OF8TPNZPQOWGUW"
+      }
+    ],
+    "plan": {
+      "appKey": "duxiaoman",
+      "appName": "度小满",
+      "packageName": "com.duxiaoman.wallet",
+      "intentKey": "customer_entry",
+      "routeKey": "customer_entry",
+      "requestType": "客服入口",
+      "riskLevel": "low",
+      "canAutoCapture": true,
+      "stopReason": "用户未指定具体目标APP；如需执行采集，需要从可选APP中选择一个或明确采集全部APP",
+      "captureGoal": "采集目标APP内各种客服/服务入口的位置、名称和进入路径，用于对比客服入口布局与可见性",
+      "expectedNodes": [
+        "APP首页",
+        "客服/服务入口"
+      ],
+      "steps": [
+        "APP首页/启动后页面",
+        "客服入口或服务入口"
+      ],
+      "planner": "openclaw"
+    }
+  }
+]
