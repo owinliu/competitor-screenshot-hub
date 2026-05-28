@@ -291,6 +291,7 @@ function Home() {
     <section className="page widePage radarHome reportsTableOnly">
       <div className="pageHeader radarPageHeader">
         <div>
+          <p className="eyebrow">Competitor Screenshot Hub</p>
           <h1>竞品动态总览</h1>
           <p>聚合本期竞品截图变化，快速查看高影响动态与对应截图证据。</p>
         </div>

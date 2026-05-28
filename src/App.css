@@ -45,7 +45,8 @@ button:disabled { cursor: not-allowed; opacity: .45; }
 .miniCard strong, .miniCard span { display: block; }
 .miniCard span { color: #64748b; margin-top: 5px; }
 .pageHeader { margin-bottom: 24px; }
-.pageHeader p:last-child { max-width: 760px; margin-top: 0; }
+.pageHeader h1 { margin-bottom: 12px; }
+.pageHeader p:last-child { max-width: 760px; margin-top: 0; margin-bottom: 0; }
 select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius: 8px; background: white; padding: 12px 14px; color: #172033; }
 
 .discoveryLayout { display: grid; grid-template-columns: 300px 1fr; gap: 18px; align-items: start; }
@@ -83,7 +84,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .timelineItem { display: flex; gap: 12px; align-items: flex-start; }
 .timelineItem > span { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #eef4ff; color: #1d4ed8; font-weight: 800; font-size: 12px; flex: 0 0 auto; }
 .timelineItem strong, .timelineItem small { display:block; }
-.form { display: grid; gap: 16px; max-width: 760px; }
+.form { display: grid; gap: 16px; max-width: 760px; margin-top: 2px; }
 .form label { display: grid; gap: 8px; color: #334155; font-weight: 700; }
 
 @media (max-width: 1180px) {
@@ -132,7 +133,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 }
 .taskSummary { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 18px; }
 .taskSummary .miniCard strong { font-size: 28px; }
-.taskActions { margin-bottom: 14px; }
+.taskActions { margin: 2px 0 16px; }
 .taskButtons { margin: 12px 0; }
 .taskPanel.needsAttention { border-color: #fecaca; background: linear-gradient(180deg, rgba(255,247,237,.88), rgba(255,255,255,.9)); }
 .taskAlert { display: grid; gap: 5px; margin: 12px 0 14px; padding: 14px 16px; border: 1px solid #fed7aa; border-radius: 8px; background: #fff7ed; color: #7c2d12; }
@@ -301,9 +302,10 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .reportsTableHeader h2 { margin: 0; }
 .timelineSwitcher { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 13px; font-weight: 700; white-space: nowrap; }
 .timelineSwitcher select { width: auto; min-width: 148px; padding: 8px 12px; border-radius: 8px; font-size: 13px; }
-.radarPageHeader { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 22px; }
-.radarPageHeader h1 { margin-bottom: 10px; }
-.radarPageHeader p { margin: 0; max-width: 760px; }
+.radarPageHeader { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 24px; }
+.radarPageHeader .eyebrow { margin-bottom: 10px; }
+.radarPageHeader h1 { margin-bottom: 12px; }
+.radarPageHeader p:last-child { margin: 0; max-width: 760px; }
 @media (max-width: 640px) {
   .reportsTableHeader, .radarPageHeader { align-items: flex-start; flex-direction: column; }
 }
