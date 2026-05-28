@@ -14,7 +14,7 @@ type PromoteReview = {
 }
 
 const nav: Array<{ route: Route; label: string }> = [
-  { route: 'home', label: '首页' },
+  { route: 'home', label: '竞品动态总览' },
   { route: 'library', label: '截图检索' },
   { route: 'flows', label: '流程库' },
   { route: 'request', label: '采集需求' },
@@ -164,7 +164,6 @@ const emptyMark = '—'
 const radarReport = radarReportRaw as RadarReport
 const radarRows = radarReport.rows
 const latestEvidenceCount = new Set(radarRows.map((row) => row.currEvidence).filter(Boolean)).size
-const historicalComparableCount = new Set(radarRows.map((row) => row.prevEvidence).filter(Boolean)).size
 
 function normalizeDimension(dimension: string): RadarDimension {
   return dimension === '留存促活运营' ? '运营' : dimension as RadarDimension
@@ -188,7 +187,7 @@ function readableConclusion(row?: RadarReportRow) {
 }
 
 const timelineOptions = [
-  { key: '0428-vs-max-history', label: '0428 vs 历史最大差异版本' },
+  { key: '0428-current', label: '0428 本期动态' },
 ]
 
 const radarProducts: RadarProduct[] = radarReport.meta.competitors.map((rawName) => {
@@ -292,7 +291,7 @@ function Home() {
     <section className="page widePage radarHome reportsTableOnly">
       <div className="radarTablePanel radarContentPanel">
         <div className="reportsTableHeader">
-          <h2>五产品总览表（严格同名位点对比）</h2>
+          <h2>五产品动态总览</h2>
           <label className="timelineSwitcher">
             <span>时间线</span>
             <select value={selectedTimeline} onChange={(event) => setSelectedTimeline(event.target.value)}>
@@ -343,8 +342,8 @@ function Home() {
         <div className="evidenceComparePanel integratedEvidence">
           <div className="sectionTitle evidenceSectionTitle">
             <div>
-              <h2>具体截图变化展示</h2>
-              <p>本期采集 {latestEvidenceCount} 张 0428 截图，其中 {historicalComparableCount} 张找到历史同位点进行对比；下方可按维度筛选查看对应证据。</p>
+              <h2>截图证据展示</h2>
+              <p>本期围绕 5 个竞品整理 {latestEvidenceCount} 张截图，并提炼出主要变化；下方可按维度筛选查看对应截图证据。</p>
             </div>
           </div>
           <div className="dimensionTabs evidenceTabs" aria-label="按维度筛选变化截图">
