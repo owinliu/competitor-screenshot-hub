@@ -302,7 +302,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .reportsTableHeader h2 { margin: 0; }
 .timelineSwitcher { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 13px; font-weight: 700; white-space: nowrap; }
 .timelineSwitcher select { width: auto; min-width: 148px; padding: 8px 12px; border-radius: 8px; font-size: 13px; }
-.radarPageHeader { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 24px; }
+.radarPageHeader { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 14px; }
 .radarPageHeader .eyebrow { margin-bottom: 10px; }
 .radarPageHeader h1 { margin-bottom: 12px; }
 .radarPageHeader p:last-child { margin: 0; max-width: 760px; }
@@ -316,6 +316,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .reportsTableOnly { max-width: min(1800px, 100%); }
 .reportsTableOnly .radarTablePanel { overflow: hidden; }
 .reportsTableOnly .reportsTableWrap { margin: 14px 0 0; width: 100%; overflow-x: visible; border: 1px solid #e5eaf3; border-radius: 8px; background: #fff; }
+.radarContentPanel > .reportsTableWrap:first-child { margin-top: 0; }
 .reportsTableOnly .reportsManagementTable { width: 100%; min-width: 0; table-layout: fixed; border-collapse: collapse; }
 .reportsTableOnly .reportsManagementTable .rankCol { width: 8%; }
 .reportsTableOnly .reportsManagementTable .productCol { width: 12%; }
