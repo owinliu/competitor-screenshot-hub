@@ -163,6 +163,8 @@ const radarDimensions: RadarDimension[] = ['APP', '客服', '消金', '运营', 
 const emptyMark = '—'
 const radarReport = radarReportRaw as RadarReport
 const radarRows = radarReport.rows
+const latestEvidenceCount = new Set(radarRows.map((row) => row.currEvidence).filter(Boolean)).size
+const historicalComparableCount = new Set(radarRows.map((row) => row.prevEvidence).filter(Boolean)).size
 
 function normalizeDimension(dimension: string): RadarDimension {
   return dimension === '留存促活运营' ? '运营' : dimension as RadarDimension
@@ -349,6 +351,12 @@ function Home() {
         </div>
 
         <div className="evidenceComparePanel integratedEvidence">
+          <div className="sectionTitle evidenceSectionTitle">
+            <div>
+              <h2>具体截图变化展示</h2>
+              <p>本期采集 {latestEvidenceCount} 张 0428 截图，其中 {historicalComparableCount} 张找到历史同位点进行对比；下方可按维度筛选查看对应证据。</p>
+            </div>
+          </div>
           <div className="dimensionTabs evidenceTabs" aria-label="按维度筛选变化截图">
             {(['全部', ...radarDimensions] as DimensionFilter[]).map((dimension) => (
               <button
@@ -363,11 +371,6 @@ function Home() {
               </button>
             ))}
           </div>
-          <div className="sectionTitle">
-          <div>
-            <h2>{selectedDimension === '全部' ? '变化截图对比' : `${selectedDimension} 变化截图对比`}</h2>
-          </div>
-        </div>
         <div className="appEvidenceGrid">
           {evidenceGroups.map((group) => (
             <article className="appEvidenceCard" key={group.product}>
