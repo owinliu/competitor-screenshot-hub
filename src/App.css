@@ -301,8 +301,11 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .reportsTableHeader h2 { margin: 0; }
 .timelineSwitcher { display: flex; align-items: center; gap: 8px; color: #64748b; font-size: 13px; font-weight: 700; white-space: nowrap; }
 .timelineSwitcher select { width: auto; min-width: 148px; padding: 8px 12px; border-radius: 8px; font-size: 13px; }
+.radarPageHeader { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; margin-bottom: 22px; }
+.radarPageHeader h1 { margin-bottom: 10px; }
+.radarPageHeader p { margin: 0; max-width: 760px; }
 @media (max-width: 640px) {
-  .reportsTableHeader { align-items: flex-start; flex-direction: column; }
+  .reportsTableHeader, .radarPageHeader { align-items: flex-start; flex-direction: column; }
 }
 /* 首页核心管理表：规整列宽、字号和对齐 */
 .rankCell { text-align: center !important; white-space: nowrap; }

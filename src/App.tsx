@@ -289,17 +289,19 @@ function Home() {
 
   return (
     <section className="page widePage radarHome reportsTableOnly">
-      <div className="radarTablePanel radarContentPanel">
-        <div className="reportsTableHeader">
-          <h2>五产品动态总览</h2>
-          <label className="timelineSwitcher">
-            <span>时间线</span>
-            <select value={selectedTimeline} onChange={(event) => setSelectedTimeline(event.target.value)}>
-              {timelineOptions.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
-            </select>
-          </label>
+      <div className="pageHeader radarPageHeader">
+        <div>
+          <h1>竞品动态总览</h1>
+          <p>聚合本期竞品截图变化，快速查看高影响动态与对应截图证据。</p>
         </div>
-
+        <label className="timelineSwitcher">
+          <span>时间线</span>
+          <select value={selectedTimeline} onChange={(event) => setSelectedTimeline(event.target.value)}>
+            {timelineOptions.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
+          </select>
+        </label>
+      </div>
+      <div className="radarTablePanel radarContentPanel">
         <div className="radarTableWrap reportsTableWrap">
           <table className="radarTable reportsManagementTable">
             <colgroup>
