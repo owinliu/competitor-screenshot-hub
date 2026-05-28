@@ -281,12 +281,10 @@ function Home() {
   const [expandedProducts, setExpandedProducts] = useState<string[]>([])
   const getProductHighCount = (product: RadarProduct) => selectedDimension === '全部' ? product.highImpactCount : product.dimensionHighCounts[selectedDimension]
   const getProductChangeCount = (product: RadarProduct) => selectedDimension === '全部' ? product.changeCount : product.dimensionChangeCounts[selectedDimension]
-  const rankedProducts = [...radarProducts].sort((a, b) => getProductHighCount(b) - getProductHighCount(a) || getProductChangeCount(b) - getProductChangeCount(a))
-  const displayedProducts = selectedDimension === '全部'
-    ? rankedProducts
-    : rankedProducts.filter((product) => getProductHighCount(product) > 0)
+  const tableProducts = [...radarProducts].sort((a, b) => b.highImpactCount - a.highImpactCount || b.changeCount - a.changeCount)
+  const evidenceProducts = [...radarProducts].sort((a, b) => getProductHighCount(b) - getProductHighCount(a) || getProductChangeCount(b) - getProductChangeCount(a))
   const evidencePairs = getEvidencePairs(selectedDimension)
-  const evidenceGroups = displayedProducts
+  const evidenceGroups = evidenceProducts
     .map((product) => ({
       product: product.product,
       changeCount: getProductChangeCount(product),
@@ -311,21 +309,6 @@ function Home() {
           </label>
         </div>
 
-        <div className="dimensionTabs" aria-label="按维度筛选变化截图">
-          {(['全部', ...radarDimensions] as DimensionFilter[]).map((dimension) => (
-            <button
-              key={dimension}
-              className={selectedDimension === dimension ? 'active' : ''}
-              onClick={() => {
-                setSelectedDimension(dimension)
-                setExpandedProducts([])
-              }}
-            >
-              {dimension}
-            </button>
-          ))}
-        </div>
-
         <div className="radarTableWrap reportsTableWrap">
           <table className="radarTable reportsManagementTable">
             <colgroup>
@@ -347,20 +330,18 @@ function Home() {
               </tr>
             </thead>
             <tbody>
-              {displayedProducts.map((item, index) => (
+              {tableProducts.map((item, index) => (
                 <tr key={item.product}>
                   <td className="rankCell"><span>{index + 1}</span></td>
                   <td className="productCell"><strong>{item.product}</strong></td>
-                  <td className="highImpactCountCell">{getProductHighCount(item)}</td>
-                  <td className="coverageCell subtleCount">{getProductChangeCount(item)}</td>
+                  <td className="highImpactCountCell">{item.highImpactCount}</td>
+                  <td className="coverageCell subtleCount">{item.changeCount}</td>
                   <td>
                     <div className="dimensionPills compact">
-                      {selectedDimension === '全部'
-                        ? (activeDimensions(item).length ? activeDimensions(item).map((dimension) => <span className="isActive" key={dimension}>{dimension}</span>) : <span className="isEmpty">暂时无高影响变化</span>)
-                        : <span className="isActive">{selectedDimension}</span>}
+                      {activeDimensions(item).length ? activeDimensions(item).map((dimension) => <span className="isActive" key={dimension}>{dimension}</span>) : <span className="isEmpty">暂时无高影响变化</span>}
                     </div>
                   </td>
-                  <td>{selectedDimension === '全部' ? item.mainStrategy : item.dimensions[selectedDimension]}</td>
+                  <td>{item.mainStrategy}</td>
                 </tr>
               ))}
             </tbody>
@@ -368,6 +349,20 @@ function Home() {
         </div>
 
         <div className="evidenceComparePanel integratedEvidence">
+          <div className="dimensionTabs evidenceTabs" aria-label="按维度筛选变化截图">
+            {(['全部', ...radarDimensions] as DimensionFilter[]).map((dimension) => (
+              <button
+                key={dimension}
+                className={selectedDimension === dimension ? 'active' : ''}
+                onClick={() => {
+                  setSelectedDimension(dimension)
+                  setExpandedProducts([])
+                }}
+              >
+                {dimension}
+              </button>
+            ))}
+          </div>
           <div className="sectionTitle">
           <div>
             <h2>{selectedDimension === '全部' ? '变化截图对比' : `${selectedDimension} 变化截图对比`}</h2>
