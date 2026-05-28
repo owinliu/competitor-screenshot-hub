@@ -349,7 +349,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .evidenceComparePanel .sectionTitle p { margin: 4px 0 0; font-size: 13px; }
 .evidenceCompareGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 16px; }
 .evidenceCompareCard { padding: 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
-.evidenceCompareMeta { display: flex; gap: 8px; flex-wrap: wrap; }
+.evidenceCompareMeta { display: flex; gap: 8px; flex-wrap: nowrap; align-items: center; }
 .evidenceCompareCard h3 { margin: 10px 0 12px; font-size: 15px; line-height: 1.45; }
 .compareImages { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 .compareImages figure { margin: 0; min-width: 0; }
@@ -365,20 +365,17 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .appEvidenceCard { padding: 18px; border: 1px solid #dbeafe; border-radius: 8px; background: linear-gradient(180deg, #ffffff, #f8fbff); box-shadow: 0 14px 44px rgba(15,23,42,.06); }
 .appEvidenceHeader { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
 .appEvidenceHeader h3 { margin: 10px 0 0; font-size: 20px; }
-.evidenceCountBadge { display: grid; place-items: center; min-width: 78px; padding: 10px 12px; border-radius: 8px; background: #fff7ed; color: #9a3412; text-align: center; }
-.evidenceCountBadge strong { display: block; color: #b91c1c; font-size: 26px; line-height: 1; font-weight: 950; }
-.evidenceCountBadge span { display: block; margin-top: 5px; color: #9a3412; font-size: 11px; font-weight: 900; line-height: 1.25; }
 .appEvidencePairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 22px 18px; }
 .appEvidencePair { min-width: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
-.appEvidencePair .evidenceCompareMeta { align-items: center; margin-bottom: 10px; }
-.appEvidencePair .evidenceCompareMeta > span:last-child { color: #334155; font-size: 13px; font-weight: 800; line-height: 1.35; }
+.appEvidencePair .evidenceCompareMeta { margin-bottom: 10px; }
+.evidencePairTitle { flex: 1 1 auto; min-width: 0; color: #0f172a; font-size: 15px; font-weight: 850; line-height: 1.35; }
+.appEvidencePair .badge { flex: 0 0 auto; }
 @media (max-width: 760px) {
   .appEvidenceHeader { flex-direction: column; }
   .appEvidencePairs { grid-template-columns: 1fr; }
 }
 .expandEvidenceButton { margin-top: 14px; width: 100%; border: 1px solid #bfdbfe; border-radius: 8px; padding: 11px 14px; background: #eff6ff; color: #1d4ed8; font-weight: 900; }
 .expandEvidenceButton:hover { background: #dbeafe; }
-.appChangeSummary { margin: 0 0 14px; padding: 12px 14px; border: 1px solid #dbeafe; border-radius: 8px; background: #f8fbff; color: #334155; font-size: 14px; line-height: 1.65; }
 /* 首页整体结构：表格、筛选、证据区合并为一张联动卡片 */
 .integratedEvidence { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e2e8f0; }
 .integratedEvidence.evidenceComparePanel { overflow: visible; }

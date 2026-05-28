@@ -239,16 +239,6 @@ function activeDimensions(item: RadarProduct) {
   return radarDimensions.filter((dimension) => item.dimensions[dimension] !== emptyMark)
 }
 
-function summarizeProductChanges(product: string, dimension: DimensionFilter) {
-  const item = radarProducts.find((entry) => entry.product === product)
-  if (!item) return '暂无可展示的页面变化总结。'
-  if (dimension === '全部') {
-    const changes = activeDimensions(item).map((dim) => `${dim}：${item.dimensions[dim]}`)
-    return changes.length ? changes.join(' ') : '本期未识别到可比高影响页面变化。'
-  }
-  return item.dimensions[dimension] === emptyMark ? `${dimension}维度本期未识别到可比高影响页面变化。` : `${dimension}：${item.dimensions[dimension]}`
-}
-
 function getEvidencePairs(dimension: DimensionFilter): EvidencePair[] {
   const pairs = radarRows
     .filter((row) => row.prevEvidence || row.currEvidence)
@@ -378,20 +368,14 @@ function Home() {
                 <div>
                   <h3>{selectedDimension === '全部' ? `${group.product}周期变化` : `${group.product}${selectedDimension}变化`}</h3>
                 </div>
-                <div className="evidenceCountBadge">
-                  <strong>{group.highImpactCount}</strong>
-                  <span>高影响 / 共 {group.changeCount}</span>
-                </div>
               </div>
-              <p className="appChangeSummary">{summarizeProductChanges(group.product, selectedDimension)}</p>
               <div className="appEvidencePairs">
                 {(expandedProducts.includes(group.product) ? group.pairs : group.pairs.slice(0, 3)).map((pair) => (
                   <div className="appEvidencePair" key={pair.key}>
                     <div className="evidenceCompareMeta">
+                      <span className="evidencePairTitle">{pair.title}</span>
                       <span className="badge muted">{pair.dimension}</span>
                       <span className={`badge impact${pair.impact}`}>{pair.impact}</span>
-                      {pair.review && <span className="badge review">{pair.review}</span>}
-                      <span>{pair.title}</span>
                     </div>
                     <p className="evidenceConclusion">{pair.conclusion}</p>
                     <div className="compareImages">
