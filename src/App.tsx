@@ -300,7 +300,7 @@ function Home() {
 
   return (
     <section className="page widePage radarHome reportsTableOnly">
-      <div className="panel radarTablePanel">
+      <div className="radarTablePanel radarContentPanel">
         <div className="reportsTableHeader">
           <h2>五产品总览表（严格同名位点对比）</h2>
           <label className="timelineSwitcher">

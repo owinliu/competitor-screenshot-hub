@@ -258,6 +258,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .radarFilters label { display: grid; gap: 7px; color: #334155; font-size: 13px; font-weight: 800; }
 .radarFilterActions { display: flex; gap: 10px; flex-wrap: wrap; }
 .radarTablePanel { overflow: hidden; }
+.radarContentPanel { background: transparent; border: 0; box-shadow: none; border-radius: 0; padding: 0; }
 .radarTablePanel .sectionTitle p { margin: 4px 0 0; font-size: 13px; }
 .radarTableWrap { overflow-x: auto; margin: 16px -22px -22px; }
 .radarTable { width: 100%; min-width: 1380px; border-collapse: collapse; background: white; }
@@ -408,7 +409,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .integratedEvidence { margin-top: 22px; padding-top: 22px; border-top: 1px solid #e2e8f0; }
 .integratedEvidence.evidenceComparePanel { overflow: visible; }
 .integratedEvidence .sectionTitle { padding: 0 2px; }
-.reportsTableOnly .radarTablePanel { padding: 24px; }
+.reportsTableOnly .radarContentPanel { padding: 0; }
 .evidenceConclusion { margin: 0 0 10px; color: #334155; font-size: 13px; line-height: 1.55; }
 .badge.impact高 { background: #fee2e2; color: #b91c1c; }
 .badge.impact中 { background: #fef3c7; color: #92400e; }
