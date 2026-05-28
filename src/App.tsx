@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { competitors, flowDeliverables, flows, screenshots, stats, tasks as seedTasks } from './data'
+import { competitors, flowDeliverables, flows, screenshots, tasks as seedTasks } from './data'
+import radarReportRaw from '../data/recompare_april_early_0428_reports.json'
 import type { CaptureTask, Flow, FlowDeliverable, Screenshot } from './types'
 
 type Route = 'home' | 'library' | 'flows' | 'request' | 'tasks'
@@ -112,7 +113,7 @@ function App() {
         </nav>
       </aside>
       <main className="main">
-        {route === 'home' && <Home go={go} />}
+        {route === 'home' && <Home />}
         {route === 'library' && <Library />}
         {route === 'flows' && <Flows />}
         {route === 'request' && <Request onCreateTask={addTask} />}
@@ -122,41 +123,311 @@ function App() {
   )
 }
 
-function Home({ go }: { go: (route: Route) => void }) {
+type RadarDimension = 'APP' | '客服' | '消金' | '运营' | '风控'
+type RadarProduct = {
+  product: string
+  changeCount: number
+  highImpactCount: number
+  dimensionChangeCounts: Record<RadarDimension, number>
+  dimensionHighCounts: Record<RadarDimension, number>
+  mainStrategy: string
+  dimensions: Record<RadarDimension, string>
+}
+
+type RadarReportRow = {
+  competitor: string
+  dimension: string
+  page: string
+  conclusion: string
+  prevEvidence: string | null
+  currEvidence: string | null
+  compare?: string
+  impact: '高' | '中' | '低'
+  prevDate?: string | null
+  currDate?: string | null
+  review?: string
+  mappingRule?: string
+}
+
+type RadarReport = {
+  meta: {
+    timeline: string
+    title: string
+    competitors: string[]
+    rowCount: number
+  }
+  rows: RadarReportRow[]
+}
+
+const radarDimensions: RadarDimension[] = ['APP', '客服', '消金', '运营', '风控']
+const emptyMark = '—'
+const radarReport = radarReportRaw as RadarReport
+const radarRows = radarReport.rows
+
+function normalizeDimension(dimension: string): RadarDimension {
+  return dimension === '留存促活运营' ? '运营' : dimension as RadarDimension
+}
+
+function normalizeCompetitor(name: string) {
+  return name === '度小满金融' ? '度小满' : name
+}
+
+function firstSentence(text?: string) {
+  return (text || '').split('，')[0]?.trim() || emptyMark
+}
+
+function readableConclusion(row?: RadarReportRow) {
+  if (!row) return emptyMark
+  const first = firstSentence(row.conclusion)
+  if (/仅有\d{4}/.test(first) || /缺少\d{4}/.test(first)) {
+    return /活动/.test(first) ? '新增活动位（新周期出现），用于活动触达与转化引导。' : '新增展示位（新周期出现），用于运营触达与转化引导。'
+  }
+  return first.endsWith('。') ? first : `${first}。`
+}
+
+const timelineOptions = [
+  { key: '0428-vs-max-history', label: '0428 vs 历史最大差异版本' },
+]
+
+const radarProducts: RadarProduct[] = radarReport.meta.competitors.map((rawName) => {
+  const product = normalizeCompetitor(rawName)
+  const rows = radarRows.filter((row) => normalizeCompetitor(row.competitor) === product)
+  const highRows = rows.filter((row) => row.impact === '高')
+  const dimensions = radarDimensions.reduce((acc, dimension) => {
+    const firstHigh = highRows.find((row) => normalizeDimension(row.dimension) === dimension)
+    acc[dimension] = readableConclusion(firstHigh)
+    return acc
+  }, {} as Record<RadarDimension, string>)
+  const dimensionChangeCounts = radarDimensions.reduce((acc, dimension) => {
+    acc[dimension] = rows.filter((row) => normalizeDimension(row.dimension) === dimension).length
+    return acc
+  }, {} as Record<RadarDimension, number>)
+  const dimensionHighCounts = radarDimensions.reduce((acc, dimension) => {
+    acc[dimension] = highRows.filter((row) => normalizeDimension(row.dimension) === dimension).length
+    return acc
+  }, {} as Record<RadarDimension, number>)
+  return {
+    product,
+    changeCount: rows.length,
+    highImpactCount: highRows.length,
+    dimensionChangeCounts,
+    dimensionHighCounts,
+    mainStrategy: readableConclusion(highRows[0]) || '本期未识别到可比高影响变化。',
+    dimensions,
+  }
+})
+
+type DimensionFilter = '全部' | RadarDimension
+
+type EvidencePair = {
+  key: string
+  competitor: string
+  dimension: RadarDimension
+  title: string
+  before?: string | null
+  after?: string | null
+  beforeDate?: string | null
+  afterDate?: string | null
+  conclusion: string
+  impact: '高' | '中' | '低'
+  review?: string
+}
+
+function activeDimensions(item: RadarProduct) {
+  return radarDimensions.filter((dimension) => item.dimensions[dimension] !== emptyMark)
+}
+
+function summarizeProductChanges(product: string, dimension: DimensionFilter) {
+  const item = radarProducts.find((entry) => entry.product === product)
+  if (!item) return '暂无可展示的页面变化总结。'
+  if (dimension === '全部') {
+    const changes = activeDimensions(item).map((dim) => `${dim}：${item.dimensions[dim]}`)
+    return changes.length ? changes.join(' ') : '本期未识别到可比高影响页面变化。'
+  }
+  return item.dimensions[dimension] === emptyMark ? `${dimension}维度本期未识别到可比高影响页面变化。` : `${dimension}：${item.dimensions[dimension]}`
+}
+
+function getEvidencePairs(dimension: DimensionFilter): EvidencePair[] {
+  const pairs = radarRows
+    .filter((row) => row.prevEvidence || row.currEvidence)
+    .filter((row) => dimension === '全部' || normalizeDimension(row.dimension) === dimension)
+    .map((row) => ({
+      key: `${row.competitor}-${row.dimension}-${row.page}-${row.prevEvidence || 'none'}-${row.currEvidence || 'none'}`,
+      competitor: normalizeCompetitor(row.competitor),
+      dimension: normalizeDimension(row.dimension),
+      title: `${normalizeDimension(row.dimension)} · ${row.page}`,
+      before: row.prevEvidence,
+      after: row.currEvidence,
+      beforeDate: row.prevDate,
+      afterDate: row.currDate,
+      conclusion: row.conclusion,
+      impact: row.impact,
+      review: row.review,
+    }))
+    .sort((a, b) => {
+      const order = { 高: 3, 中: 2, 低: 1 }
+      return order[b.impact] - order[a.impact]
+    })
+
+  const rankedNames = [...radarProducts]
+    .sort((a, b) => b.highImpactCount - a.highImpactCount || b.changeCount - a.changeCount)
+    .map((item) => item.product)
+  return rankedNames.flatMap((name) => pairs.filter((pair) => pair.competitor === name))
+}
+
+function Home() {
+  const [selectedTimeline, setSelectedTimeline] = useState(timelineOptions[0].key)
+  const [selectedDimension, setSelectedDimension] = useState<DimensionFilter>('全部')
+  const [expandedProducts, setExpandedProducts] = useState<string[]>([])
+  const getProductHighCount = (product: RadarProduct) => selectedDimension === '全部' ? product.highImpactCount : product.dimensionHighCounts[selectedDimension]
+  const getProductChangeCount = (product: RadarProduct) => selectedDimension === '全部' ? product.changeCount : product.dimensionChangeCounts[selectedDimension]
+  const rankedProducts = [...radarProducts].sort((a, b) => getProductHighCount(b) - getProductHighCount(a) || getProductChangeCount(b) - getProductChangeCount(a))
+  const displayedProducts = selectedDimension === '全部'
+    ? rankedProducts
+    : rankedProducts.filter((product) => getProductHighCount(product) > 0)
+  const evidencePairs = getEvidencePairs(selectedDimension)
+  const evidenceGroups = displayedProducts
+    .map((product) => ({
+      product: product.product,
+      changeCount: getProductChangeCount(product),
+      highImpactCount: getProductHighCount(product),
+      pairs: evidencePairs.filter((pair) => pair.competitor === product.product),
+    }))
+    .filter((group) => group.pairs.length > 0)
+  const toggleProductExpanded = (product: string) => {
+    setExpandedProducts((current) => current.includes(product) ? current.filter((item) => item !== product) : [...current, product])
+  }
+
   return (
-    <section className="page heroPage">
-      <p className="eyebrow">竞品截图知识库</p>
-      <h1>用截图看清竞品关键页面与业务流程</h1>
-      <p className="lead">
-        汇总竞品 APP 的关键页面、流程节点与业务线索，支持按竞品、流程、业务模块和关键词检索。
-      </p>
-      <div className="statGrid">
-        <Stat label="首批竞品" value={stats.competitorCount} />
-        <Stat label="已有截图" value={stats.screenshotCount} />
-        <Stat label="覆盖流程" value={stats.flowCount} />
-        <Stat label="覆盖 APP" value={stats.supportedAppCount} />
-      </div>
-      <div className="actions">
-        <button onClick={() => go('library')}>进入截图检索</button>
-        <button className="secondary" onClick={() => go('request')}>提交采集需求</button>
-      </div>
-      <div className="panel">
-        <h2>覆盖竞品</h2>
-        <div className="competitorGrid">
-          {competitors.map((item) => (
-            <div className="miniCard" key={item.appKey}>
-              <strong>{item.appName}</strong>
-              <span>{item.screenshotCount} 张截图</span>
-            </div>
+    <section className="page widePage radarHome reportsTableOnly">
+      <div className="panel radarTablePanel">
+        <div className="reportsTableHeader">
+          <h2>五产品总览表（严格同名位点对比）</h2>
+          <label className="timelineSwitcher">
+            <span>时间线</span>
+            <select value={selectedTimeline} onChange={(event) => setSelectedTimeline(event.target.value)}>
+              {timelineOptions.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
+            </select>
+          </label>
+        </div>
+
+        <div className="dimensionTabs" aria-label="按维度筛选变化截图">
+          {(['全部', ...radarDimensions] as DimensionFilter[]).map((dimension) => (
+            <button
+              key={dimension}
+              className={selectedDimension === dimension ? 'active' : ''}
+              onClick={() => {
+                setSelectedDimension(dimension)
+                setExpandedProducts([])
+              }}
+            >
+              {dimension}
+            </button>
           ))}
+        </div>
+
+        <div className="radarTableWrap reportsTableWrap">
+          <table className="radarTable reportsManagementTable">
+            <colgroup>
+              <col className="rankCol" />
+              <col className="productCol" />
+              <col className="highCountCol" />
+              <col className="countCol" />
+              <col className="focusCol" />
+              <col className="strategyCol" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>变化排名</th>
+                <th>产品</th>
+                <th>高影响变化数</th>
+                <th>截图变化数</th>
+                <th>变化方面</th>
+                <th>主策略变化</th>
+              </tr>
+            </thead>
+            <tbody>
+              {displayedProducts.map((item, index) => (
+                <tr key={item.product}>
+                  <td className="rankCell"><span>#{index + 1}</span></td>
+                  <td className="productCell"><strong>{item.product}</strong></td>
+                  <td className="highImpactCountCell">{getProductHighCount(item)}</td>
+                  <td className="coverageCell subtleCount">{getProductChangeCount(item)}</td>
+                  <td>
+                    <div className="dimensionPills compact">
+                      {selectedDimension === '全部'
+                        ? (activeDimensions(item).length ? activeDimensions(item).map((dimension) => <span className="isActive" key={dimension}>{dimension}</span>) : <span className="isEmpty">暂无高影响变化</span>)
+                        : <span className="isActive">{selectedDimension}</span>}
+                    </div>
+                  </td>
+                  <td>{selectedDimension === '全部' ? item.mainStrategy : item.dimensions[selectedDimension]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="evidenceComparePanel integratedEvidence">
+          <div className="sectionTitle">
+          <div>
+            <h2>{selectedDimension === '全部' ? '变化截图对比' : `${selectedDimension} 变化截图对比`}</h2>
+            <p>当前筛选同步作用于上方排名表和下方截图证据；以0428为最新版本，历史多版本中选择与0428差异最大的同位点截图作为对比。</p>
+          </div>
+          <span className="badge muted">{displayedProducts.length} 个产品 · {evidencePairs.length} 组对比</span>
+        </div>
+        <div className="appEvidenceGrid">
+          {evidenceGroups.map((group) => (
+            <article className="appEvidenceCard" key={group.product}>
+              <div className="appEvidenceHeader">
+                <div>
+                  <h3>{selectedDimension === '全部' ? `${group.product}周期变化` : `${group.product}${selectedDimension}变化`}</h3>
+                </div>
+                <div className="evidenceCountBadge">
+                  <strong>{group.highImpactCount}</strong>
+                  <span>高影响 / 共 {group.changeCount}</span>
+                </div>
+              </div>
+              <p className="appChangeSummary">{summarizeProductChanges(group.product, selectedDimension)}</p>
+              <div className="appEvidencePairs">
+                {(expandedProducts.includes(group.product) ? group.pairs : group.pairs.slice(0, 3)).map((pair) => (
+                  <div className="appEvidencePair" key={pair.key}>
+                    <div className="evidenceCompareMeta">
+                      <span className="badge muted">{pair.dimension}</span>
+                      <span className={`badge impact${pair.impact}`}>{pair.impact}</span>
+                      {pair.review && <span className="badge review">{pair.review}</span>}
+                      <span>{pair.title}</span>
+                    </div>
+                    <p className="evidenceConclusion">{pair.conclusion}</p>
+                    <div className="compareImages">
+                      {pair.before ? (
+                        <figure>
+                          <img src={withBase(pair.before)} alt={`${pair.competitor} 上期 ${pair.title}`} loading="lazy" />
+                          <figcaption>上期{pair.beforeDate ? `（${pair.beforeDate}）` : ''}</figcaption>
+                        </figure>
+                      ) : <div className="missingEvidence">上期缺图</div>}
+                      {pair.after ? (
+                        <figure>
+                          <img src={withBase(pair.after)} alt={`${pair.competitor} 本期 ${pair.title}`} loading="lazy" />
+                          <figcaption>本期{pair.afterDate ? `（${pair.afterDate}）` : ''}</figcaption>
+                        </figure>
+                      ) : <div className="missingEvidence">本期缺图</div>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              {group.pairs.length > 3 && (
+                <button className="expandEvidenceButton" onClick={() => toggleProductExpanded(group.product)}>
+                  {expandedProducts.includes(group.product) ? '收起变化截图' : `展开全部 ${group.pairs.length} 组变化截图`}
+                </button>
+              )}
+            </article>
+          ))}
+        </div>
+          {evidenceGroups.length === 0 && <div className="emptyState">当前维度暂无可对比截图。</div>}
         </div>
       </div>
     </section>
   )
-}
-
-function Stat({ label, value }: { label: string; value: number }) {
-  return <div className="stat"><strong>{value}</strong><span>{label}</span></div>
 }
 
 function Library() {
