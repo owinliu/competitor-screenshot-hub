@@ -371,9 +371,7 @@ function Home() {
           <div className="sectionTitle">
           <div>
             <h2>{selectedDimension === '全部' ? '变化截图对比' : `${selectedDimension} 变化截图对比`}</h2>
-            <p>当前筛选同步作用于上方排名表和下方截图证据；以0428为最新版本，历史多版本中选择与0428差异最大的同位点截图作为对比。</p>
           </div>
-          <span className="badge muted">{displayedProducts.length} 个产品 · {evidencePairs.length} 组对比</span>
         </div>
         <div className="appEvidenceGrid">
           {evidenceGroups.map((group) => (
