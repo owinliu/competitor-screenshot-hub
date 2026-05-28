@@ -304,68 +304,40 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 @media (max-width: 640px) {
   .reportsTableHeader { align-items: flex-start; flex-direction: column; }
 }
+/* 首页核心管理表：规整列宽、字号和对齐 */
 .rankCell { text-align: center !important; white-space: nowrap; }
-.rankCell span { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 28px; border-radius: 999px; background: #eef4ff; color: #1d4ed8; font-weight: 900; }
+.rankCell span { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: #eef4ff; color: #1d4ed8; font-size: 13px; font-weight: 900; line-height: 1; }
 .reportsManagementTable tbody tr:first-child .rankCell span { background: #fff7ed; color: #c2410c; }
-/* 首页核心管理表：让卡片和列宽随内容自适应，避免长文本被遮盖 */
 .reportsTableOnly { max-width: min(1800px, 100%); }
-.reportsTableOnly .radarTablePanel { overflow: visible; }
-.reportsTableWrap { margin: 14px 0 0; border: 1px solid #eef2f7; border-radius: 8px; overflow-x: auto; }
-.reportsManagementTable { width: max-content; min-width: 100%; table-layout: auto; }
-.reportsManagementTable th,
-.reportsManagementTable td { white-space: normal; overflow-wrap: anywhere; word-break: break-word; }
-.reportsManagementTable th:nth-child(1),
-.reportsManagementTable td:nth-child(1) { min-width: 92px; }
-.reportsManagementTable th:nth-child(2),
-.reportsManagementTable td:nth-child(2) { min-width: 120px; }
-.reportsManagementTable th:nth-child(3),
-.reportsManagementTable td:nth-child(3) { min-width: 110px; text-align: center; }
-.reportsManagementTable th:nth-child(4),
-.reportsManagementTable td:nth-child(4) { min-width: 280px; max-width: 420px; }
-.reportsManagementTable th:nth-child(n+5),
-.reportsManagementTable td:nth-child(n+5) { min-width: 180px; max-width: 320px; }
-.coverageCell { color: #1d4ed8 !important; font-size: 22px !important; font-weight: 900; text-align: center !important; white-space: nowrap !important; }
-@media (max-width: 980px) {
-  .reportsManagementTable th:nth-child(4),
-  .reportsManagementTable td:nth-child(4) { min-width: 240px; }
-  .reportsManagementTable th:nth-child(n+5),
-  .reportsManagementTable td:nth-child(n+5) { min-width: 160px; }
-}
-/* 修正：不再把首页表格撑出卡片；完整显示在卡片内，长文自动换行 */
 .reportsTableOnly .radarTablePanel { overflow: hidden; }
-.reportsTableOnly .reportsTableWrap { margin: 14px 0 0; width: 100%; overflow-x: visible; border: 1px solid #eef2f7; border-radius: 8px; }
-.reportsTableOnly .reportsManagementTable { width: 100%; min-width: 0; table-layout: fixed; }
-.reportsTableOnly .reportsManagementTable .rankCol { width: 7%; }
-.reportsTableOnly .reportsManagementTable .productCol { width: 9%; }
-.reportsTableOnly .reportsManagementTable .countCol { width: 8%; }
-.reportsTableOnly .reportsManagementTable .strategyCol { width: 26%; }
-.reportsTableOnly .reportsManagementTable .dimensionCol { width: 10%; }
+.reportsTableOnly .reportsTableWrap { margin: 14px 0 0; width: 100%; overflow-x: visible; border: 1px solid #e5eaf3; border-radius: 8px; background: #fff; }
+.reportsTableOnly .reportsManagementTable { width: 100%; min-width: 0; table-layout: fixed; border-collapse: collapse; }
+.reportsTableOnly .reportsManagementTable .rankCol { width: 8%; }
+.reportsTableOnly .reportsManagementTable .productCol { width: 12%; }
+.reportsTableOnly .reportsManagementTable .highCountCol { width: 11%; }
+.reportsTableOnly .reportsManagementTable .countCol { width: 10%; }
+.reportsTableOnly .reportsManagementTable .focusCol { width: 22%; }
+.reportsTableOnly .reportsManagementTable .strategyCol { width: 37%; }
 .reportsTableOnly .reportsManagementTable th,
-.reportsTableOnly .reportsManagementTable td { padding: 11px 10px; white-space: normal !important; overflow: visible; overflow-wrap: anywhere; word-break: break-word; font-size: 12px; line-height: 1.5; }
+.reportsTableOnly .reportsManagementTable td { min-width: 0; max-width: none; padding: 14px 14px; white-space: normal !important; overflow: visible; overflow-wrap: normal; word-break: normal; font-size: 14px; line-height: 1.55; vertical-align: middle; }
+.reportsTableOnly .reportsManagementTable th { color: #334155; font-size: 13px; font-weight: 800; letter-spacing: 0; text-align: left; background: #f8fafc; }
+.reportsTableOnly .reportsManagementTable td { color: #334155; font-weight: 500; }
 .reportsTableOnly .reportsManagementTable th:nth-child(1),
 .reportsTableOnly .reportsManagementTable td:nth-child(1),
-.reportsTableOnly .reportsManagementTable th:nth-child(2),
-.reportsTableOnly .reportsManagementTable td:nth-child(2),
 .reportsTableOnly .reportsManagementTable th:nth-child(3),
 .reportsTableOnly .reportsManagementTable td:nth-child(3),
 .reportsTableOnly .reportsManagementTable th:nth-child(4),
-.reportsTableOnly .reportsManagementTable td:nth-child(4),
-.reportsTableOnly .reportsManagementTable th:nth-child(n+5),
-.reportsTableOnly .reportsManagementTable td:nth-child(n+5) { min-width: 0; max-width: none; }
-.reportsTableOnly .coverageCell { font-size: 20px !important; }
-.highImpactCountCell { color: #b91c1c !important; font-size: 24px !important; font-weight: 950; text-align: center !important; white-space: nowrap !important; }
-.coverageCell.subtleCount { color: #64748b !important; font-size: 16px !important; font-weight: 800; }
+.reportsTableOnly .reportsManagementTable td:nth-child(4) { text-align: center !important; }
+.productCell strong { color: #0f172a; font-size: 14px; font-weight: 800; }
+.highImpactCountCell { color: #b91c1c !important; font-size: 18px !important; font-weight: 900; text-align: center !important; white-space: nowrap !important; }
+.coverageCell.subtleCount { color: #64748b !important; font-size: 16px !important; font-weight: 800; text-align: center !important; white-space: nowrap !important; }
+.dimensionPills.compact { margin: 0; }
+.dimensionPills.compact span { border-radius: 8px; font-size: 13px; line-height: 1.25; }
+.dimensionPills.compact .isEmpty { display: inline-flex; max-width: 100%; }
 @media (max-width: 1180px) {
   .reportsTableOnly .reportsTableWrap { overflow-x: auto; }
   .reportsTableOnly .reportsManagementTable { min-width: 980px; }
 }
-/* 首页：维度标签 + 变化截图对比 */
-.reportsTableOnly .reportsManagementTable .rankCol { width: 9%; }
-.reportsTableOnly .reportsManagementTable .productCol { width: 11%; }
-.reportsTableOnly .reportsManagementTable .highCountCol { width: 11%; }
-.reportsTableOnly .reportsManagementTable .countCol { width: 10%; }
-.reportsTableOnly .reportsManagementTable .focusCol { width: 21%; }
-.reportsTableOnly .reportsManagementTable .strategyCol { width: 38%; }
 .dimensionTabs { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 14px; }
 .dimensionTabs button { border: 1px solid #dbeafe; border-radius: 8px; padding: 9px 14px; background: #f8fbff; color: #1e3a8a; font-weight: 800; }
 .dimensionTabs button.active { background: #2563eb; border-color: #2563eb; color: white; box-shadow: 0 10px 28px rgba(37,99,235,.18); }

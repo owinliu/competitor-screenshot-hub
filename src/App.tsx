@@ -212,7 +212,7 @@ const radarProducts: RadarProduct[] = radarReport.meta.competitors.map((rawName)
     highImpactCount: highRows.length,
     dimensionChangeCounts,
     dimensionHighCounts,
-    mainStrategy: readableConclusion(highRows[0]) || '本期未识别到可比高影响变化。',
+    mainStrategy: highRows[0] ? readableConclusion(highRows[0]) : emptyMark,
     dimensions,
   }
 })
@@ -339,24 +339,24 @@ function Home() {
             <thead>
               <tr>
                 <th>变化排名</th>
-                <th>产品</th>
+                <th>产品展示</th>
                 <th>高影响变化数</th>
                 <th>截图变化数</th>
                 <th>变化方面</th>
-                <th>主策略变化</th>
+                <th>主要策略变化</th>
               </tr>
             </thead>
             <tbody>
               {displayedProducts.map((item, index) => (
                 <tr key={item.product}>
-                  <td className="rankCell"><span>#{index + 1}</span></td>
+                  <td className="rankCell"><span>{index + 1}</span></td>
                   <td className="productCell"><strong>{item.product}</strong></td>
                   <td className="highImpactCountCell">{getProductHighCount(item)}</td>
                   <td className="coverageCell subtleCount">{getProductChangeCount(item)}</td>
                   <td>
                     <div className="dimensionPills compact">
                       {selectedDimension === '全部'
-                        ? (activeDimensions(item).length ? activeDimensions(item).map((dimension) => <span className="isActive" key={dimension}>{dimension}</span>) : <span className="isEmpty">暂无高影响变化</span>)
+                        ? (activeDimensions(item).length ? activeDimensions(item).map((dimension) => <span className="isActive" key={dimension}>{dimension}</span>) : <span className="isEmpty">暂时无高影响变化</span>)
                         : <span className="isActive">{selectedDimension}</span>}
                     </div>
                   </td>
