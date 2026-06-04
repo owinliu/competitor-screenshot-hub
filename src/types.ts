@@ -19,6 +19,7 @@ export type Screenshot = {
   timelineGroup?: string
   isLatestVersion?: boolean
   imagePath: string
+  thumbnailPath?: string
   description: string
   visibleText: string[]
   status: string
