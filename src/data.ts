@@ -1,5 +1,6 @@
 import competitorsRaw from '../data/competitors.json'
 import screenshotsRaw from '../data/screenshots.json'
+import eightAppScreenshotsRaw from '../data/eight-app-20260530-screenshots.json'
 import flowsRaw from '../data/flows.json'
 import capabilitiesRaw from '../data/supported-capabilities.json'
 import tasksRaw from '../data/tasks.json'
@@ -8,6 +9,8 @@ import type { Capability, CaptureTask, Competitor, Flow, FlowDeliverable, Screen
 
 export const competitors = competitorsRaw as Competitor[]
 export const screenshots = screenshotsRaw as Screenshot[]
+export const eightAppScreenshots = eightAppScreenshotsRaw as Screenshot[]
+export const allLibraryScreenshots = [...eightAppScreenshots, ...screenshots]
 export const flows = flowsRaw as Flow[]
 export const capabilities = capabilitiesRaw as Capability[]
 export const tasks = tasksRaw as CaptureTask[]

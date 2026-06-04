@@ -28,6 +28,27 @@ export type Screenshot = {
   sourceType?: string
   sourceTaskId?: string
   pageCategory?: string
+  materialId?: string
+  finalDimension?: string
+  pageSlot?: string
+  visualSummary?: string
+  keyText?: string[]
+  qualityNote?: string
+  riskBoundary?: string
+  needsReview?: string
+  evidenceValue?: string
+  canUseForSummary?: string
+  evidencePath?: string
+  confidence?: string
+  reviewReason?: string
+  dataset?: string
+  governanceStatus?: string
+  duplicateClusterId?: string
+  isRepresentative?: string
+  representativeMaterialId?: string
+  displayDefault?: string
+  analysisReadyRepresentative?: string
+  duplicateReason?: string
 }
 
 export type Flow = {

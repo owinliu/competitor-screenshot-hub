@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { competitors, flowDeliverables, flows, screenshots, tasks as seedTasks } from './data'
+import { allLibraryScreenshots, eightAppScreenshots, flowDeliverables, flows, screenshots, tasks as seedTasks } from './data'
 import radarReportRaw from '../data/recompare_april_early_0428_reports.json'
 import type { CaptureTask, Flow, FlowDeliverable, Screenshot } from './types'
 
@@ -415,101 +415,435 @@ function Home() {
 function Library() {
   const [query, setQuery] = useState('')
   const [competitor, setCompetitor] = useState('all')
-  const [module, setModule] = useState('all')
-  const [flow, setFlow] = useState('all')
+  const [dimension, setDimension] = useState('all')
+  const [evidenceValue, setEvidenceValue] = useState('all')
+  const [reviewState, setReviewState] = useState('all')
+  const [dataset, setDataset] = useState('evidence269')
   const [timeline, setTimeline] = useState('latest')
+  const [viewMode, setViewMode] = useState<'dimension' | 'app' | 'search'>('dimension')
+  const [pageFamily, setPageFamily] = useState('all')
   const [selected, setSelected] = useState<Screenshot | null>(null)
-  const modules = Array.from(new Set(screenshots.flatMap((item) => item.businessModules))).sort()
-  const flowOptions = Array.from(new Set(screenshots.map((item) => item.flow))).sort()
-  const timelineOptions = Array.from(new Set(screenshots.map((item) => item.timelineGroup || item.capturedAt))).sort()
+  const sourceItems = dataset === 'evidence269' ? eightAppScreenshots : dataset === 'historical' ? screenshots : allLibraryScreenshots
+  const browseItems = viewMode === 'search' ? sourceItems : sourceItems.filter((item) => item.displayDefault !== 'false')
+  const appOptions = Array.from(new Map(sourceItems.map((item) => [item.appKey, item.competitor])).entries()).sort((a, b) => a[1].localeCompare(b[1], 'zh-Hans-CN'))
+  const dimensions = Array.from(new Set(sourceItems.map((item) => item.finalDimension || item.flow).filter(Boolean))).sort()
+  const evidenceOptions = Array.from(new Set(sourceItems.map((item) => item.evidenceValue).filter((item): item is string => Boolean(item)))).sort()
+  const timelineOptions = Array.from(new Set(sourceItems.map((item) => item.timelineGroup || item.capturedAt))).sort()
 
-  const filtered = filterScreenshots({ query, competitor, module, flow, timeline })
+  const filtered = filterScreenshots({ query, competitor, dimension, evidenceValue, reviewState, dataset, timeline, pageFamily })
+  const evidenceCounts = summarizeEvidence(sourceItems)
+  const pageFamilies = buildPageFamilies(sourceItems)
 
   const reset = () => {
     setQuery('')
     setCompetitor('all')
-    setModule('all')
-    setFlow('all')
-    setTimeline('latest')
+    setDimension('all')
+    setEvidenceValue('all')
+    setReviewState('all')
+    setPageFamily('all')
+    setTimeline(dataset === 'evidence269' ? 'all' : 'latest')
   }
 
+  const switchDataset = (nextDataset: string) => {
+    setDataset(nextDataset)
+    setTimeline(nextDataset === 'evidence269' ? 'all' : 'latest')
+  }
+
+  const dimensionButtons = ['all', 'APP', '风控', '客服', '消金', '留存促活运营', '非金融内容/社区'].filter((item) => item === 'all' || dimensions.includes(item))
+  const evidenceButtons = ['all', '主观察证据', '边界证据', '复核证据', '不可用/回采证据'].filter((item) => item === 'all' || evidenceOptions.includes(item))
+  const reviewButtons = [
+    { value: 'all', label: '全部' },
+    { value: 'needsReview', label: '需复核' },
+    { value: 'riskBoundary', label: '敏感边界' },
+    { value: 'summaryReady', label: '摘要可引' },
+  ]
+
   return (
-    <section className="page widePage">
-      <Header title="截图检索" subtitle="按竞品、流程、模块和关键词快速查找页面截图。" />
-      <div className="discoveryLayout">
-        <aside className="filterPanel">
-          <label>
-            关键词
-            <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="客服入口、借钱、额度页" />
-          </label>
-          <label>
-            竞品
-            <select value={competitor} onChange={(event) => setCompetitor(event.target.value)}>
-              <option value="all">全部竞品</option>
-              {competitors.map((item) => <option key={item.appKey} value={item.appKey}>{item.appName}</option>)}
-            </select>
-          </label>
-          <label>
-            流程
-            <select value={flow} onChange={(event) => setFlow(event.target.value)}>
-              <option value="all">全部流程</option>
-              {flowOptions.map((item) => <option key={item} value={item}>{item}</option>)}
-            </select>
-          </label>
-          <label>
-            模块
-            <select value={module} onChange={(event) => setModule(event.target.value)}>
-              <option value="all">全部模块</option>
-              {modules.map((item) => <option key={item} value={item}>{item}</option>)}
-            </select>
-          </label>
-          <label>
-            时间线
-            <select value={timeline} onChange={(event) => setTimeline(event.target.value)}>
-              <option value="latest">仅最新版本</option>
-              <option value="all">全部时间</option>
-              {timelineOptions.map((item) => <option key={item} value={item}>{item}</option>)}
-            </select>
-          </label>
-          <button className="ghostButton" onClick={reset}>重置筛选</button>
-          <div className="filterHint">
-            <strong>{filtered.length}</strong>
-            <span> / {screenshots.length} 张截图</span>
-          </div>
-        </aside>
-        <section className="resultsPanel">
-          <div className="resultsToolbar">
-            <div>
-              <strong>匹配结果</strong>
-              <p>默认展示最新版本；需要对比历史时可切换时间线。</p>
-            </div>
-            <span className="badge muted">{filtered.length} 张</span>
-          </div>
-          <ScreenshotGrid items={filtered} onSelect={setSelected} />
-        </section>
+    <section className="page widePage evidenceLibraryPage">
+      <Header title="截图检索" subtitle="本地预览版：按维度横向看、按 APP 纵向看、或自由搜索完整证据库。" />
+      <div className="libraryModeTabs">
+        <button className={viewMode === 'dimension' ? 'active' : ''} onClick={() => setViewMode('dimension')}>按APP浏览</button>
+        <button className={viewMode === 'app' ? 'active' : ''} onClick={() => setViewMode('app')}>按页面对比</button>
+        <button className={viewMode === 'search' ? 'active' : ''} onClick={() => setViewMode('search')}>自由搜索</button>
       </div>
+      <div className="evidenceSummaryStrip compactEvidenceSummary">
+        <span><strong>{sourceItems.length}</strong>当前数据源截图</span>
+        <span><strong>{new Set(sourceItems.map((item) => item.appKey)).size}</strong>竞品 APP</span>
+        <span><strong>{dimensions.length}</strong>维度/主题</span>
+        {evidenceCounts.map((item) => <span key={item.label}><strong>{item.count}</strong>{item.label}</span>)}
+      </div>
+      <div className="libraryDatasetBar">
+        <span>数据范围</span>
+        <div className="segmentedFilter compactDatasetSwitch">
+          <button className={dataset === 'evidence269' ? 'active' : ''} onClick={() => switchDataset('evidence269')}>269新素材</button>
+          <button className={dataset === 'historical' ? 'active' : ''} onClick={() => switchDataset('historical')}>历史库</button>
+          <button className={dataset === 'all' ? 'active' : ''} onClick={() => switchDataset('all')}>全部</button>
+        </div>
+      </div>
+      {viewMode === 'dimension' && <AppRowsView items={browseItems} onSelect={setSelected} totalCount={sourceItems.length} />}
+      {viewMode === 'app' && <PageRowsView items={browseItems} onSelect={setSelected} totalCount={sourceItems.length} />}
+      {viewMode === 'search' && (
+        <div className="discoveryLayout evidenceLayout compareBrowserLayout">
+          <aside className="filterPanel evidenceFilterPanel compareFilterPanel">
+            <div className="filterSection">
+              <span className="filterSectionTitle">关键词</span>
+              <input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="material_id、额度、风险报告、短视频" />
+            </div>
+            <div className="filterSection">
+              <span className="filterSectionTitle">竞品</span>
+              <select value={competitor} onChange={(event) => setCompetitor(event.target.value)}>
+                <option value="all">全部竞品</option>
+                {appOptions.map(([key, name]) => <option key={key} value={key}>{name}</option>)}
+              </select>
+            </div>
+            <div className="filterSection">
+              <span className="filterSectionTitle">五维/主题</span>
+              <div className="pillFilterGrid dimensionPills">
+                {dimensionButtons.map((item) => (
+                  <button key={item} className={dimension === item ? 'active' : ''} onClick={() => setDimension(item)}>
+                    {item === 'all' ? '全部' : item}
+                  </button>
+                ))}
+              </div>
+            </div>
+            <div className="filterSection">
+              <span className="filterSectionTitle">页面类型</span>
+              <select value={pageFamily} onChange={(event) => setPageFamily(event.target.value)}>
+                <option value="all">全部页面类型</option>
+                {pageFamilies.map((item) => <option key={item} value={item}>{item}</option>)}
+              </select>
+            </div>
+            <div className="filterSection">
+              <span className="filterSectionTitle">证据状态</span>
+              <div className="pillFilterGrid evidencePills">
+                {evidenceButtons.map((item) => (
+                  <button key={item} className={evidenceValue === item ? 'active' : ''} onClick={() => setEvidenceValue(item)}>
+                    {item === 'all' ? '全部证据' : item.replace('证据', '')}
+                  </button>
+                ))}
+              </div>
+              <div className="pillFilterGrid reviewPills">
+                {reviewButtons.map((item) => (
+                  <button key={item.value} className={reviewState === item.value ? 'active' : ''} onClick={() => setReviewState(item.value)}>
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+            {dataset !== 'evidence269' && (
+              <div className="filterSection">
+                <span className="filterSectionTitle">时间线</span>
+                <select value={timeline} onChange={(event) => setTimeline(event.target.value)}>
+                  <option value="latest">仅最新版本</option>
+                  <option value="all">全部时间</option>
+                  {timelineOptions.map((item) => <option key={item} value={item}>{item}</option>)}
+                </select>
+              </div>
+            )}
+            <button className="ghostButton" onClick={reset}>重置筛选</button>
+            <div className="filterHint evidenceFilterCount">
+              <strong>{filtered.length}</strong>
+              <span> / {sourceItems.length} 张截图</span>
+            </div>
+          </aside>
+          <section className="resultsPanel evidenceResultsPanel compareResultsPanel">
+            <div className="resultsToolbar evidenceToolbar">
+              <div>
+                <strong>自由搜索结果</strong>
+                <p>适合查 material_id、关键文案、页面名或异常边界。</p>
+              </div>
+              <span className="badge muted">{filtered.length} 张</span>
+            </div>
+            <ScreenshotGrid items={filtered} onSelect={setSelected} />
+          </section>
+        </div>
+      )}
       {selected && <ScreenshotDetail item={selected} onClose={() => setSelected(null)} />}
     </section>
   )
 }
 
-function filterScreenshots(filters: { query?: string; competitor?: string; module?: string; flow?: string; timeline?: string }) {
+function buildPageFamilies(items: Screenshot[]) {
+  return Array.from(new Set(items.map((item) => getPageFamily(item)).filter(Boolean))).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'))
+}
+
+function getPageFamily(item: Screenshot) {
+  const text = [item.node, item.pageCategory, item.pageSlot, item.visualSummary, item.description, ...(item.tags || [])].join(' ')
+  if (/我的|个人中心|账户|我的页/.test(text)) return '我的页/个人中心'
+  if (/首页|home|首屏|主卡/.test(text)) return '首页/首屏'
+  if (/借钱|借款|额度|查看额度|申请额度|金条/.test(text)) return '借钱/额度页'
+  if (/还款|账单|自动还款|白条还款|借还记录/.test(text)) return '还款/账单页'
+  if (/客服|帮助中心|服务大厅|在线咨询|FAQ|公众号|企微/.test(text)) return '客服/帮助中心'
+  if (/风险报告|风险查询|信用评估|黑名单|失信|风险检测/.test(text)) return '风险报告/信用评估'
+  if (/实名|人脸|身份证|认证|授权|协议|刷脸|营业执照|夫妻认证/.test(text)) return '实名/人脸/授权'
+  if (/签到|红包|任务|奖励|邀请|现金|京豆|活动/.test(text)) return '活动/红包/签到'
+  if (/会员|VIP|权益|富能|PLUS|免息券|优惠券/.test(text)) return '会员/权益'
+  if (/购物|商城|商品|超市|618|补贴|买吖/.test(text)) return '购物/商城'
+  if (/理财|保险|基金|黄金|小金库/.test(text)) return '理财/保险/资产'
+  if (/短视频|社区|视频|内容流|资讯|圈子|点赞|评论|影视/.test(text)) return '短视频/社区'
+  if (/弹窗|遮挡|浮层|loading|加载|黑屏|异常|跨 APP/.test(text)) return '弹窗/遮挡/异常'
+  return '其它页面'
+}
+
+function groupBy<T>(items: T[], getKey: (item: T) => string) {
+  return items.reduce((acc, item) => {
+    const key = getKey(item)
+    if (!acc[key]) acc[key] = []
+    acc[key].push(item)
+    return acc
+  }, {} as Record<string, T[]>)
+}
+
+const appTabOrders: Record<string, string[]> = {
+  分期乐: ['首页', '借钱', '购物', '消息', '我的'],
+  奇富借条: ['借钱', '服务', '生活', '我的'],
+  度小满金融: ['借钱', '理财', '保险', '我的'],
+  京东金融: ['首页', '借钱', '白条', '财富', '社区', '我的'],
+  安逸花: ['首页', '提额', '我的'],
+  马上金融: ['金融', '运营', '客服', '我的'],
+  小赢: ['借钱', '权益', '风险监测', 'VIP卡', '我的'],
+  拍拍贷借款: ['借款', '活动', '我的'],
+}
+
+const appItemOrderOverrides: Record<string, string[]> = {
+  // 这两家的节点名里有采集标签（finance-tab / dimension-gap 等），不能稳定代表真实底部 Tab；按截图底部导航人工校正。
+  马上金融: [
+    'mashang-0004', 'mashang-0016', 'mashang-0017', 'mashang-0021', 'mashang-0023',
+    'mashang-0002',
+    'mashang-0003', 'mashang-0005', 'mashang-0001',
+  ],
+  小赢: [
+    'xiaoying-0001',
+    'xiaoying-0002',
+    'xiaoying-0003', 'xiaoying-0009', 'xiaoying-0014',
+    'xiaoying-0004', 'xiaoying-0006',
+    'xiaoying-0005', 'xiaoying-0011', 'xiaoying-0017',
+  ],
+}
+
+const appTabAliases: Record<string, Record<string, RegExp[]>> = {
+  分期乐: {
+    首页: [/^首页/, /首页首屏/, /首页频道/, /首页快捷/],
+    借钱: [/借款/, /借钱/, /额度/, /激活/, /实名/, /授信/, /充值/, /还款/, /自动还款/, /风险检测/, /更多服务/],
+    购物: [/购物/, /商城/, /买吖/, /商品/, /超市/, /618/, /官方补贴/],
+    消息: [/消息/, /客服/, /在线客服/, /公众号/, /服务大厅/, /FAQ/],
+    我的: [/我的/, /个人中心/, /设置/, /安全中心/, /黑产举报/],
+  },
+  奇富借条: {
+    借钱: [/借钱/, /借款/, /额度/, /申请额度/, /借还记录/, /新人免息/, /还款/, /自动还款/, /富能计划/],
+    服务: [/服务页/, /服务首页/, /更多服务/, /客服/],
+    生活: [/生活/, /健康关怀/, /数字生活/, /信用管理/],
+    我的: [/我的/, /个人中心/, /账户/, /消费者权益保护/],
+  },
+  度小满金融: {
+    借钱: [/借钱/, /借款/, /额度/, /提额/, /降息/, /新人指南/, /申请步骤/],
+    理财: [/理财/, /基金/, /产品推荐/],
+    保险: [/保险/],
+    我的: [/我的/, /账户/, /用户保护中心/],
+  },
+  京东金融: {
+    首页: [/京东金融首页/, /^首页/, /推荐页/, /首页\/授信/, /首页\/资产/],
+    借钱: [/金条/, /借钱/, /借款/, /额度/, /全部服务/],
+    白条: [/白条/],
+    财富: [/财富/, /基金/, /黄金/, /资产/, /京东保/, /保险/, /权益/],
+    社区: [/社区/, /短视频/, /内容页/, /信息流/, /资讯/, /圈/],
+    我的: [/我的/, /实名/, /银行卡/],
+  },
+  安逸花: {
+    首页: [/首页/, /借款首页/, /launch/, /bottom-755/],
+    提额: [/提额/, /额度成长/, /额度提升/, /涨分赢提额/, /益查查/],
+    我的: [/我的/, /个人中心/, /商品优惠券/],
+  },
+  马上金融: {
+    金融: [/finance-tab/, /finance-home/, /消金/, /金融/],
+    运营: [/operation-tab/, /operation-home/, /运营/],
+    客服: [/客服/],
+    我的: [/my-tab/, /my-home/, /我的/],
+  },
+  小赢: {
+    借钱: [/借钱/, /借款/, /首页首屏/, /额度/],
+    权益: [/权益底导/, /会员权益页/],
+    风险监测: [/风险监测/, /风险查询/, /麦穗信用/, /风险评估/],
+    VIP卡: [/VIP季卡/, /VIP卡/, /会员权益购买/, /服务协议/],
+    我的: [/我的/, /个人中心/, /设置/, /福利列表/],
+  },
+  拍拍贷借款: {
+    借款: [/借款/, /额度/, /提额/, /经营认证/, /夫妻认证/, /同心借/, /助微免息/],
+    活动: [/活动/, /签到/, /抽奖/, /邀请/, /奖励/, /钱包/],
+    我的: [/我的/, /个人中心/, /精选服务/],
+  },
+}
+
+function firstAppearanceOrder<T>(items: T[], getKey: (item: T) => string) {
+  const order = new Map<string, number>()
+  items.forEach((item) => {
+    const key = getKey(item)
+    if (!order.has(key)) order.set(key, order.size)
+  })
+  return order
+}
+
+function getCaptureSequence(item: Screenshot) {
+  const numericParts = [item.materialId, item.id].join(' ').match(/(\d+)/g)
+  return numericParts ? Number(numericParts[numericParts.length - 1]) : Number.MAX_SAFE_INTEGER
+}
+
+function inferBottomTab(item: Screenshot) {
+  const node = item.node || ''
+  const pageText = [item.pageCategory, item.pageSlot].join(' ')
+  const contextText = [item.visualSummary, item.description, ...(item.tags || [])].join(' ')
+  const text = [node, pageText, contextText].join(' ')
+  const aliasMap = appTabAliases[item.competitor]
+
+  if (aliasMap) {
+    // 第一轮只看 node，优先识别截图真实所在的底部一级页；避免被文案里的“额度/购物/客服”等业务词带偏。
+    for (const tab of appTabOrders[item.competitor] || Object.keys(aliasMap)) {
+      if (aliasMap[tab]?.some((pattern) => pattern.test(node))) return tab
+    }
+    // 第二轮才看页面分类和说明，兜底处理节点名较弱的素材。
+    for (const tab of appTabOrders[item.competitor] || Object.keys(aliasMap)) {
+      if (aliasMap[tab]?.some((pattern) => pattern.test(text))) return tab
+    }
+  }
+
+  if (/我的|个人中心|账户/.test(node)) return '我的'
+  if (/首页|home|首屏|launch/.test(node)) return '首页'
+  if (/消息|客服|帮助中心|在线咨询|FAQ|公众号|人工客服/.test(node)) return '客服'
+  if (/购物|商城|买吖|商品|超市|618|补贴/.test(node)) return '购物'
+  if (/借钱|借款|额度|查看额度|申请额度|金条|还款|账单|自动还款|借还记录|分期/.test(node)) return '借钱'
+  return '其它'
+}
+
+function compareScreenshotsByAppTab(a: Screenshot, b: Screenshot) {
+  const itemOrder = appItemOrderOverrides[a.competitor]
+  if (itemOrder) {
+    const aItemIndex = itemOrder.includes(a.materialId || a.id) ? itemOrder.indexOf(a.materialId || a.id) : itemOrder.length + 1
+    const bItemIndex = itemOrder.includes(b.materialId || b.id) ? itemOrder.indexOf(b.materialId || b.id) : itemOrder.length + 1
+    return aItemIndex - bItemIndex || getCaptureSequence(a) - getCaptureSequence(b)
+  }
+
+  const order = appTabOrders[a.competitor] || []
+  const aTab = inferBottomTab(a)
+  const bTab = inferBottomTab(b)
+  const aTabIndex = order.includes(aTab) ? order.indexOf(aTab) : order.length + 1
+  const bTabIndex = order.includes(bTab) ? order.indexOf(bTab) : order.length + 1
+  return aTabIndex - bTabIndex || getCaptureSequence(a) - getCaptureSequence(b) || a.node.localeCompare(b.node, 'zh-Hans-CN')
+}
+
+function AppRowsView({ items, totalCount, onSelect }: { items: Screenshot[]; totalCount: number; onSelect?: (item: Screenshot) => void }) {
+  const grouped = groupBy(items, (item) => item.competitor)
+  const appOrder = firstAppearanceOrder(items, (item) => item.competitor)
+  const apps = Object.keys(grouped).sort((a, b) => (appOrder.get(a) ?? 999) - (appOrder.get(b) ?? 999))
+  return (
+    <div className="compareView fullWidthCompareView">
+      <div className="resultsToolbar evidenceToolbar">
+        <div>
+          <strong>按 APP 浏览</strong>
+          <p>每一行是一个竞品 APP，默认展示二次筛选后的代表图；重复/异常图保留在自由搜索里。</p>
+        </div>
+        <span className="badge muted">默认展示 {items.length} / 全量 {totalCount} 张</span>
+      </div>
+      <div className="appCompareStack">
+        {apps.map((app) => {
+          const familyGroups = groupBy(grouped[app], getPageFamily)
+          const families = Object.keys(familyGroups).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'))
+          return (
+            <section className="appCompareGroup" key={app}>
+              <header>
+                <div><strong>{app}</strong><span>{grouped[app].length} 张 / {families.length} 类页面</span></div>
+              </header>
+              <div className="compareThumbRow">
+                {[...grouped[app]].sort(compareScreenshotsByAppTab).map((item) => <CompareThumb key={item.id} item={item} label={inferBottomTab(item)} onSelect={onSelect} />)}
+              </div>
+            </section>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function PageRowsView({ items, totalCount, onSelect }: { items: Screenshot[]; totalCount: number; onSelect?: (item: Screenshot) => void }) {
+  const grouped = groupBy(items, getPageFamily)
+  const preferred = ['首页/首屏', '我的页/个人中心', '借钱/额度页', '还款/账单页', '客服/帮助中心', '风险报告/信用评估', '实名/人脸/授权', '活动/红包/签到', '会员/权益', '购物/商城', '理财/保险/资产', '短视频/社区', '弹窗/遮挡/异常', '其它页面']
+  const families = Object.keys(grouped).sort((a, b) => (preferred.indexOf(a) === -1 ? 99 : preferred.indexOf(a)) - (preferred.indexOf(b) === -1 ? 99 : preferred.indexOf(b)))
+  return (
+    <div className="compareView fullWidthCompareView">
+      <div className="resultsToolbar evidenceToolbar">
+        <div>
+          <strong>按页面对比</strong>
+          <p>每一行是一个页面主题，默认使用代表图横向对比各 APP；重复/异常图不进入普通浏览流。</p>
+        </div>
+        <span className="badge muted">默认展示 {items.length} / 全量 {totalCount} 张</span>
+      </div>
+      <div className="appCompareStack">
+        {families.map((family) => {
+          const appGroups = groupBy(grouped[family], (item) => item.competitor)
+          const apps = Object.keys(appGroups).sort((a, b) => a.localeCompare(b, 'zh-Hans-CN'))
+          return (
+            <section className="appCompareGroup pageCompareGroup" key={family}>
+              <header>
+                <div><strong>{family}</strong><span>{grouped[family].length} 张 / {apps.length} 个 APP</span></div>
+                <small>{apps.join(' / ')}</small>
+              </header>
+              <div className="compareThumbRow">
+                {apps.flatMap((app) => appGroups[app].map((item) => <CompareThumb key={item.id} item={item} label={app} onSelect={onSelect} />))}
+              </div>
+            </section>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
+function CompareThumb({ item, onSelect }: { item: Screenshot; label?: string; onSelect?: (item: Screenshot) => void }) {
+  return (
+    <button className="compareThumb imageOnlyThumb" onClick={() => onSelect?.(item)} aria-label={`${item.competitor} ${item.node}`} title={`${item.competitor} ${item.node}`}>
+      <img src={withBase(item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" />
+      <span className="thumbPageLabel">{item.node}</span>
+    </button>
+  )
+}
+
+function summarizeEvidence(items: Screenshot[]) {
+  const labels = ['主观察证据', '边界证据', '复核证据', '不可用/回采证据']
+  return labels.map((label) => ({ label, count: items.filter((item) => item.evidenceValue?.includes(label.replace('证据', '')) || item.evidenceValue === label).length }))
+}
+
+function filterScreenshots(filters: { query?: string; competitor?: string; dimension?: string; evidenceValue?: string; reviewState?: string; dataset?: string; timeline?: string; pageFamily?: string }) {
   const q = (filters.query || '').trim().toLowerCase()
-  return screenshots.filter((item) => {
-    const matchesQuery = !q || [
+  const sourceItems = filters.dataset === 'evidence269' ? eightAppScreenshots : filters.dataset === 'historical' ? screenshots : allLibraryScreenshots
+  return sourceItems.filter((item) => {
+    const searchableText = [
+      item.id,
+      item.materialId,
       item.competitor,
       item.flow,
       item.node,
       item.description,
+      item.visualSummary,
+      item.qualityNote,
+      item.evidenceValue,
+      item.canUseForSummary,
+      item.reviewReason,
       ...item.tags,
-      ...item.visibleText,
+      ...(item.keyText || item.visibleText || []),
       ...item.businessModules,
-    ].join(' ').toLowerCase().includes(q)
+    ].join(' ').toLowerCase()
+    const matchesQuery = !q || searchableText.includes(q)
+    const itemDimension = item.finalDimension || item.flow
+    const matchesReview = !filters.reviewState || filters.reviewState === 'all' ||
+      (filters.reviewState === 'needsReview' && item.needsReview === '是') ||
+      (filters.reviewState === 'riskBoundary' && item.riskBoundary === '是') ||
+      (filters.reviewState === 'summaryReady' && item.canUseForSummary?.includes('可引用'))
     return (
       matchesQuery &&
       (!filters.competitor || filters.competitor === 'all' || item.appKey === filters.competitor) &&
-      (!filters.module || filters.module === 'all' || item.businessModules.includes(filters.module)) &&
-      (!filters.flow || filters.flow === 'all' || item.flow === filters.flow) &&
+      (!filters.dimension || filters.dimension === 'all' || itemDimension === filters.dimension || item.businessModules.includes(filters.dimension)) &&
+      (!filters.pageFamily || filters.pageFamily === 'all' || getPageFamily(item) === filters.pageFamily) &&
+      (!filters.evidenceValue || filters.evidenceValue === 'all' || item.evidenceValue === filters.evidenceValue) &&
+      matchesReview &&
       (!filters.timeline || filters.timeline === 'all' || (filters.timeline === 'latest' ? item.isLatestVersion : (item.timelineGroup || item.capturedAt) === filters.timeline))
     )
   })
@@ -523,38 +857,71 @@ function ScreenshotGrid({ items, onSelect }: { items: Screenshot[]; onSelect?: (
 }
 
 function ScreenshotCard({ item, onSelect }: { item: Screenshot; onSelect?: (item: Screenshot) => void }) {
+  const dimension = item.finalDimension || item.flow
+  const isContentBoundary = dimension === '非金融内容/社区'
   return (
-    <article className="shotCard" onClick={() => onSelect?.(item)}>
-      <div className="shotImageWrap">
+    <article className="shotCard evidenceShotCard" onClick={() => onSelect?.(item)}>
+      <div className="shotImageWrap evidenceImageWrap">
         {item.imagePath ? <img src={withBase(item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" /> : <span>暂无截图</span>}
       </div>
-      <div className="shotBody">
-        <div className="row wrap"><span className="badge">{item.competitor}</span><span className="badge muted">{item.flow}</span>{item.isLatestVersion && <span className="badge success">最新</span>}</div>
+      <div className="shotBody evidenceShotBody">
+        <div className="row wrap">
+          <span className="badge">{item.competitor}</span>
+          <span className="badge muted">{dimension}</span>
+          {item.evidenceValue && <span className={evidenceBadgeClass(item.evidenceValue)}>{item.evidenceValue}</span>}
+          {isContentBoundary && <span className="badge warning">内容社区边界</span>}
+        </div>
         <h3>{item.node}</h3>
-        <p>{item.description}</p>
-        <div className="metaLine"><span>{item.capturedAt}</span><span>{item.businessModules.join(' / ')}</span></div>
-        <div className="tagRow">{item.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
+        <p>{item.visualSummary || item.description}</p>
+        <div className="evidenceFactList">
+          {item.materialId && <span><strong>ID</strong>{item.materialId}</span>}
+          {item.riskBoundary && <span><strong>敏感边界</strong>{item.riskBoundary}</span>}
+          {item.needsReview && <span><strong>复核</strong>{item.needsReview}</span>}
+        </div>
+        <div className="metaLine"><span>{item.capturedAt}</span><span>{item.qualityNote || item.businessModules.join(' / ')}</span></div>
+        <div className="tagRow">{item.tags.slice(0, 5).map((tag) => <span key={tag}>#{tag}</span>)}</div>
       </div>
     </article>
   )
 }
 
+function evidenceBadgeClass(value: string) {
+  if (value.includes('主观察')) return 'badge success'
+  if (value.includes('边界')) return 'badge warning'
+  if (value.includes('复核')) return 'badge review'
+  if (value.includes('不可用')) return 'badge danger'
+  return 'badge muted'
+}
+
 function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => void }) {
+  const dimension = item.finalDimension || item.flow
   return (
     <div className="detailOverlay" role="dialog" aria-modal="true">
       <div className="detailBackdrop" onClick={onClose} />
-      <article className="detailPanel">
+      <article className="detailPanel evidenceDetailPanel">
         <button className="closeButton" onClick={onClose}>关闭</button>
         <div className="detailImage">
           <img src={withBase(item.imagePath)} alt={`${item.competitor} ${item.node}`} />
         </div>
-        <div className="detailBody">
-          <div className="row wrap"><span className="badge">{item.competitor}</span><span className="badge muted">{item.flow}</span></div>
+        <div className="detailBody evidenceDetailBody">
+          <div className="row wrap">
+            <span className="badge">{item.competitor}</span>
+            <span className="badge muted">{dimension}</span>
+            {item.evidenceValue && <span className={evidenceBadgeClass(item.evidenceValue)}>{item.evidenceValue}</span>}
+          </div>
           <h2>{item.node}</h2>
-          <p>{item.description}</p>
-          <dl className="detailMeta">
-            <div><dt>版本/时间</dt><dd>{item.capturedAt}</dd></div>
-            <div><dt>业务模块</dt><dd>{item.businessModules.join(' / ')}</dd></div>
+          <p>{item.visualSummary || item.description}</p>
+          <dl className="detailMeta evidenceDetailMeta">
+            <div><dt>material_id</dt><dd>{item.materialId || item.id}</dd></div>
+            <div><dt>页面位点</dt><dd>{item.pageSlot || item.pageCategory || item.node}</dd></div>
+            <div><dt>关键文案</dt><dd>{(item.keyText || item.visibleText || []).join('；') || '—'}</dd></div>
+            <div><dt>质量说明</dt><dd>{item.qualityNote || '画面可判读'}</dd></div>
+            <div><dt>敏感边界</dt><dd>{item.riskBoundary || '—'}</dd></div>
+            <div><dt>是否需复核</dt><dd>{item.needsReview || '—'}</dd></div>
+            <div><dt>摘要引用策略</dt><dd>{item.canUseForSummary || '—'}</dd></div>
+            <div><dt>置信度</dt><dd>{item.confidence || '—'}</dd></div>
+            <div><dt>证据路径</dt><dd>{item.evidencePath || item.sourcePath}</dd></div>
+            {item.reviewReason && <div><dt>复核原因</dt><dd>{item.reviewReason}</dd></div>}
           </dl>
           <div className="tagRow">{item.tags.map((tag) => <span key={tag}>#{tag}</span>)}</div>
         </div>

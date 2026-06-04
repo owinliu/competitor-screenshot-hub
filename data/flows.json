@@ -2255,5 +2255,46 @@
         ]
       }
     ]
+  },
+  {
+    "id": "duxiaoman-customer-complaint-flow",
+    "competitor": "度小满金融",
+    "flowName": "客服/投诉黄金流程",
+    "status": "captured",
+    "summary": "度小满客服/投诉黄金流程已形成当前证据版三件套：文字版、流程证据图、节点-边 spec；投诉建议表单路径按当前补采证据校正。",
+    "nodes": [
+      {
+        "name": "我的页：用户保护中心入口",
+        "status": "captured"
+      },
+      {
+        "name": "用户保护中心",
+        "status": "captured"
+      },
+      {
+        "name": "咨询反馈 / 我的客服业务选择",
+        "status": "captured"
+      },
+      {
+        "name": "在线客服 / 满小意机器人首页",
+        "status": "captured"
+      },
+      {
+        "name": "机器人会话输入页",
+        "status": "captured"
+      },
+      {
+        "name": "投诉建议表单分支",
+        "status": "captured"
+      },
+      {
+        "name": "举报投诉旁路",
+        "status": "captured"
+      },
+      {
+        "name": "机器人关键词深挖",
+        "status": "captured"
+      }
+    ]
   }
 ]

@@ -10,8 +10,18 @@
     "currentEndpoint": "额度结果页",
     "summary": "已形成度小满授信黄金流程三件套：文字版黄金流程、流程证据图、页面转译描述。人脸识别过程页与审核等待页为口述确认/待补采节点。",
     "displayImagePath": "/golden-flows/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-node-map-v4-corrected.png",
-    "primaryPath": ["首页/借钱入口", "额度申请信息填写", "协议授权", "人脸识别", "审核等待", "额度结果页"],
-    "branchPaths": ["额度结果页后可继续进入借款链路", "人脸识别与审核等待环节需要用户配合完成"],
+    "primaryPath": [
+      "首页/借钱入口",
+      "额度申请信息填写",
+      "协议授权",
+      "人脸识别",
+      "审核等待",
+      "额度结果页"
+    ],
+    "branchPaths": [
+      "额度结果页后可继续进入借款链路",
+      "人脸识别与审核等待环节需要用户配合完成"
+    ],
     "textOutput": {
       "status": "available",
       "label": "黄金流程文字版 V2（流程校正版）",
@@ -28,9 +38,21 @@
       "label": "页面转译描述 2026-05-14",
       "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-credit-flow-2026-05-13/duxiaoman-credit-flow-page-translation-2026-05-14.md"
     },
-    "missingNodes": ["人脸识别过程页", "审核等待页"],
-    "oralConfirmedNodes": ["人脸识别", "审核等待页"],
-    "humanRequiredNodes": ["协议授权", "真实姓名/身份证号填写", "人脸识别", "权限确认", "去借款分支"]
+    "missingNodes": [
+      "人脸识别过程页",
+      "审核等待页"
+    ],
+    "oralConfirmedNodes": [
+      "人脸识别",
+      "审核等待页"
+    ],
+    "humanRequiredNodes": [
+      "协议授权",
+      "真实姓名/身份证号填写",
+      "人脸识别",
+      "权限确认",
+      "去借款分支"
+    ]
   },
   {
     "flowId": "fenqile-consumer-finance",
@@ -43,8 +65,21 @@
     "currentEndpoint": "身份证原件识别阻断 / 待人工配合",
     "summary": "已形成分期乐授信黄金流程文字版与多版流程证据图；当前终点为身份证原件识别等人工配合/敏感节点，页面转译待补齐。",
     "displayImagePath": "/golden-flows/fenqile-credit-flow-2026-05-13/fenqile-credit-flow-node-map-v5-orthogonal-routed.png",
-    "primaryPath": ["借钱页", "点击「已完成90%，继续激活」", "极速激活 / 实名认证页", "点击身份证人像面区域", "证件上传选择弹层", "上传身份证人像面", "上传身份证国徽面", "身份证原件识别阻断"],
-    "branchPaths": ["未上传身份证直接点「下一步」：页面不推进，仍停留实名认证页", "点击身份证区域：出现拍照 / 从相册中选择 / 取消弹层", "点击「没带身份证？稍后提醒我」：进入稍后提醒分支"],
+    "primaryPath": [
+      "借钱页",
+      "点击「已完成90%，继续激活」",
+      "极速激活 / 实名认证页",
+      "点击身份证人像面区域",
+      "证件上传选择弹层",
+      "上传身份证人像面",
+      "上传身份证国徽面",
+      "身份证原件识别阻断"
+    ],
+    "branchPaths": [
+      "未上传身份证直接点「下一步」：页面不推进，仍停留实名认证页",
+      "点击身份证区域：出现拍照 / 从相册中选择 / 取消弹层",
+      "点击「没带身份证？稍后提醒我」：进入稍后提醒分支"
+    ],
     "textOutput": {
       "status": "available",
       "label": "黄金流程文字版",
@@ -60,8 +95,70 @@
       "status": "missing",
       "label": "页面转译待补齐"
     },
-    "missingNodes": ["身份证原件识别后续", "授信结果页"],
+    "missingNodes": [
+      "身份证原件识别后续",
+      "授信结果页"
+    ],
     "oralConfirmedNodes": [],
-    "humanRequiredNodes": ["身份证上传/拍照", "身份证原件识别", "协议授权", "后续授信提交"]
+    "humanRequiredNodes": [
+      "身份证上传/拍照",
+      "身份证原件识别",
+      "协议授权",
+      "后续授信提交"
+    ]
+  },
+  {
+    "flowId": "duxiaoman-customer-complaint-flow",
+    "appKey": "duxiaoman",
+    "competitor": "度小满金融",
+    "flowName": "度小满客服/投诉黄金流程",
+    "flowType": "客服 / 投诉 / 消保 / 机器人分流",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "投诉建议表单安全停点 / 机器人关键词分流",
+    "summary": "已形成度小满客服/投诉黄金流程当前证据版：用户保护中心入口、咨询反馈、我的客服业务选择、在线客服/满小意机器人、投诉建议表单安全停点、举报投诉旁路与机器人关键词深挖。当前校正重点：业务选择页“投诉建议”表单路径与机器人“我要投诉”回复入口分开处理。",
+    "displayImagePath": "/golden-flows/duxiaoman-customer-complaint-flow-2026-06-04/duxiaoman-customer-complaint-flow-evidence-map-generic-renderer-v2-fullscreen-2026-06-04.png",
+    "primaryPath": [
+      "我的页：用户保护中心入口",
+      "用户保护中心",
+      "咨询反馈",
+      "我的客服 / 业务类型选择",
+      "在线客服 / 满小意机器人首页",
+      "求助在线客服",
+      "机器人会话输入页"
+    ],
+    "branchPaths": [
+      "当前补采确认：我的客服 / 业务选择页 → 其他服务 / 投诉建议 → 投诉建议表单安全停点",
+      "举报投诉旁路：用户保护中心 → 举报投诉 → 代理维权举报中心（非普通投诉工单）",
+      "机器人关键词：人工客服、协商还款、我要投诉、催收问题、客服电话及工作时间",
+      "待复核边界：机器人“我要投诉”回复中的投诉建议入口尚未独立补采跳转结果"
+    ],
+    "textOutput": {
+      "status": "available",
+      "label": "客服/投诉黄金流程文字版 2026-06-04 校正版",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-overall-flow-2026-06-03/duxiaoman-customer-complaint-golden-flow-text-output-2026-06-04.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "通用 renderer v2 full-screen 流程证据图",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-overall-flow-2026-06-03/duxiaoman-customer-complaint-flow-evidence-map-generic-renderer-v2-fullscreen-2026-06-04.png",
+      "pdfPath": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-overall-flow-2026-06-03/duxiaoman-customer-complaint-flow-evidence-map-generic-renderer-v2-fullscreen-2026-06-04.pdf"
+    },
+    "pageTranslation": {
+      "status": "missing",
+      "label": "页面转译描述待补齐"
+    },
+    "missingNodes": [
+      "机器人“我要投诉”回复中的投诉建议入口点击结果",
+      "页面转译描述文档"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "投诉建议表单提交",
+      "验证码填写",
+      "图片上传",
+      "人工客服确认/转接",
+      "任何授权/借款/支付动作"
+    ]
   }
 ]

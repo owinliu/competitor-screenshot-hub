@@ -1,0 +1,28 @@
+[
+  {
+    "id": "recapture-xiaoying-rights-home-clean-2026-06-04",
+    "appKey": "xiaoying",
+    "competitor": "小赢",
+    "title": "补采小赢权益页完整代表图",
+    "flow": "截图检索默认展示/按APP浏览",
+    "priority": "high",
+    "status": "pending",
+    "reason": "现有 xiaoying-0002 被白银会员弹窗遮挡，不能作为权益一级页默认代表图。需关闭弹窗后截完整权益页。",
+    "safeBoundary": "仅关闭弹窗并截图，不购买会员、不提交任何付费/授权动作。",
+    "expectedNode": "权益 / 会员权益页（无弹窗遮挡）",
+    "createdAt": "2026-06-04"
+  },
+  {
+    "id": "recapture-xiaoying-borrow-home-clean-2026-06-04",
+    "appKey": "xiaoying",
+    "competitor": "小赢",
+    "title": "补采小赢借钱首页完整代表图",
+    "flow": "截图检索默认展示/按APP浏览",
+    "priority": "high",
+    "status": "pending",
+    "reason": "现有 xiaoying-0001 被新人礼包弹窗遮挡，不能作为借钱一级页默认代表图。需关闭弹窗后截完整借钱首页。",
+    "safeBoundary": "仅关闭弹窗并截图，不点击借款/申请/授权/支付。",
+    "expectedNode": "借钱 / 首页首屏（无弹窗遮挡）",
+    "createdAt": "2026-06-04"
+  }
+]
