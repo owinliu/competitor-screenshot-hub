@@ -484,5 +484,108 @@
       "后续最终确认注销"
     ],
     "category": "cancellation"
+  },
+  {
+    "flowId": "anyihua-account-cancellation-flow",
+    "appKey": "anyihua",
+    "competitor": "安逸花",
+    "flowName": "安逸花账号注销黄金流程",
+    "flowType": "账号注销 / 安全中心 / 权益挽留确认",
+    "category": "cancellation",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "确认注销页安全停点",
+    "summary": "已完成安逸花账号注销低风险实机采集：我的页 → 设置 → 安全中心 → 账号管理 → 账号注销 → 注销方案页 → 权益挽留/确认注销页；未点击确认注销。",
+    "displayImagePath": "/golden-flows/anyihua-account-cancellation-flow-2026-06-05/anyihua-account-cancellation-flow-evidence-map-v1-compact.png",
+    "primaryPath": [
+      "我的页",
+      "设置",
+      "安全中心",
+      "账号管理",
+      "账号注销",
+      "注销方案页：选择注销账号",
+      "权益挽留/确认注销页安全停点"
+    ],
+    "branchPaths": [
+      "注销方案页提供诉求反馈、屏蔽营销两个替代方案",
+      "确认注销后续属于真实注销/身份校验风险，未继续"
+    ],
+    "textOutput": {
+      "status": "available",
+      "label": "账号注销黄金流程文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/anyihua-account-cancellation-flow-2026-06-05/anyihua-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "账号注销流程证据图 compact 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/anyihua-account-cancellation-flow-2026-06-05/anyihua-account-cancellation-flow-evidence-map-v1-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/anyihua-account-cancellation-flow-2026-06-05/anyihua-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "确认注销后的安全校验/提交页",
+      "真实注销结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "点击确认注销",
+      "后续验证码/人脸/实名校验",
+      "最终提交注销"
+    ]
+  },
+  {
+    "flowId": "mashang-account-cancellation-flow",
+    "appKey": "mashang_finance",
+    "competitor": "马上金融",
+    "flowName": "马上金融账号注销黄金流程",
+    "flowType": "账号注销 / 安全中心 / 身份认证",
+    "category": "cancellation",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "身份认证页安全停点",
+    "summary": "已完成马上金融账号注销低风险实机采集：我的页 → 设置 → 安全中心 → 账号管理 → 账号注销 → 注销告知倒计时 → 已知悉风险，申请注销 → 身份认证页；未输入手机号/验证码，未点击下一步。",
+    "displayImagePath": "/golden-flows/mashang-account-cancellation-flow-2026-06-05/mashang-account-cancellation-flow-evidence-map-v1-compact.png",
+    "primaryPath": [
+      "我的页",
+      "设置",
+      "安全中心",
+      "账号管理",
+      "账号注销",
+      "注销告知倒计时",
+      "已知悉风险，申请注销",
+      "身份认证页安全停点"
+    ],
+    "branchPaths": [
+      "注销告知提示不会解除实名且不影响安逸花等同品牌应用继续使用",
+      "如需取消全部马上服务，页面提示需拨打95090电话"
+    ],
+    "textOutput": {
+      "status": "available",
+      "label": "账号注销黄金流程文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/mashang-account-cancellation-flow-2026-06-05/mashang-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "账号注销流程证据图 compact 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/mashang-account-cancellation-flow-2026-06-05/mashang-account-cancellation-flow-evidence-map-v1-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/mashang-account-cancellation-flow-2026-06-05/mashang-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "身份认证后的下一步页面",
+      "真实注销结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "输入手机号/验证码",
+      "点击下一步",
+      "后续实名/人脸/最终确认注销"
+    ]
   }
 ]
