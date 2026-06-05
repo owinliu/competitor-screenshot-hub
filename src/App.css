@@ -78,6 +78,13 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .tagRow span { color: #64748b; font-size: 12px; }
 .emptyState { padding: 60px 20px; text-align: center; color: #64748b; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 8px; }
 .flowList { display: grid; gap: 16px; }
+.flowCategoryTabs { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 14px; }
+.flowCategoryTabs button { display: inline-flex; align-items: center; gap: 9px; padding: 10px 13px; border: 1px solid #e2e8f0; border-radius: 999px; background: rgba(255,255,255,.9); color: #334155; box-shadow: 0 8px 28px rgba(15,23,42,.05); cursor: pointer; transition: transform .16s ease, border-color .16s ease, background .16s ease, color .16s ease; }
+.flowCategoryTabs button:hover { transform: translateY(-1px); border-color: #bfdbfe; background: #f8fbff; }
+.flowCategoryTabs button.active { border-color: #2563eb; background: #2563eb; color: white; box-shadow: 0 12px 32px rgba(37,99,235,.18); }
+.flowCategoryTabs strong { font-size: 13px; font-weight: 900; }
+.flowCategoryTabs span { display: inline-grid; place-items: center; min-width: 24px; height: 24px; padding: 0 7px; border-radius: 999px; background: #eef4ff; color: #1d4ed8; font-size: 12px; font-weight: 900; }
+.flowCategoryTabs button.active span { background: rgba(255,255,255,.22); color: white; }
 .flowSearchBar { display: grid; grid-template-columns: minmax(280px, 1fr) 220px 260px; gap: 12px; align-items: end; margin-bottom: 18px; padding: 14px; border: 1px solid #e2e8f0; border-radius: 8px; background: rgba(255,255,255,.84); box-shadow: 0 12px 40px rgba(15,23,42,.05); }
 .flowSearchBar label { display: grid; gap: 7px; color: #334155; font-size: 13px; font-weight: 800; }
 .timeline { display: grid; gap: 10px; margin-top: 16px; }
@@ -171,6 +178,14 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .goldenFlowCard > .goldenFlowTopline { margin-top: 22px; }
 .goldenFlowTopline { display: block; }
 .goldenFlowTopline p { margin: 0; }
+.flowCardBadges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.flowCategoryBadge, .flowStatusBadge { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 900; }
+.flowCategoryBadge.credit { background: #eef4ff; color: #1d4ed8; }
+.flowCategoryBadge.cancellation { background: #fff7ed; color: #c2410c; }
+.flowCategoryBadge.customer_service { background: #ecfdf5; color: #047857; }
+.flowCategoryBadge.blocked { background: #fee2e2; color: #b91c1c; }
+.flowCategoryBadge.other { background: #f1f5f9; color: #475569; }
+.flowStatusBadge { background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; }
 .goldenFlowContent { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
 .flowMapStage { min-height: 520px; display: grid; place-items: center; overflow: auto; padding: 0 0 22px; }
 .flowMapButton { position: relative; display: block; border: 0; background: transparent; padding: 0; }

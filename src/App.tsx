@@ -5,6 +5,7 @@ import radarReportRaw from '../data/recompare_april_early_0428_reports.json'
 import type { CaptureTask, Flow, FlowDeliverable, Screenshot } from './types'
 
 type Route = 'home' | 'library' | 'flows' | 'request' | 'tasks'
+type FlowCategory = NonNullable<FlowDeliverable['category']>
 type PromoteReview = {
   flow: string
   sensitiveConfirmed: boolean
@@ -20,6 +21,16 @@ const nav: Array<{ route: Route; label: string }> = [
   { route: 'request', label: '采集需求' },
   { route: 'tasks', label: '任务状态' },
 ]
+
+const flowCategoryMeta: Record<FlowCategory, { label: string; shortLabel: string; description: string }> = {
+  credit: { label: '授信流程', shortLabel: '授信', description: '额度、授信、查看额度等申请前链路' },
+  cancellation: { label: '注销流程', shortLabel: '注销', description: '账号注销、风险提示、验证码/确认停点' },
+  customer_service: { label: '客服/投诉流程', shortLabel: '客服投诉', description: '客服入口、投诉、消保与人工兜底链路' },
+  blocked: { label: '待补采/阻断', shortLabel: '待补采', description: '登录、人脸、实名等安全停点导致的未完成流程' },
+  other: { label: '其他流程', shortLabel: '其他', description: '暂未归入标准类型的流程资产' },
+}
+
+const flowCategoryOrder: FlowCategory[] = ['credit', 'cancellation', 'customer_service', 'blocked', 'other']
 
 function getInitialRoute(): Route {
   const hash = window.location.hash.replace('#/', '')
@@ -931,16 +942,21 @@ function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => 
 }
 
 function Flows() {
+  const [category, setCategory] = useState<'all' | FlowCategory>('all')
   const [query, setQuery] = useState('')
   const [app, setApp] = useState('all')
   const [flowType, setFlowType] = useState('all')
   const flowApps = Array.from(new Set(flowDeliverables.map((deliverable) => deliverable.competitor))).sort()
   const flowTypes = Array.from(new Set(flowDeliverables.map((deliverable) => deliverable.flowType))).sort()
+  const categoryItems = flowCategoryOrder
+    .map((item) => ({ key: item, ...flowCategoryMeta[item], count: flowDeliverables.filter((deliverable) => getFlowCategory(deliverable) === item).length }))
+    .filter((item) => item.count > 0)
   const q = query.trim().toLowerCase()
   const visibleDeliverables = flowDeliverables.filter((deliverable) => {
     const text = [deliverable.flowName, deliverable.competitor, deliverable.summary, deliverable.flowType, deliverable.currentEndpoint, ...(deliverable.primaryPath || []), ...(deliverable.branchPaths || [])].join(' ').toLowerCase()
     return (
       (!q || text.includes(q)) &&
+      (category === 'all' || getFlowCategory(deliverable) === category) &&
       (app === 'all' || deliverable.competitor === app) &&
       (flowType === 'all' || deliverable.flowType === flowType)
     )
@@ -948,6 +964,18 @@ function Flows() {
   return (
     <section className="page widePage">
       <Header title="黄金流程" subtitle="查看竞品关键业务流程的完整路径与页面证据。" />
+      <div className="flowCategoryTabs" aria-label="流程类型分类">
+        <button className={category === 'all' ? 'active' : ''} onClick={() => setCategory('all')}>
+          <strong>全部流程</strong>
+          <span>{flowDeliverables.length}</span>
+        </button>
+        {categoryItems.map((item) => (
+          <button key={item.key} className={category === item.key ? 'active' : ''} onClick={() => setCategory(item.key)} title={item.description}>
+            <strong>{item.label}</strong>
+            <span>{item.count}</span>
+          </button>
+        ))}
+      </div>
       <div className="flowSearchBar">
         <label>
           搜索流程
@@ -978,6 +1006,21 @@ function Flows() {
   )
 }
 
+function getFlowCategory(deliverable: FlowDeliverable): FlowCategory {
+  if (deliverable.category) return deliverable.category
+  const flowType = deliverable.flowType || ''
+  const flowId = deliverable.flowId || ''
+  if (flowType.includes('授信') || flowType.includes('额度') || flowId.includes('credit')) return 'credit'
+  if (flowType.includes('注销') || flowId.includes('cancellation')) return 'cancellation'
+  if (flowType.includes('客服') || flowType.includes('投诉') || flowId.includes('customer') || flowId.includes('complaint')) return 'customer_service'
+  if (deliverable.status === 'partial' || flowId.includes('blocked')) return 'blocked'
+  return 'other'
+}
+
+function getFlowCategoryMeta(deliverable: FlowDeliverable) {
+  return flowCategoryMeta[getFlowCategory(deliverable)]
+}
+
 function FlowCard({ deliverable }: { deliverable: FlowDeliverable }) {
   const flow = flows.find((item) => item.id === deliverable.flowId || (item.competitor === deliverable.competitor && item.flowName.includes('消金')))
 
@@ -987,11 +1030,16 @@ function FlowCard({ deliverable }: { deliverable: FlowDeliverable }) {
 function GoldenFlowShowcase({ flow, deliverable }: { flow?: Flow; deliverable: FlowDeliverable }) {
   const mainPath = deliverable.primaryPath?.length ? deliverable.primaryPath : (flow?.nodes.map((node) => node.name) || [])
   const branches = deliverable.branchPaths || []
+  const categoryMeta = getFlowCategoryMeta(deliverable)
   const [viewerOpen, setViewerOpen] = useState(false)
   return (
     <article className="panel flowCard goldenFlowCard">
       <div className="goldenFlowTopline">
         <div>
+          <div className="flowCardBadges">
+            <span className={`flowCategoryBadge ${getFlowCategory(deliverable)}`}>{categoryMeta.shortLabel}</span>
+            <span className="flowStatusBadge">{deliverable.status === 'available' ? '已达标' : '待补采'}</span>
+          </div>
           <h2>{deliverable.flowName}</h2>
           <p>{deliverable.flowType}</p>
         </div>

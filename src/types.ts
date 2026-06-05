@@ -67,6 +67,7 @@ export type FlowDeliverable = {
   competitor: string
   flowName: string
   flowType: string
+  category?: 'credit' | 'cancellation' | 'customer_service' | 'blocked' | 'other'
   sourceProject: string
   status: string
   currentEndpoint: string

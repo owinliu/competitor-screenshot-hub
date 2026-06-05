@@ -52,7 +52,8 @@
       "人脸识别",
       "权限确认",
       "去借款分支"
-    ]
+    ],
+    "category": "credit"
   },
   {
     "flowId": "fenqile-consumer-finance",
@@ -105,7 +106,8 @@
       "身份证原件识别",
       "协议授权",
       "后续授信提交"
-    ]
+    ],
+    "category": "credit"
   },
   {
     "flowId": "duxiaoman-customer-complaint-flow",
@@ -159,7 +161,8 @@
       "图片上传",
       "人工客服确认/转接",
       "任何授权/借款/支付动作"
-    ]
+    ],
+    "category": "customer_service"
   },
   {
     "flowId": "qifu360-account-cancellation-flow",
@@ -217,7 +220,8 @@
       "点击验证码页「下一步」",
       "任何人脸/实名/最终确认动作",
       "提交注销申请"
-    ]
+    ],
+    "category": "cancellation"
   },
   {
     "flowId": "fenqile-account-cancellation-flow",
@@ -270,7 +274,8 @@
       "提交认证",
       "签署协议",
       "最终确认注销"
-    ]
+    ],
+    "category": "cancellation"
   },
   {
     "flowId": "duxiaoman-account-cancellation-flow",
@@ -320,7 +325,8 @@
       "点击确认注销",
       "后续验证码/人脸/实名校验",
       "最终提交注销"
-    ]
+    ],
+    "category": "cancellation"
   },
   {
     "flowId": "jdjr-account-cancellation-flow",
@@ -370,7 +376,8 @@
       "点击确认注销",
       "后续安全校验",
       "最终提交注销"
-    ]
+    ],
+    "category": "cancellation"
   },
   {
     "flowId": "ppdai-account-cancellation-flow",
@@ -419,7 +426,8 @@
       "点击放弃权益确认注销",
       "后续验证码/人脸/实名校验",
       "最终提交注销"
-    ]
+    ],
+    "category": "cancellation"
   },
   {
     "flowId": "xiaoying-account-cancellation-flow",
@@ -474,6 +482,7 @@
       "拖动滑块完成验证",
       "点击提交",
       "后续最终确认注销"
-    ]
+    ],
+    "category": "cancellation"
   }
 ]
