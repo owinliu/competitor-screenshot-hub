@@ -73,6 +73,7 @@ export type FlowDeliverable = {
   currentEndpoint: string
   summary: string
   displayImagePath?: string
+  previewImagePath?: string
   primaryPath?: string[]
   branchPaths?: string[]
   textOutput?: { status: string; label: string; path?: string }

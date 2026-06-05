@@ -1031,6 +1031,7 @@ function GoldenFlowShowcase({ flow, deliverable }: { flow?: Flow; deliverable: F
   const mainPath = deliverable.primaryPath?.length ? deliverable.primaryPath : (flow?.nodes.map((node) => node.name) || [])
   const branches = deliverable.branchPaths || []
   const categoryMeta = getFlowCategoryMeta(deliverable)
+  const previewImagePath = deliverable.previewImagePath || deliverable.displayImagePath
   const [viewerOpen, setViewerOpen] = useState(false)
   return (
     <article className="panel flowCard goldenFlowCard">
@@ -1049,7 +1050,7 @@ function GoldenFlowShowcase({ flow, deliverable }: { flow?: Flow; deliverable: F
         <div className="flowMapStage">
           {deliverable.displayImagePath ? (
             <button className="flowMapButton" onClick={() => setViewerOpen(true)} aria-label={`打开${deliverable.flowName}原图`}>
-              <img src={withBase(deliverable.displayImagePath)} alt={`${deliverable.flowName}流程证据图`} loading="lazy" />
+              <img src={withBase(previewImagePath || deliverable.displayImagePath)} alt={`${deliverable.flowName}流程证据图预览`} loading="lazy" decoding="async" />
               <span>点击查看原图</span>
             </button>
           ) : (
