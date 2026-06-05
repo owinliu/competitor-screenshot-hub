@@ -931,20 +931,18 @@ function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => 
 }
 
 function Flows() {
-  const qualifiedFlows = flows.filter((flow) => findFlowDeliverable(flow))
   const [query, setQuery] = useState('')
   const [app, setApp] = useState('all')
   const [flowType, setFlowType] = useState('all')
-  const flowApps = Array.from(new Set(qualifiedFlows.map((flow) => flow.competitor))).sort()
-  const flowTypes = Array.from(new Set(qualifiedFlows.map((flow) => findFlowDeliverable(flow)?.flowType).filter((item): item is string => Boolean(item)))).sort()
+  const flowApps = Array.from(new Set(flowDeliverables.map((deliverable) => deliverable.competitor))).sort()
+  const flowTypes = Array.from(new Set(flowDeliverables.map((deliverable) => deliverable.flowType))).sort()
   const q = query.trim().toLowerCase()
-  const visibleFlows = qualifiedFlows.filter((flow) => {
-    const deliverable = findFlowDeliverable(flow)
-    const text = [flow.flowName, flow.competitor, flow.summary, deliverable?.flowType, deliverable?.currentEndpoint, ...(deliverable?.primaryPath || []), ...(deliverable?.branchPaths || [])].join(' ').toLowerCase()
+  const visibleDeliverables = flowDeliverables.filter((deliverable) => {
+    const text = [deliverable.flowName, deliverable.competitor, deliverable.summary, deliverable.flowType, deliverable.currentEndpoint, ...(deliverable.primaryPath || []), ...(deliverable.branchPaths || [])].join(' ').toLowerCase()
     return (
       (!q || text.includes(q)) &&
-      (app === 'all' || flow.competitor === app) &&
-      (flowType === 'all' || deliverable?.flowType === flowType)
+      (app === 'all' || deliverable.competitor === app) &&
+      (flowType === 'all' || deliverable.flowType === flowType)
     )
   })
   return (
@@ -971,30 +969,23 @@ function Flows() {
         </label>
       </div>
       <div className="flowList">
-        {visibleFlows.map((flow) => (
-          <FlowCard key={flow.id} flow={flow} />
+        {visibleDeliverables.map((deliverable) => (
+          <FlowCard key={deliverable.flowId} deliverable={deliverable} />
         ))}
       </div>
-      {visibleFlows.length === 0 && <div className="emptyState">没有匹配的流程，可以调整筛选条件。</div>}
+      {visibleDeliverables.length === 0 && <div className="emptyState">没有匹配的流程，可以调整筛选条件。</div>}
     </section>
   )
 }
 
-function findFlowDeliverable(flow: Flow) {
-  return flowDeliverables.find((item) => item.flowId === flow.id || (item.competitor === flow.competitor && flow.flowName.includes('消金')))
+function FlowCard({ deliverable }: { deliverable: FlowDeliverable }) {
+  const flow = flows.find((item) => item.id === deliverable.flowId || (item.competitor === deliverable.competitor && item.flowName.includes('消金')))
+
+  return <GoldenFlowShowcase flow={flow} deliverable={deliverable} />
 }
 
-function FlowCard({ flow }: { flow: Flow }) {
-  const deliverable = findFlowDeliverable(flow)
-
-  if (deliverable) {
-    return <GoldenFlowShowcase flow={flow} deliverable={deliverable} />
-  }
-  return null
-}
-
-function GoldenFlowShowcase({ flow, deliverable }: { flow: Flow; deliverable: FlowDeliverable }) {
-  const mainPath = deliverable.primaryPath?.length ? deliverable.primaryPath : flow.nodes.map((node) => node.name)
+function GoldenFlowShowcase({ flow, deliverable }: { flow?: Flow; deliverable: FlowDeliverable }) {
+  const mainPath = deliverable.primaryPath?.length ? deliverable.primaryPath : (flow?.nodes.map((node) => node.name) || [])
   const branches = deliverable.branchPaths || []
   const [viewerOpen, setViewerOpen] = useState(false)
   return (
