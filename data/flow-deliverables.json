@@ -160,5 +160,320 @@
       "人工客服确认/转接",
       "任何授权/借款/支付动作"
     ]
+  },
+  {
+    "flowId": "qifu360-account-cancellation-flow",
+    "appKey": "qifu360",
+    "competitor": "奇富360 / 奇富借条",
+    "flowName": "奇富360账号注销黄金流程",
+    "flowType": "账号注销 / 账户安全 / 风险确认",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "短信验证码校验页安全停点",
+    "summary": "已完成奇富360/奇富借条账号注销低风险实机截图采集，并形成文字版、流程证据图、页面转译描述。流程从注销风险倒计时页继续推进到短信验证码校验页，未输入验证码，未点击「下一步」，未提交真实注销申请。",
+    "displayImagePath": "/golden-flows/qifu360-account-cancellation-flow-2026-06-04/qifu360-account-cancellation-flow-evidence-map-v2-compact.png",
+    "primaryPath": [
+      "启动奇富借条 App",
+      "关闭额度申请待提交浮层",
+      "进入底部「我的」",
+      "下滑至「更多服务」",
+      "点击「设置」",
+      "进入「账号设置」",
+      "点击「账户安全管理」",
+      "点击「注销账号」",
+      "到达「注销账号｜风险与影响」页",
+      "等待倒计时结束，按钮变为「申请注销」",
+      "点击「申请注销」",
+      "到达短信验证码校验页安全停点"
+    ],
+    "branchPaths": [
+      "启动后授信/额度申请浮层：仅关闭，不进入继续申请",
+      "账户安全管理页还包含个人信息与权限、撤销同意隐私政策等入口",
+      "注销风险页显示零钱包、优惠券、息费抵扣金清空且无法恢复等风险提示",
+      "验证码页展示脱敏注册手机号与重发倒计时，后续需人工提供验证码才可继续"
+    ],
+    "textOutput": {
+      "status": "available",
+      "label": "账号注销黄金流程文字版 2026-06-04",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/qifu360-account-cancellation-flow-2026-06-04/qifu360-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "账号注销流程证据图 V2 compact 2026-06-04",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/qifu360-account-cancellation-flow-2026-06-04/qifu360-account-cancellation-flow-evidence-map-v2-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-06-04",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/qifu360-account-cancellation-flow-2026-06-04/qifu360-account-cancellation-page-translation.md"
+    },
+    "missingNodes": [
+      "短信验证码后的下一步页面",
+      "真实注销提交后的结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "输入短信验证码",
+      "点击验证码页「下一步」",
+      "任何人脸/实名/最终确认动作",
+      "提交注销申请"
+    ]
+  },
+  {
+    "flowId": "fenqile-account-cancellation-flow",
+    "appKey": "fenqile",
+    "competitor": "分期乐",
+    "flowName": "分期乐账号注销黄金流程",
+    "flowType": "账号注销 / 原因选择 / 短信认证",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "短信认证页安全停点",
+    "summary": "已从设置页进入账户安全，完成账号注销及冻结入口、挽留页、风险倒计时、注销须知、注销原因选择，最终安全停在短信认证页；未获取/输入验证码，未提交认证。",
+    "displayImagePath": "/golden-flows/fenqile-account-cancellation-flow-2026-06-05/fenqile-account-cancellation-flow-evidence-map-v2-compact.png",
+    "primaryPath": [
+      "设置",
+      "账户安全",
+      "账号注销及冻结",
+      "账号注销",
+      "权益挽留页",
+      "继续注销",
+      "风险说明倒计时",
+      "继续注销",
+      "注销须知",
+      "继续注销",
+      "注销原因：不再需要借贷服务",
+      "短信认证页安全停点"
+    ],
+    "branchPaths": [],
+    "textOutput": {
+      "status": "available",
+      "label": "账号注销黄金流程文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/fenqile-account-cancellation-flow-2026-06-05/fenqile-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "账号注销流程证据图 compact 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/fenqile-account-cancellation-flow-2026-06-05/fenqile-account-cancellation-flow-evidence-map-v2-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/fenqile-account-cancellation-flow-2026-06-05/fenqile-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "短信认证后的身份验证/协议签署页",
+      "真实注销成功页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "获取/输入短信验证码",
+      "提交认证",
+      "签署协议",
+      "最终确认注销"
+    ]
+  },
+  {
+    "flowId": "duxiaoman-account-cancellation-flow",
+    "appKey": "duxiaoman",
+    "competitor": "度小满金融",
+    "flowName": "度小满账号注销黄金流程",
+    "flowType": "账号注销 / APP 数据注销 / 确认页",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "确认注销页安全停点",
+    "summary": "已从我的页设置进入账号管理，选择账号注销后走“注销本APP使用数据/不办贷款注销APP账号”分支，完成注销原因与挽留说明，最终停在“注销信息确认”页；未点击确认注销。",
+    "displayImagePath": "/golden-flows/duxiaoman-account-cancellation-flow-2026-06-05/duxiaoman-account-cancellation-flow-evidence-map-v1-compact.png",
+    "primaryPath": [
+      "我的",
+      "设置",
+      "账号与安全",
+      "账号管理",
+      "账号注销",
+      "注销本APP使用数据",
+      "不办贷款，注销APP账号",
+      "注销原因：不想被营销",
+      "挽留说明",
+      "注销信息确认页安全停点"
+    ],
+    "branchPaths": [],
+    "textOutput": {
+      "status": "available",
+      "label": "账号注销黄金流程文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-account-cancellation-flow-2026-06-05/duxiaoman-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "账号注销流程证据图 compact 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-account-cancellation-flow-2026-06-05/duxiaoman-account-cancellation-flow-evidence-map-v1-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/duxiaoman-account-cancellation-flow-2026-06-05/duxiaoman-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "确认注销后的安全校验页",
+      "真实注销结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "点击确认注销",
+      "后续验证码/人脸/实名校验",
+      "最终提交注销"
+    ]
+  },
+  {
+    "flowId": "jdjr-account-cancellation-flow",
+    "appKey": "jdjr",
+    "competitor": "京东金融",
+    "flowName": "京东金融账号注销黄金流程",
+    "flowType": "账号注销 / 搜索入口 / 注销通知",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "确认注销通知页安全停点",
+    "summary": "账号与安全页未直接暴露注销入口，需通过App内搜索“注销账号”进入问答页，再点击“注销京东金融账户”，选择“注销京东金融账号”，最终停在京东金融账号注销通知页；未点击确认注销。",
+    "displayImagePath": "/golden-flows/jdjr-account-cancellation-flow-2026-06-05/jdjr-account-cancellation-flow-evidence-map-v1-compact.png",
+    "primaryPath": [
+      "我的",
+      "设置",
+      "账号与安全",
+      "用户保护中心/账号管理回流",
+      "搜索：注销账号",
+      "如何注销京东金融账户",
+      "注销京东金融账户按钮",
+      "账号注销选择页",
+      "注销京东金融账号",
+      "注销通知页安全停点"
+    ],
+    "branchPaths": [],
+    "textOutput": {
+      "status": "available",
+      "label": "账号注销黄金流程文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/jdjr-account-cancellation-flow-2026-06-05/jdjr-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "账号注销流程证据图 compact 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/jdjr-account-cancellation-flow-2026-06-05/jdjr-account-cancellation-flow-evidence-map-v1-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译描述 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/jdjr-account-cancellation-flow-2026-06-05/jdjr-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "确认注销后的校验/提交页",
+      "真实注销结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "点击确认注销",
+      "后续安全校验",
+      "最终提交注销"
+    ]
+  },
+  {
+    "flowId": "ppdai-account-cancellation-flow",
+    "appKey": "ppdai",
+    "competitor": "拍拍贷",
+    "flowName": "拍拍贷账号注销黄金流程",
+    "flowType": "账号注销 / 风险阅读 / 挽留确认",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "放弃权益确认注销页安全停点",
+    "summary": "已从我的页进入账户设置→账户安全→注销账号，经过确认弹窗、55秒风险阅读、协议勾选、福利挽留，最终停在“放弃权益 确认注销”高风险确认页；未点击确认注销。",
+    "displayImagePath": "/golden-flows/ppdai-account-cancellation-flow-2026-06-05/ppdai-account-cancellation-flow-evidence-map-v1-compact.png",
+    "primaryPath": [
+      "我的",
+      "账户设置",
+      "账户安全",
+      "注销账号",
+      "确认要注销账号弹窗：确定",
+      "风险与影响阅读页",
+      "勾选本人已阅读并同意",
+      "开始注销",
+      "福利挽留页：放弃福利",
+      "二次挽留页：放弃权益 确认注销安全停点"
+    ],
+    "branchPaths": [],
+    "textOutput": {
+      "status": "available",
+      "label": "文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/ppdai-account-cancellation-flow-2026-06-05/ppdai-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "证据图 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/ppdai-account-cancellation-flow-2026-06-05/ppdai-account-cancellation-flow-evidence-map-v1-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/ppdai-account-cancellation-flow-2026-06-05/ppdai-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "确认注销后的安全校验/提交结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "点击放弃权益确认注销",
+      "后续验证码/人脸/实名校验",
+      "最终提交注销"
+    ]
+  },
+  {
+    "flowId": "xiaoying-account-cancellation-flow",
+    "appKey": "xiaoying",
+    "competitor": "小赢卡贷",
+    "flowName": "小赢卡贷账号注销黄金流程",
+    "flowType": "账号注销 / FAQ入口 / 验证码滑块校验",
+    "sourceProject": "radar/golden-flow-radar",
+    "status": "available",
+    "currentEndpoint": "验证码+滑块验证页安全停点",
+    "summary": "已关闭弹窗并继续补采：小赢卡贷设置页未直接暴露注销入口，最终通过帮助中心→账号问题→“注销后还能重新注册吗？”FAQ 中的【点击这里】进入注销流程，经过注销须知55秒倒计时、原因选择、挽留页，最终停在验证码+滑块验证页；未输入验证码、未拖动滑块、未提交。",
+    "displayImagePath": "/golden-flows/xiaoying-account-cancellation-flow-2026-06-05/xiaoying-account-cancellation-flow-evidence-map-v1-compact.png",
+    "primaryPath": [
+      "首页关闭新人礼包",
+      "我的页",
+      "设置页确认无直接注销入口",
+      "帮助中心",
+      "账号问题",
+      "FAQ：注销后还能重新注册吗",
+      "点击【点击这里】进入注销",
+      "账户注销须知55秒阅读",
+      "已清楚风险，继续注销",
+      "原因选择：暂时不需要借款",
+      "挽留页：注销账号（清空额度和优惠券）",
+      "验证码+滑块验证页安全停点"
+    ],
+    "branchPaths": [
+      "设置页无直接注销入口；帮助中心 FAQ 是有效入口"
+    ],
+    "textOutput": {
+      "status": "available",
+      "label": "文字版 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/xiaoying-account-cancellation-flow-2026-06-05/xiaoying-account-cancellation-flow-text-output.md"
+    },
+    "evidenceMap": {
+      "status": "available",
+      "label": "流程证据图 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/xiaoying-account-cancellation-flow-2026-06-05/xiaoying-account-cancellation-flow-evidence-map-v1-compact.png"
+    },
+    "pageTranslation": {
+      "status": "available",
+      "label": "页面转译 2026-06-05",
+      "path": "/Users/owinliu/.openclaw/workspace/radar/golden-flow-radar/outputs/xiaoying-account-cancellation-flow-2026-06-05/xiaoying-account-cancellation-flow-page-translation.md"
+    },
+    "missingNodes": [
+      "验证码/滑块校验后的下一步页面",
+      "真实注销提交结果页"
+    ],
+    "oralConfirmedNodes": [],
+    "humanRequiredNodes": [
+      "输入短信验证码",
+      "拖动滑块完成验证",
+      "点击提交",
+      "后续最终确认注销"
+    ]
   }
 ]
