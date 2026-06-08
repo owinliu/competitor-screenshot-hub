@@ -1568,9 +1568,14 @@ function saveTasks(next: CaptureTask[]) {
   window.localStorage.setItem('competitor-screenshot-hub.tasks', JSON.stringify(next))
 }
 
+const imageAssetVersion = '20260608-1925'
+
 function withBase(path: string) {
+  if (/^(https?:)?\/\//.test(path) || path.startsWith('data:')) return path
   const base = import.meta.env.BASE_URL.replace(/\/$/, '')
-  return `${base}${path}`
+  const normalizedPath = path.startsWith(base) ? path : `${base}${path.startsWith('/') ? path : `/${path}`}`
+  if (!/\.(png|jpe?g|webp|gif|svg)$/i.test(normalizedPath)) return normalizedPath
+  return `${normalizedPath}${normalizedPath.includes('?') ? '&' : '?'}v=${imageAssetVersion}`
 }
 
 function Header({ title, subtitle }: { title: string; subtitle: string }) {
