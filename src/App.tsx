@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { allLibraryScreenshots, eightAppScreenshots, flowDeliverables, flows, screenshots, tasks as seedTasks } from './data'
+import { allLibraryScreenshots, current0605Screenshots, eightAppScreenshots, flowDeliverables, flows, screenshots, tasks as seedTasks } from './data'
+import { appReportSummaries, strictChangeRows } from './generated0530Report'
 import radarReportRaw from '../data/recompare_april_early_0428_reports.json'
 import type { CaptureTask, Flow, FlowDeliverable, Screenshot } from './types'
 
@@ -14,13 +15,43 @@ type PromoteReview = {
   note?: string
 }
 
-const nav: Array<{ route: Route; label: string }> = [
-  { route: 'home', label: '竞品动态总览' },
-  { route: 'library', label: '截图检索' },
-  { route: 'flows', label: '流程库' },
-  { route: 'request', label: '采集需求' },
-  { route: 'tasks', label: '任务状态' },
+const nav: Array<{ route: Route; label: string; icon: 'overview' | 'library' | 'flows' }> = [
+  { route: 'home', label: '竞品动态总览', icon: 'overview' },
+  { route: 'library', label: '截图检索', icon: 'library' },
+  { route: 'flows', label: '流程库', icon: 'flows' },
 ]
+
+function NavIcon({ type }: { type: 'overview' | 'library' | 'flows' }) {
+  if (type === 'overview') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 19V9.5" />
+        <path d="M10.5 19V5" />
+        <path d="M17 19v-7" />
+        <path d="M3 19h18" />
+      </svg>
+    )
+  }
+  if (type === 'library') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="4" y="5" width="16" height="14" rx="2" />
+        <path d="m7.5 15 3.2-3.2 2.4 2.4 1.6-1.6 2.8 2.8" />
+        <circle cx="8.5" cy="8.5" r="1" />
+      </svg>
+    )
+  }
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M6 5h12" />
+      <path d="M6 12h12" />
+      <path d="M6 19h12" />
+      <circle cx="4" cy="5" r="1" />
+      <circle cx="4" cy="12" r="1" />
+      <circle cx="4" cy="19" r="1" />
+    </svg>
+  )
+}
 
 const flowCategoryMeta: Record<FlowCategory, { label: string; shortLabel: string; description: string }> = {
   credit: { label: '授信流程', shortLabel: '授信', description: '额度、授信、查看额度等申请前链路' },
@@ -105,6 +136,16 @@ function App() {
     }
   }
 
+  // 采集需求/任务状态入口已从前端隐藏；保留相关实现，便于后续需要时恢复。
+  void taskList
+  void promoteMessage
+  void addTask
+  void reloadTasks
+  void captureTask
+  void promoteTask
+  void Request
+  void Tasks
+
   return (
     <div className="shell">
       <aside className="sidebar">
@@ -118,7 +159,8 @@ function App() {
         <nav>
           {nav.map((item) => (
             <button key={item.route} className={route === item.route ? 'active' : ''} onClick={() => go(item.route)}>
-              {item.label}
+              <span className="navIcon"><NavIcon type={item.icon} /></span>
+              <span>{item.label}</span>
             </button>
           ))}
         </nav>
@@ -127,8 +169,7 @@ function App() {
         {route === 'home' && <Home />}
         {route === 'library' && <Library />}
         {route === 'flows' && <Flows />}
-        {route === 'request' && <Request onCreateTask={addTask} />}
-        {route === 'tasks' && <Tasks tasks={taskList} promoteMessage={promoteMessage} onRefresh={reloadTasks} onCapture={captureTask} onPromote={promoteTask} />}
+        {(route === 'request' || route === 'tasks') && <Home />}
       </main>
     </div>
   )
@@ -199,6 +240,7 @@ function readableConclusion(row?: RadarReportRow) {
 
 const timelineOptions = [
   { key: '0428-current', label: '0428 本期动态' },
+  { key: '0530-vs-0605-0606', label: '0530 → 0605/0606 strict 报告' },
 ]
 
 const radarProducts: RadarProduct[] = radarReport.meta.competitors.map((rawName) => {
@@ -277,8 +319,19 @@ function getEvidencePairs(dimension: DimensionFilter): EvidencePair[] {
   return rankedNames.flatMap((name) => pairs.filter((pair) => pair.competitor === name))
 }
 
-function Home() {
-  const [selectedTimeline, setSelectedTimeline] = useState(timelineOptions[0].key)
+
+// 0530 → 0605/0606 report data is generated in src/generated0530Report.ts
+
+
+function impactClass(impact: string) {
+  return impact === '高' ? 'danger' : impact === '中' ? 'warning' : 'muted'
+}
+
+function rowsByApp(app: string) {
+  return strictChangeRows.filter((row) => row.app === app)
+}
+
+function Home0428({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) {
   const [selectedDimension, setSelectedDimension] = useState<DimensionFilter>('全部')
   const [expandedProducts, setExpandedProducts] = useState<string[]>([])
   const getProductHighCount = (product: RadarProduct) => selectedDimension === '全部' ? product.highImpactCount : product.dimensionHighCounts[selectedDimension]
@@ -423,26 +476,171 @@ function Home() {
   )
 }
 
+
+type HomeTimelineProps = {
+  selectedTimeline: string
+  setSelectedTimeline: (value: string) => void
+}
+
+function Home() {
+  const [selectedTimeline, setSelectedTimeline] = useState('0530-vs-0605-0606')
+  return selectedTimeline === '0428-current'
+    ? <Home0428 selectedTimeline={selectedTimeline} setSelectedTimeline={setSelectedTimeline} />
+    : <Home0530 selectedTimeline={selectedTimeline} setSelectedTimeline={setSelectedTimeline} />
+}
+
+function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) {
+  const [selectedDimension, setSelectedDimension] = useState('全部')
+  const [expandedProducts, setExpandedProducts] = useState<string[]>([])
+  const tableProducts = [...appReportSummaries]
+  const evidenceApps = tableProducts.filter((item) => rowsByApp(item.product).length > 0)
+  const evidenceDimensions = ['全部', 'APP', '风控', '客服', '消金', '留存促活运营']
+  const getVisibleRows = (product: string) => rowsByApp(product)
+    .filter((row) => selectedDimension === '全部' || row.dimension === selectedDimension)
+    .sort((a, b) => {
+      const order: Record<string, number> = { 高: 3, 中: 2, 低: 1 }
+      return (order[b.impact] || 0) - (order[a.impact] || 0)
+    })
+  const visibleEvidenceApps = evidenceApps.filter((item) => getVisibleRows(item.product).length > 0)
+  const toggleProductExpanded = (product: string) => {
+    setExpandedProducts((current) => current.includes(product) ? current.filter((item) => item !== product) : [...current, product])
+  }
+
+  return (
+    <section className="page widePage radarHome reportsTableOnly strictReportPage">
+      <div className="pageHeader radarPageHeader">
+        <div>
+          <p className="eyebrow">Competitor Screenshot Hub</p>
+          <h1>竞品动态总览</h1>
+          <p>基于 0530 基准点位与 0605/0606 两轮大范围复采结果，已对全部 473 组可映射候选做视觉复查；页面展示去重后的 strict 同点位变化分析。</p>
+        </div>
+        <label className="timelineSwitcher">
+          <span>时间线</span>
+          <select value={selectedTimeline} onChange={(event) => setSelectedTimeline(event.target.value)}>
+            {timelineOptions.map((item) => <option key={item.key} value={item.key}>{item.label}</option>)}
+          </select>
+        </label>
+      </div>
+
+      <div className="radarTablePanel radarContentPanel">
+        <div className="radarTableWrap reportsTableWrap">
+          <table className="radarTable reportsManagementTable">
+            <colgroup>
+              <col className="productCol" />
+              <col className="highCountCol" />
+              <col className="countCol" />
+              <col className="focusCol" />
+              <col className="strategyCol" />
+            </colgroup>
+            <thead>
+              <tr>
+                <th>产品展示</th>
+                <th>高影响变化数</th>
+                <th>可分析截图变化数</th>
+                <th>变化方面</th>
+                <th>主要策略变化</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableProducts.map((item) => (
+                <tr key={item.product}>
+                  <td className="productCell"><strong>{item.product}</strong></td>
+                  <td className="highImpactCountCell">{item.high}</td>
+                  <td className="coverageCell subtleCount">{item.strictCount}</td>
+                  <td>
+                    <div className="dimensionPills compact">
+                      {rowsByApp(item.product).length ? Array.from(new Set(rowsByApp(item.product).map((row) => row.dimension))).map((dimension) => <span className="isActive" key={dimension}>{dimension}</span>) : <span className="isEmpty">本轮无可用 strict 结论</span>}
+                    </div>
+                  </td>
+                  <td>{item.mainStrategy}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <div className="evidenceComparePanel integratedEvidence">
+          <div className="sectionTitle evidenceSectionTitle">
+            <div>
+              <h2>截图证据展示</h2>
+              <p>展示已完成视觉复查并去重保留的 0530 与 0605/0606 strict 同点位截图对照；错页、视口不一致、状态边界样本保留在审计表，不混入变化结论。</p>
+            </div>
+          </div>
+          <div className="dimensionTabs evidenceTabs" aria-label="按维度筛选变化截图">
+            {evidenceDimensions.map((dimension) => (
+              <button
+                key={dimension}
+                className={selectedDimension === dimension ? 'active' : ''}
+                onClick={() => {
+                  setSelectedDimension(dimension)
+                  setExpandedProducts([])
+                }}
+              >
+                {dimension}
+              </button>
+            ))}
+          </div>
+          <div className="appEvidenceGrid">
+            {visibleEvidenceApps.map((app) => (
+              <article className="appEvidenceCard" key={app.product}>
+                <div className="appEvidenceHeader">
+                  <div>
+                    <h3>{selectedDimension === '全部' ? `${app.product}周期变化` : `${app.product}${selectedDimension}变化`}</h3>
+                  </div>
+                </div>
+                <div className="appEvidencePairs">
+                  {(expandedProducts.includes(app.product) ? getVisibleRows(app.product) : getVisibleRows(app.product).slice(0, 3)).map((pair) => (
+                    <div className="appEvidencePair" key={pair.materialId}>
+                      <div className="evidenceCompareMeta">
+                        <span className="evidencePairTitle">{pair.dimension} · {pair.page}</span>
+                        <span className={`badge ${impactClass(pair.impact)}`}>{pair.impact}</span>
+                        {pair.managementUsable ? <span className="badge success">可分析</span> : <span className="badge muted">待判读</span>}
+                      </div>
+                      <p className="evidenceConclusion">{pair.conclusion}</p>
+                      <div className="compareImages">
+                        <figure>
+                          <img src={withBase(pair.before)} alt={`${pair.app} 0530 ${pair.page}`} loading="lazy" />
+                          <figcaption>0530 基准</figcaption>
+                        </figure>
+                        <figure>
+                          <img src={withBase(pair.after)} alt={`${pair.app} 0605/0606 ${pair.page}`} loading="lazy" />
+                          <figcaption>0605/0606 最新</figcaption>
+                        </figure>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                {getVisibleRows(app.product).length > 3 && (
+                  <button className="expandEvidenceButton" onClick={() => toggleProductExpanded(app.product)}>
+                    {expandedProducts.includes(app.product) ? '收起变化截图' : `展开全部 ${getVisibleRows(app.product).length} 组变化截图`}
+                  </button>
+                )}
+              </article>
+            ))}
+          </div>
+          {visibleEvidenceApps.length === 0 && <div className="emptyState">当前竞品暂无可展示的 strict 同点位截图。</div>}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function Library() {
   const [query, setQuery] = useState('')
   const [competitor, setCompetitor] = useState('all')
   const [dimension, setDimension] = useState('all')
   const [evidenceValue, setEvidenceValue] = useState('all')
   const [reviewState, setReviewState] = useState('all')
-  const [dataset, setDataset] = useState('evidence269')
-  const [timeline, setTimeline] = useState('latest')
+  const [dataset, setDataset] = useState('current0605')
   const [viewMode, setViewMode] = useState<'dimension' | 'app' | 'search'>('dimension')
   const [pageFamily, setPageFamily] = useState('all')
   const [selected, setSelected] = useState<Screenshot | null>(null)
-  const sourceItems = dataset === 'evidence269' ? eightAppScreenshots : dataset === 'historical' ? screenshots : allLibraryScreenshots
+  const sourceItems = dataset === 'current0605' ? current0605Screenshots : dataset === 'evidence269' ? eightAppScreenshots : dataset === 'historical' ? screenshots : allLibraryScreenshots
   const browseItems = viewMode === 'search' ? sourceItems : sourceItems.filter((item) => item.displayDefault !== 'false')
   const appOptions = Array.from(new Map(sourceItems.map((item) => [item.appKey, item.competitor])).entries()).sort((a, b) => a[1].localeCompare(b[1], 'zh-Hans-CN'))
   const dimensions = Array.from(new Set(sourceItems.map((item) => item.finalDimension || item.flow).filter(Boolean))).sort()
   const evidenceOptions = Array.from(new Set(sourceItems.map((item) => item.evidenceValue).filter((item): item is string => Boolean(item)))).sort()
-  const timelineOptions = Array.from(new Set(sourceItems.map((item) => item.timelineGroup || item.capturedAt))).sort()
-
-  const filtered = filterScreenshots({ query, competitor, dimension, evidenceValue, reviewState, dataset, timeline, pageFamily })
-  const evidenceCounts = summarizeEvidence(sourceItems)
+  const filtered = filterScreenshots({ query, competitor, dimension, evidenceValue, reviewState, dataset, pageFamily })
   const pageFamilies = buildPageFamilies(sourceItems)
 
   const reset = () => {
@@ -452,12 +650,10 @@ function Library() {
     setEvidenceValue('all')
     setReviewState('all')
     setPageFamily('all')
-    setTimeline(dataset === 'evidence269' ? 'all' : 'latest')
   }
 
   const switchDataset = (nextDataset: string) => {
     setDataset(nextDataset)
-    setTimeline(nextDataset === 'evidence269' ? 'all' : 'latest')
   }
 
   const dimensionButtons = ['all', 'APP', '风控', '客服', '消金', '留存促活运营', '非金融内容/社区'].filter((item) => item === 'all' || dimensions.includes(item))
@@ -472,24 +668,20 @@ function Library() {
   return (
     <section className="page widePage evidenceLibraryPage">
       <Header title="截图检索" subtitle="本地预览版：按维度横向看、按 APP 纵向看、或自由搜索完整证据库。" />
-      <div className="libraryModeTabs">
-        <button className={viewMode === 'dimension' ? 'active' : ''} onClick={() => setViewMode('dimension')}>按APP浏览</button>
-        <button className={viewMode === 'app' ? 'active' : ''} onClick={() => setViewMode('app')}>按页面对比</button>
-        <button className={viewMode === 'search' ? 'active' : ''} onClick={() => setViewMode('search')}>自由搜索</button>
-      </div>
-      <div className="evidenceSummaryStrip compactEvidenceSummary">
-        <span><strong>{sourceItems.length}</strong>当前数据源截图</span>
-        <span><strong>{new Set(sourceItems.map((item) => item.appKey)).size}</strong>竞品 APP</span>
-        <span><strong>{dimensions.length}</strong>维度/主题</span>
-        {evidenceCounts.map((item) => <span key={item.label}><strong>{item.count}</strong>{item.label}</span>)}
-      </div>
-      <div className="libraryDatasetBar">
-        <span>数据范围</span>
-        <div className="segmentedFilter compactDatasetSwitch">
-          <button className={dataset === 'evidence269' ? 'active' : ''} onClick={() => switchDataset('evidence269')}>269新素材</button>
-          <button className={dataset === 'historical' ? 'active' : ''} onClick={() => switchDataset('historical')}>历史库</button>
-          <button className={dataset === 'all' ? 'active' : ''} onClick={() => switchDataset('all')}>全部</button>
+      <div className="libraryControlRow">
+        <div className="libraryModeTabs">
+          <button className={viewMode === 'dimension' ? 'active' : ''} onClick={() => setViewMode('dimension')}>按APP浏览</button>
+          <button className={viewMode === 'app' ? 'active' : ''} onClick={() => setViewMode('app')}>按页面对比</button>
+          <button className={viewMode === 'search' ? 'active' : ''} onClick={() => setViewMode('search')}>自由搜索</button>
         </div>
+        <div className="libraryTimelineTabs" aria-label="按采集时间切换截图库">
+          <button className={dataset === 'current0605' ? 'active' : ''} onClick={() => switchDataset('current0605')}>0605当前素材</button>
+          <button className={dataset === 'evidence269' ? 'active' : ''} onClick={() => switchDataset('evidence269')}>269新素材</button>
+          <button className={dataset === 'historical' ? 'active' : ''} onClick={() => switchDataset('historical')}>库房历史</button>
+        </div>
+      </div>
+      <div className="librarySummaryLine">
+        当前截图库包含 <strong>{new Set(sourceItems.map((item) => item.appKey)).size}</strong> 个竞品 APP，共 <strong>{sourceItems.length}</strong> 张截图。
       </div>
       {viewMode === 'dimension' && <AppRowsView items={browseItems} onSelect={setSelected} totalCount={sourceItems.length} />}
       {viewMode === 'app' && <PageRowsView items={browseItems} onSelect={setSelected} totalCount={sourceItems.length} />}
@@ -541,16 +733,6 @@ function Library() {
                 ))}
               </div>
             </div>
-            {dataset !== 'evidence269' && (
-              <div className="filterSection">
-                <span className="filterSectionTitle">时间线</span>
-                <select value={timeline} onChange={(event) => setTimeline(event.target.value)}>
-                  <option value="latest">仅最新版本</option>
-                  <option value="all">全部时间</option>
-                  {timelineOptions.map((item) => <option key={item} value={item}>{item}</option>)}
-                </select>
-              </div>
-            )}
             <button className="ghostButton" onClick={reset}>重置筛选</button>
             <div className="filterHint evidenceFilterCount">
               <strong>{filtered.length}</strong>
@@ -817,14 +999,9 @@ function CompareThumb({ item, onSelect }: { item: Screenshot; label?: string; on
   )
 }
 
-function summarizeEvidence(items: Screenshot[]) {
-  const labels = ['主观察证据', '边界证据', '复核证据', '不可用/回采证据']
-  return labels.map((label) => ({ label, count: items.filter((item) => item.evidenceValue?.includes(label.replace('证据', '')) || item.evidenceValue === label).length }))
-}
-
-function filterScreenshots(filters: { query?: string; competitor?: string; dimension?: string; evidenceValue?: string; reviewState?: string; dataset?: string; timeline?: string; pageFamily?: string }) {
+function filterScreenshots(filters: { query?: string; competitor?: string; dimension?: string; evidenceValue?: string; reviewState?: string; dataset?: string; pageFamily?: string }) {
   const q = (filters.query || '').trim().toLowerCase()
-  const sourceItems = filters.dataset === 'evidence269' ? eightAppScreenshots : filters.dataset === 'historical' ? screenshots : allLibraryScreenshots
+  const sourceItems = filters.dataset === 'current0605' ? current0605Screenshots : filters.dataset === 'evidence269' ? eightAppScreenshots : filters.dataset === 'historical' ? screenshots : allLibraryScreenshots
   return sourceItems.filter((item) => {
     const searchableText = [
       item.id,
@@ -854,8 +1031,7 @@ function filterScreenshots(filters: { query?: string; competitor?: string; dimen
       (!filters.dimension || filters.dimension === 'all' || itemDimension === filters.dimension || item.businessModules.includes(filters.dimension)) &&
       (!filters.pageFamily || filters.pageFamily === 'all' || getPageFamily(item) === filters.pageFamily) &&
       (!filters.evidenceValue || filters.evidenceValue === 'all' || item.evidenceValue === filters.evidenceValue) &&
-      matchesReview &&
-      (!filters.timeline || filters.timeline === 'all' || (filters.timeline === 'latest' ? item.isLatestVersion : (item.timelineGroup || item.capturedAt) === filters.timeline))
+      matchesReview
     )
   })
 }

@@ -16,7 +16,9 @@ button { cursor: pointer; }
 .brand strong { display: block; font-size: 14px; }
 .brand small { color: #64748b; }
 nav { display: grid; gap: 8px; }
-nav button { border: 0; background: transparent; text-align: left; padding: 12px 14px; border-radius: 8px; color: #475569; }
+nav button { display: flex; align-items: center; gap: 10px; border: 0; background: transparent; text-align: left; padding: 12px 14px; border-radius: 8px; color: #475569; }
+.navIcon { display: inline-grid; place-items: center; width: 22px; height: 22px; line-height: 1; }
+.navIcon svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 nav button.active, nav button:hover { background: #eef4ff; color: #1d4ed8; }
 .main { padding: 32px; }
 .page { max-width: 1180px; margin: 0 auto; }
@@ -386,11 +388,14 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .appEvidenceCard { padding: 18px; border: 1px solid #dbeafe; border-radius: 8px; background: linear-gradient(180deg, #ffffff, #f8fbff); box-shadow: 0 14px 44px rgba(15,23,42,.06); }
 .appEvidenceHeader { display: flex; justify-content: space-between; gap: 16px; align-items: flex-start; margin-bottom: 14px; }
 .appEvidenceHeader h3 { margin: 10px 0 0; font-size: 20px; }
-.appEvidencePairs { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 22px 18px; }
+.appEvidencePairs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px 18px; align-items: start; }
 .appEvidencePair { min-width: 0; padding: 0; border: 0; border-radius: 0; background: transparent; }
 .appEvidencePair .evidenceCompareMeta { margin-bottom: 10px; }
 .evidencePairTitle { flex: 1 1 auto; min-width: 0; color: #0f172a; font-size: 15px; font-weight: 850; line-height: 1.35; }
 .appEvidencePair .badge { flex: 0 0 auto; }
+@media (max-width: 1180px) {
+  .appEvidencePairs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 760px) {
   .appEvidenceHeader { flex-direction: column; }
   .appEvidencePairs { grid-template-columns: 1fr; }
@@ -440,7 +445,9 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
   .evidenceStats, .evidenceFactList, .evidenceDetailMeta { grid-template-columns: 1fr; }
   .evidenceDetailPanel { grid-template-columns: 1fr; }
 }
-.compactEvidenceSummary { margin-top: -6px; margin-bottom: 18px; }
+.libraryControlRow { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin: -4px 0 10px; }
+.librarySummaryLine { margin: 0 0 18px; color: #475569; font-size: 14px; line-height: 1.7; }
+.librarySummaryLine strong { color: #0f172a; font-weight: 900; }
 .filterSection { display: grid; gap: 9px; padding: 0 0 14px; border-bottom: 1px solid #eef2f7; }
 .filterSection:last-of-type { border-bottom: 0; }
 .filterSectionTitle { color: #334155; font-size: 12px; font-weight: 900; letter-spacing: .02em; }
@@ -456,7 +463,7 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .reviewPills button { min-width: auto; padding-inline: 9px; }
 .evidenceFilterCount { margin-top: 0; }
 .evidenceFilterPanel { gap: 14px; }
-.libraryModeTabs { display: inline-flex; gap: 6px; margin: -4px 0 18px; padding: 5px; border-radius: 14px; background: #eef2f7; }
+.libraryModeTabs { display: inline-flex; gap: 6px; margin: 0; padding: 5px; border-radius: 14px; background: #eef2f7; }
 .libraryModeTabs button { border: 0; border-radius: 10px; padding: 10px 14px; background: transparent; color: #64748b; font-weight: 850; }
 .libraryModeTabs button.active { background: #fff; color: #1d4ed8; box-shadow: 0 10px 26px rgba(15,23,42,.08); }
 .compareBrowserLayout { grid-template-columns: 310px 1fr; }
@@ -474,16 +481,17 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .compareThumb:hover { transform: translateY(-2px); opacity: .94; }
 .compareThumb img { width: auto; max-width: none; aspect-ratio: auto; object-fit: contain; display: block; background: transparent; padding: 0; }
 @media (max-width: 1080px) { .compareBrowserLayout { grid-template-columns: 1fr; } }
-@media (max-width: 640px) { .libraryModeTabs { display: grid; } .compareThumbGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.libraryDatasetBar { display: flex; justify-content: space-between; gap: 12px; align-items: center; margin: 0 0 18px; padding: 12px 14px; border: 1px solid #e2e8f0; border-radius: 14px; background: rgba(255,255,255,.84); }
-.libraryDatasetBar > span { color: #334155; font-size: 13px; font-weight: 900; }
-.compactDatasetSwitch { width: min(360px, 100%); }
+@media (max-width: 640px) { .libraryControlRow { align-items: stretch; flex-direction: column; } .libraryModeTabs { display: grid; } .compareThumbGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.libraryTimelineTabs { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 0 auto; padding: 6px; border: 1px solid #e2e8f0; border-radius: 999px; background: rgba(255,255,255,.86); box-shadow: 0 10px 24px rgba(15,23,42,.06); }
+.libraryTimelineTabs button { border: 0; background: transparent; color: #64748b; border-radius: 999px; padding: 9px 16px; font-size: 13px; font-weight: 900; cursor: pointer; white-space: nowrap; }
+.libraryTimelineTabs button.active { background: #111827; color: #fff; box-shadow: 0 8px 16px rgba(15,23,42,.16); }
+.libraryTimelineTabs button:not(.active):hover { background: #f1f5f9; color: #0f172a; }
 .fullWidthCompareView { border: 1px solid #e2e8f0; border-radius: 16px; background: rgba(255,255,255,.84); padding: 16px; box-shadow: 0 18px 60px rgba(15,23,42,.06); }
 .fullWidthCompareView .resultsToolbar { margin-bottom: 6px; }
 .pageCompareGroup header { background: linear-gradient(180deg,#fffaf3,#fff); }
 .imageOnlyThumb { display: inline-flex; flex-direction: column; align-items: center; gap: 6px; line-height: 1; }
 .thumbPageLabel { display: block; width: 100%; max-width: 168px; color: #475569; font-size: 12px; font-weight: 750; line-height: 1.35; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-@media (max-width: 760px) { .libraryDatasetBar { align-items: stretch; flex-direction: column; } .compactDatasetSwitch { width: 100%; } }
+@media (max-width: 760px) { .libraryTimelineTabs { display: flex; width: 100%; margin-left: 0; overflow-x: auto; border-radius: 18px; } .libraryTimelineTabs button { flex: 0 0 auto; } }
 /* Local preview fix: make comparison rows show full screenshot thumbnails more clearly */
 .compareThumbRow {
   gap: 8px;
