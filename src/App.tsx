@@ -492,7 +492,8 @@ function Home() {
 function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) {
   const [selectedDimension, setSelectedDimension] = useState('全部')
   const [expandedProducts, setExpandedProducts] = useState<string[]>([])
-  const tableProducts = [...appReportSummaries]
+  const hiddenOverviewProducts = new Set(['小赢卡贷'])
+  const tableProducts = appReportSummaries.filter((item) => !hiddenOverviewProducts.has(item.product))
   const evidenceApps = tableProducts.filter((item) => rowsByApp(item.product).length > 0)
   const evidenceDimensions = ['全部', 'APP', '风控', '客服', '消金', '留存促活运营']
   const getVisibleRows = (product: string) => rowsByApp(product)
@@ -512,7 +513,7 @@ function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) 
         <div>
           <p className="eyebrow">Competitor Screenshot Hub</p>
           <h1>竞品动态总览</h1>
-          <p>基于 0530 基准点位与 0605/0606 两轮大范围复采结果，已对全部 473 组可映射候选做视觉复查；页面展示去重后的 strict 同点位变化分析。</p>
+          <p>基于 0530 基准点位与 0605/0606 两轮大范围复采结果，已完成可映射候选视觉复查；当前总览剔除样本不足的小赢卡贷，聚焦 7 个竞品的去重 strict 同点位变化分析。</p>
         </div>
         <label className="timelineSwitcher">
           <span>时间线</span>
@@ -563,7 +564,7 @@ function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) 
           <div className="sectionTitle evidenceSectionTitle">
             <div>
               <h2>截图证据展示</h2>
-              <p>展示已完成视觉复查并去重保留的 0530 与 0605/0606 strict 同点位截图对照；错页、视口不一致、状态边界样本保留在审计表，不混入变化结论。</p>
+              <p>展示已完成视觉复查并去重保留的 0530 与 0605/0606 strict 同点位截图对照；小赢卡贷因本轮可展示样本过少暂不进入总览，错页、视口不一致、状态边界样本保留在审计表，不混入变化结论。</p>
             </div>
           </div>
           <div className="dimensionTabs evidenceTabs" aria-label="按维度筛选变化截图">
