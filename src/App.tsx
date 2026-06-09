@@ -691,11 +691,57 @@ function PageRowsView({ items, totalCount, onSelect }: { items: Screenshot[]; to
   )
 }
 
+function getScreenshotDisplayTitle(item: Screenshot) {
+  const rawTitle = (item.node || item.pageSlot || item.pageCategory || '截图页面').trim()
+  const manualSupplementName = (item as Screenshot & { manualSupplementName?: string }).manualSupplementName || ''
+  const text = [item.node, item.pageSlot, item.pageCategory, item.visualSummary, item.description, manualSupplementName, ...(item.tags || [])].join(' ')
+  const hasTechnicalText = /p0-|entry|operation|finance|my-home|my-tab|home_top|home-scroll|scroll|bottom|launch|dimension-gap|legacy-floor|manual|customer|service|borrow|repay|coupon|privacy|security|message|mall/i.test(text)
+
+  if (!hasTechnicalText && /[\u4e00-\u9fa5]/.test(rawTitle)) return rawTitle.replace(/^.*?·\s*/, '').replace(/（0605.*?）$/, '')
+
+  const pageNames: Array<[RegExp, string]> = [
+    [/合同/, '合同查看页'],
+    [/查账|账单|还款|repay/i, '还款/账单页'],
+    [/提额|额度提升|credit[_ -]?increase/i, '提额中心页'],
+    [/借款|借钱|borrow|loan/i, '借款申请页'],
+    [/金融优惠券|优惠券|coupon/i, '金融优惠券页'],
+    [/在线客服|customer|service|客服/i, '在线客服页'],
+    [/帮助|help/i, '帮助中心页'],
+    [/消息|message/i, '消息页'],
+    [/隐私|privacy/i, '隐私说明页'],
+    [/安全|security/i, '安全中心页'],
+    [/风控|risk/i, '风控页面'],
+    [/商城|购物|mall/i, '商城页'],
+    [/我的|个人中心|my-tab|my-home|_my_|\bmy\b/i, '我的页'],
+    [/运营|operation-tab|operation-home|operation/i, '运营页'],
+    [/消金|finance-tab|finance-home|finance/i, '消金首页'],
+    [/首页|home|launch/i, '首页'],
+  ]
+
+  const match = pageNames.find(([pattern]) => pattern.test(text))
+  let title = match?.[1] || rawTitle
+    .replace(/^.*?·\s*/, '')
+    .replace(/p0-/gi, '')
+    .replace(/dimension-gap-/gi, '')
+    .replace(/legacy-floor-/gi, '')
+    .replace(/entry top/gi, '首页')
+    .replace(/scroll-?\d*/gi, '下滑页')
+    .replace(/bottom-?\d*/gi, '下滑页')
+    .replace(/launch/gi, '启动页')
+    .replace(/[\/_-]+/g, ' ')
+    .trim()
+
+  if (/scroll|bottom|下滑/.test(text) && !/下滑/.test(title) && !/消息页|隐私说明页|安全中心页|合同查看页/.test(title)) title += '下滑页'
+  if (/entry top|home_top|top/.test(text) && !/首页|顶部|消息页|在线客服页|合同查看页/.test(title)) title += '首页'
+  return title || '截图页面'
+}
+
 function CompareThumb({ item, onSelect }: { item: Screenshot; label?: string; onSelect?: (item: Screenshot) => void }) {
+  const displayTitle = getScreenshotDisplayTitle(item)
   return (
-    <button className="compareThumb imageOnlyThumb" onClick={() => onSelect?.(item)} aria-label={`${item.competitor} ${item.node}`} title={`${item.competitor} ${item.node}`}>
-      <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" decoding="async" />
-      <span className="thumbPageLabel">{item.node}</span>
+    <button className="compareThumb imageOnlyThumb" onClick={() => onSelect?.(item)} aria-label={`${item.competitor} ${displayTitle}`} title={`${item.competitor} ${displayTitle}`}>
+      <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${displayTitle}`} loading="lazy" decoding="async" />
+      <span className="thumbPageLabel">{displayTitle}</span>
     </button>
   )
 }
@@ -745,11 +791,12 @@ function ScreenshotGrid({ items, onSelect }: { items: Screenshot[]; onSelect?: (
 
 function ScreenshotCard({ item, onSelect }: { item: Screenshot; onSelect?: (item: Screenshot) => void }) {
   const dimension = item.finalDimension || item.flow
+  const displayTitle = getScreenshotDisplayTitle(item)
   const isContentBoundary = dimension === '非金融内容/社区'
   return (
     <article className="shotCard evidenceShotCard" onClick={() => onSelect?.(item)}>
       <div className="shotImageWrap evidenceImageWrap">
-        {item.imagePath ? <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" decoding="async" /> : <span>暂无截图</span>}
+        {item.imagePath ? <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${displayTitle}`} loading="lazy" decoding="async" /> : <span>暂无截图</span>}
       </div>
       <div className="shotBody evidenceShotBody">
         <div className="row wrap">
@@ -758,7 +805,7 @@ function ScreenshotCard({ item, onSelect }: { item: Screenshot; onSelect?: (item
           {item.evidenceValue && <span className={evidenceBadgeClass(item.evidenceValue)}>{item.evidenceValue}</span>}
           {isContentBoundary && <span className="badge warning">内容社区边界</span>}
         </div>
-        <h3>{item.node}</h3>
+        <h3>{displayTitle}</h3>
         <p>{item.visualSummary || item.description}</p>
         <div className="evidenceFactList">
           {item.materialId && <span><strong>ID</strong>{item.materialId}</span>}
@@ -782,13 +829,14 @@ function evidenceBadgeClass(value: string) {
 
 function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => void }) {
   const dimension = item.finalDimension || item.flow
+  const displayTitle = getScreenshotDisplayTitle(item)
   return (
     <div className="detailOverlay" role="dialog" aria-modal="true">
       <div className="detailBackdrop" onClick={onClose} />
       <article className="detailPanel evidenceDetailPanel">
         <button className="closeButton" onClick={onClose}>关闭</button>
         <div className="detailImage">
-          <img src={withBase(item.imagePath)} alt={`${item.competitor} ${item.node}`} decoding="async" />
+          <img src={withBase(item.imagePath)} alt={`${item.competitor} ${displayTitle}`} decoding="async" />
         </div>
         <div className="detailBody evidenceDetailBody">
           <div className="row wrap">
@@ -796,7 +844,7 @@ function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => 
             <span className="badge muted">{dimension}</span>
             {item.evidenceValue && <span className={evidenceBadgeClass(item.evidenceValue)}>{item.evidenceValue}</span>}
           </div>
-          <h2>{item.node}</h2>
+          <h2>{displayTitle}</h2>
           <p>{item.visualSummary || item.description}</p>
           <dl className="detailMeta evidenceDetailMeta">
             <div><dt>material_id</dt><dd>{item.materialId || item.id}</dd></div>
