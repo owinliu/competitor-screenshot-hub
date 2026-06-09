@@ -300,7 +300,7 @@ function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) 
                   {(expandedProducts.includes(app.product) ? getVisibleRows(app.product) : getVisibleRows(app.product).slice(0, 3)).map((pair) => (
                     <div className="appEvidencePair" key={pair.materialId}>
                       <div className="evidenceCompareMeta">
-                        <span className="evidencePairTitle">{pair.dimension} · {getReadablePageTitle(pair.page)}</span>
+                        <span className="evidencePairTitle">{getReadablePageTitle(pair.page)}</span>
                         <span className={`badge ${impactClass(pair.impact)}`}>{pair.impact}</span>
                         {pair.managementUsable ? <span className="badge success">可分析</span> : <span className="badge muted">待判读</span>}
                       </div>
