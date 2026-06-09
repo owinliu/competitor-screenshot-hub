@@ -62,6 +62,10 @@ const flowCategoryMeta: Record<FlowCategory, { label: string; shortLabel: string
 
 const flowCategoryOrder: FlowCategory[] = ['credit', 'cancellation', 'customer_service', 'blocked', 'other']
 
+function getEvidencePreviewPath(path: string) {
+  return path.replace(/^\/evidence\//, '/evidence-thumbs/').replace(/\.(png|jpe?g)$/i, '.webp')
+}
+
 function getInitialRoute(): Route {
   const hash = window.location.hash.replace('#/', '')
   if (hash === 'search') return 'library'
@@ -307,11 +311,15 @@ function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) 
                       <p className="evidenceConclusion">{pair.conclusion}</p>
                       <div className="compareImages">
                         <figure>
-                          <img src={withBase(pair.before)} alt={`${pair.app} 0530 ${pair.page}`} loading="lazy" />
+                          <a href={withBase(pair.before)} target="_blank" rel="noreferrer" title="点击查看原图">
+                            <img src={withBase(getEvidencePreviewPath(pair.before))} alt={`${pair.app} 0530 ${pair.page}`} loading="lazy" decoding="async" />
+                          </a>
                           <figcaption>0530 基准</figcaption>
                         </figure>
                         <figure>
-                          <img src={withBase(pair.after)} alt={`${pair.app} 0605/0606 ${pair.page}`} loading="lazy" />
+                          <a href={withBase(pair.after)} target="_blank" rel="noreferrer" title="点击查看原图">
+                            <img src={withBase(getEvidencePreviewPath(pair.after))} alt={`${pair.app} 0605/0606 ${pair.page}`} loading="lazy" decoding="async" />
+                          </a>
                           <figcaption>0605/0606 最新</figcaption>
                         </figure>
                       </div>
