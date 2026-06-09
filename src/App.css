@@ -175,11 +175,13 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 @media (max-width: 860px) { .reviewGrid { grid-template-columns: 1fr; } }
 
 .evidenceFlowCard { display: grid; gap: 14px; }
-.goldenFlowCard { display: grid; gap: 16px; padding: 0; overflow: hidden; }
+.goldenFlowCard { display: grid; grid-template-rows: auto 1fr; gap: 16px; padding: 0; overflow: hidden; }
 .goldenFlowCard > * { margin-left: 22px; margin-right: 22px; }
 .goldenFlowCard > .goldenFlowTopline { margin-top: 22px; }
-.goldenFlowTopline { display: block; }
-.goldenFlowTopline p { margin: 0; }
+.goldenFlowTopline { display: flex; align-items: start; min-height: 116px; }
+.goldenFlowTopline > div { width: 100%; min-width: 0; }
+.goldenFlowTopline h2 { margin-bottom: 6px; line-height: 1.28; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.goldenFlowTopline p { margin: 0; min-height: 20px; color: #64748b; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .flowCardBadges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .flowCategoryBadge, .flowStatusBadge { display: inline-flex; align-items: center; height: 26px; padding: 0 10px; border-radius: 999px; font-size: 12px; font-weight: 900; }
 .flowCategoryBadge.credit { background: #eef4ff; color: #1d4ed8; }
@@ -189,9 +191,9 @@ select, input, textarea { width: 100%; border: 1px solid #dbe3ef; border-radius:
 .flowCategoryBadge.other { background: #f1f5f9; color: #475569; }
 .flowStatusBadge { background: #f8fafc; color: #64748b; border: 1px solid #e2e8f0; }
 .goldenFlowContent { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 18px; align-items: start; }
-.flowMapStage { min-height: 520px; display: grid; place-items: center; overflow: auto; padding: 0 0 22px; }
+.flowMapStage { min-height: 520px; display: grid; align-items: start; justify-items: center; overflow: auto; padding: 0 0 22px; }
 .flowMapButton { position: relative; display: block; border: 0; background: transparent; padding: 0; }
-.flowMapButton img { display: block; width: 100%; max-width: 1180px; min-width: 760px; height: auto; border-radius: 8px; }
+.flowMapButton img { display: block; width: 100%; max-width: 1180px; min-width: 760px; height: auto; border-radius: 8px; vertical-align: top; }
 .flowMapButton span { position: absolute; right: 14px; bottom: 14px; padding: 8px 12px; border-radius: 999px; background: rgba(15,23,42,.72); color: white; font-size: 12px; font-weight: 800; opacity: 0; transform: translateY(4px); transition: opacity .16s ease, transform .16s ease; }
 .flowMapButton:hover span { opacity: 1; transform: translateY(0); }
 .flowNodeSection { position: sticky; top: 24px; display: grid; gap: 14px; max-height: calc(100vh - 48px); overflow: auto; padding: 16px; border: 1px solid #e2e8f0; border-radius: 8px; background: #fff; }
