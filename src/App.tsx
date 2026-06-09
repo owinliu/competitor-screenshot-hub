@@ -300,7 +300,7 @@ function Home0530({ selectedTimeline, setSelectedTimeline }: HomeTimelineProps) 
                   {(expandedProducts.includes(app.product) ? getVisibleRows(app.product) : getVisibleRows(app.product).slice(0, 3)).map((pair) => (
                     <div className="appEvidencePair" key={pair.materialId}>
                       <div className="evidenceCompareMeta">
-                        <span className="evidencePairTitle">{pair.dimension} · {pair.page}</span>
+                        <span className="evidencePairTitle">{pair.dimension} · {getReadablePageTitle(pair.page)}</span>
                         <span className={`badge ${impactClass(pair.impact)}`}>{pair.impact}</span>
                         {pair.managementUsable ? <span className="badge success">可分析</span> : <span className="badge muted">待判读</span>}
                       </div>
@@ -691,13 +691,10 @@ function PageRowsView({ items, totalCount, onSelect }: { items: Screenshot[]; to
   )
 }
 
-function getScreenshotDisplayTitle(item: Screenshot) {
-  const rawTitle = (item.node || item.pageSlot || item.pageCategory || '截图页面').trim()
-  const manualSupplementName = (item as Screenshot & { manualSupplementName?: string }).manualSupplementName || ''
-  const text = [item.node, item.pageSlot, item.pageCategory, item.visualSummary, item.description, manualSupplementName, ...(item.tags || [])].join(' ')
-  const hasTechnicalText = /p0-|entry|operation|finance|my-home|my-tab|home_top|home-scroll|scroll|bottom|launch|dimension-gap|legacy-floor|manual|customer|service|borrow|repay|coupon|privacy|security|message|mall/i.test(text)
-
-  if (!hasTechnicalText && /[\u4e00-\u9fa5]/.test(rawTitle)) return rawTitle.replace(/^.*?·\s*/, '').replace(/（0605.*?）$/, '')
+function getReadablePageTitle(raw = '', context = '') {
+  const rawTitle = (raw || '截图页面').trim()
+  const text = [rawTitle, context].join(' ')
+  const hasTechnicalText = /p0-|entry|operation|finance|my-home|my-tab|home_top|home-scroll|scroll|bottom|launch|dimension-gap|legacy-floor|manual|customer|service|borrow|repay|coupon|privacy|security|message|mall|wide-/i.test(text)
 
   const pageNames: Array<[RegExp, string]> = [
     [/合同/, '合同查看页'],
@@ -719,11 +716,14 @@ function getScreenshotDisplayTitle(item: Screenshot) {
   ]
 
   const match = pageNames.find(([pattern]) => pattern.test(text))
+  if (!hasTechnicalText && /[\u4e00-\u9fa5]/.test(rawTitle)) return rawTitle.replace(/^.*?·\s*/, '').replace(/（0605.*?）$/, '')
+
   let title = match?.[1] || rawTitle
     .replace(/^.*?·\s*/, '')
     .replace(/p0-/gi, '')
     .replace(/dimension-gap-/gi, '')
     .replace(/legacy-floor-/gi, '')
+    .replace(/wide-/gi, '')
     .replace(/entry top/gi, '首页')
     .replace(/scroll-?\d*/gi, '下滑页')
     .replace(/bottom-?\d*/gi, '下滑页')
@@ -734,6 +734,28 @@ function getScreenshotDisplayTitle(item: Screenshot) {
   if (/scroll|bottom|下滑/.test(text) && !/下滑/.test(title) && !/消息页|隐私说明页|安全中心页|合同查看页/.test(title)) title += '下滑页'
   if (/entry top|home_top|top/.test(text) && !/首页|顶部|消息页|在线客服页|合同查看页/.test(title)) title += '首页'
   return title || '截图页面'
+}
+
+function getScreenshotDisplayTitle(item: Screenshot) {
+  const manualSupplementName = (item as Screenshot & { manualSupplementName?: string }).manualSupplementName || ''
+  const context = [item.node, item.pageSlot, item.pageCategory, item.visualSummary, item.description, manualSupplementName, ...(item.tags || [])].join(' ')
+  return getReadablePageTitle(item.node || item.pageSlot || item.pageCategory, context)
+}
+
+function getScreenshotDisplaySummary(item: Screenshot) {
+  const title = getScreenshotDisplayTitle(item)
+  const dimension = item.finalDimension || item.flow || item.pageCategory || '页面'
+  const summaryHints: Array<[RegExp, string]> = [
+    [/人脸|实名|授权/, `${title}，展示实名/人脸/授权前置提示。`],
+    [/客服|帮助|在线咨询/, `${title}，展示客服咨询或帮助入口页面。`],
+    [/还款|账单/, `${title}，展示还款或账单相关入口页面。`],
+    [/借款|借钱|额度/, `${title}，展示借款额度相关入口页面。`],
+    [/优惠券|活动|红包|商城|购物/, `${title}，展示权益、活动或商城相关页面。`],
+    [/隐私|安全/, `${title}，展示账户安全或隐私说明页面。`],
+  ]
+  const text = [item.node, item.pageSlot, item.pageCategory, item.visualSummary, item.description, ...(item.tags || [])].join(' ')
+  const match = summaryHints.find(([pattern]) => pattern.test(text))
+  return match?.[1] || `${title}，属于${dimension}相关截图。`
 }
 
 function CompareThumb({ item, onSelect }: { item: Screenshot; label?: string; onSelect?: (item: Screenshot) => void }) {
@@ -806,7 +828,7 @@ function ScreenshotCard({ item, onSelect }: { item: Screenshot; onSelect?: (item
           {isContentBoundary && <span className="badge warning">内容社区边界</span>}
         </div>
         <h3>{displayTitle}</h3>
-        <p>{item.visualSummary || item.description}</p>
+        <p>{getScreenshotDisplaySummary(item)}</p>
         <div className="evidenceFactList">
           {item.materialId && <span><strong>ID</strong>{item.materialId}</span>}
           {item.riskBoundary && <span><strong>敏感边界</strong>{item.riskBoundary}</span>}
@@ -845,7 +867,7 @@ function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => 
             {item.evidenceValue && <span className={evidenceBadgeClass(item.evidenceValue)}>{item.evidenceValue}</span>}
           </div>
           <h2>{displayTitle}</h2>
-          <p>{item.visualSummary || item.description}</p>
+          <p>{getScreenshotDisplaySummary(item)}</p>
           <dl className="detailMeta evidenceDetailMeta">
             <div><dt>material_id</dt><dd>{item.materialId || item.id}</dd></div>
             <div><dt>页面位点</dt><dd>{item.pageSlot || item.pageCategory || item.node}</dd></div>
