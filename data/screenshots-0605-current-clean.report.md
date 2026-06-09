@@ -1,8 +1,9 @@
 # screenshots-0605-current-clean report
 
-- Source: all existing WebP files under `public/screenshots/0605-0606-latest-webp/` after converting PNG/JPG supplements
-- Output screenshots: 173
-- Converted PNG/JPG supplements this run: 65
+- Source: current curated files under `public/screenshots/0605-0606-latest-webp/`, with Mashang folder refreshed by user on 2026-06-09
+- Output screenshots: 184
+- Mashang screenshots: 15
+- Converted Mashang PNG/JPG to WebP: 10
 
 ## By app
 - 京东金融: 22
@@ -12,92 +13,16 @@
 - 小赢卡贷: 24
 - 度小满: 30
 - 拍拍贷借款: 12
-- 马上金融: 4
+- 马上金融: 15
 
-## Converted supplements
-- `public/screenshots/0605-0606-latest-webp/anyihua/010-ai客服.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/010_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/011-对话框1.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/011_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/012-对话框2.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/012_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/013-对话框3.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/013_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/014-消息页.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/014_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/027-挽留.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/027_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/028-账单助手.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/028_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/030-额度提示.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/030_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/043-优惠券页.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/043_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/044-额度成长1.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/044_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/045-额度成长2.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/045_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/049-优惠券页.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/049_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/050-智慧养鸡.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/050_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/051-英才学堂.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/051_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/052-马上小镇.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/052_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/anyihua/053-马上绿洲.jpg` -> `/screenshots/0605-0606-latest-webp/anyihua/053_anyihua_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/019-wecom-temp-148788-96a0e5d3970c566e1990af74b8ceb75a.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/019_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/020-wecom-temp-223456-60b7ac7f7cc0e07d06fd99d7f727bf78.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/020_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/023-wecom-temp-268749-7675edceefb3c3cdd269dbf50e5a37be.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/023_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/024-wecom-temp-288829-04acfc88ee6492616eba9e03f436a1f1.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/024_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/034-对话页.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/034_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/035-对话页初始.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/035_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/036-消息中心.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/036_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/037-消息中心2.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/037_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/042-0428借钱页.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/042_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/043-0428额度页.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/043_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/049-0402代言人活动弹窗.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/049_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/050-0402活动浮层奖励.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/050_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/duxiaoman/051-0428代言人活动落地页2.jpg` -> `/screenshots/0605-0606-latest-webp/duxiaoman/051_duxiaoman_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/023-0402服务大厅.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/023_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/024-0428im半浮层.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/024_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/036-0428借钱页.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/036_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/037-0428减息金活动.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/037_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/038-0428减息金活动2.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/038_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/039-0428额度中心.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/039_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/fenqile/042-活动页.jpg` -> `/screenshots/0605-0606-latest-webp/fenqile/042_fenqile_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/021-生活页.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/021_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/048-富能计划1.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/048_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/049-富能计划2.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/049_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/050-账单页.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/050_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/059-借钱折扣.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/059_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/060-免息券1.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/060_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/061-免息券2.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/061_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/qifu/062-免息券3.jpg` -> `/screenshots/0605-0606-latest-webp/qifu/062_qifu_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/001-我的页面1.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/001_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/002-我的页面2.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/002_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/003-权益页.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/003_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/004-首页.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/004_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/005-首页2.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/005_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/026-对话框1.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/026_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/027-对话框2.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/027_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/028-对话框3.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/028_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/029-帮助中心.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/029_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/030-联系客服.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/030_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/045-借钱页2.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/045_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/046-我的账单.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/046_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/047-申请记录.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/047_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/048-额度提升.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/048_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/059-活动2.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/059_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/060-活动3.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/060_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/061-活动4.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/061_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/062-活动5.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/062_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/063-活动6.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/063_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/064-红包卡券.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/064_xiaoying_manual.webp`
-- `public/screenshots/0605-0606-latest-webp/xiaoying/067-wecom-temp-81166-3a6abd410554c12408787d21da7318ca.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/067_xiaoying_manual.webp`
-
-## Mashang supplement 2026-06-09
-- Converted/copied WebP files: 16
-- Added records: 16
-- Mashang total after supplement: 20
-- `/Users/owinliu/.openclaw/workspace/competitor-screenshot-hub/public/screenshots/0605-0606-latest-webp/mashang/mashang-0014.png` -> `/screenshots/0605-0606-latest-webp/mashang/mashang-0014.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_home_top.png` -> `/screenshots/0605-0606-latest-webp/mashang/201_mashang_home_top_20260608.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_home_scroll_1.png` -> `/screenshots/0605-0606-latest-webp/mashang/202_mashang_home_scroll_20260608.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_mall_top.png` -> `/screenshots/0605-0606-latest-webp/mashang/203_mashang_mall_top_20260608.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_mall_scroll_1.png` -> `/screenshots/0605-0606-latest-webp/mashang/204_mashang_mall_scroll_20260608.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_my_top.png` -> `/screenshots/0605-0606-latest-webp/mashang/205_mashang_my_top_20260608.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_my_scroll_1.png` -> `/screenshots/0605-0606-latest-webp/mashang/206_mashang_my_scroll_20260608.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/09_mashang_客服_客服-launch.png` -> `/screenshots/0605-0606-latest-webp/mashang/207_mashang_service_launch.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/10_mashang_客服_客服-bottom-108.png` -> `/screenshots/0605-0606-latest-webp/mashang/208_mashang_service_bottom_108.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/15_mashang_客服_客服-scroll-0.png` -> `/screenshots/0605-0606-latest-webp/mashang/209_mashang_service_scroll_0.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/17_mashang_消金_消金-launch.png` -> `/screenshots/0605-0606-latest-webp/mashang/210_mashang_finance_launch.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/18_mashang_消金_消金-bottom-108.png` -> `/screenshots/0605-0606-latest-webp/mashang/211_mashang_finance_bottom_108.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/23_mashang_消金_消金-scroll-0.png` -> `/screenshots/0605-0606-latest-webp/mashang/212_mashang_finance_scroll_0.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/25_mashang_风控_风控-launch.png` -> `/screenshots/0605-0606-latest-webp/mashang/213_mashang_risk_launch.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/26_mashang_风控_风控-bottom-108.png` -> `/screenshots/0605-0606-latest-webp/mashang/214_mashang_risk_bottom_108.webp`
-- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/31_mashang_风控_风控-scroll-0.png` -> `/screenshots/0605-0606-latest-webp/mashang/215_mashang_risk_scroll_0.webp`
+## Mashang converted files
+- `/screenshots/0605-0606-latest-webp/mashang/009_home_customer_icon.png` -> `/screenshots/0605-0606-latest-webp/mashang/009_home_customer_icon.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/010_home_message_icon.png` -> `/screenshots/0605-0606-latest-webp/mashang/010_home_message_icon.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/017_my_messages.png` -> `/screenshots/0605-0606-latest-webp/mashang/017_my_messages.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/018_my_help_center.png` -> `/screenshots/0605-0606-latest-webp/mashang/018_my_help_center.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/020_my_privacy_info.png` -> `/screenshots/0605-0606-latest-webp/mashang/020_my_privacy_info.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/021_my_security_center.png` -> `/screenshots/0605-0606-latest-webp/mashang/021_my_security_center.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/024_home_entry_borrow_page.png` -> `/screenshots/0605-0606-latest-webp/mashang/024_home_entry_borrow_page.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/025_home_entry_repay_page.png` -> `/screenshots/0605-0606-latest-webp/mashang/025_home_entry_repay_page.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/029_my_contract_view_page.png` -> `/screenshots/0605-0606-latest-webp/mashang/029_my_contract_view_page.webp`
+- `/screenshots/0605-0606-latest-webp/mashang/033_customer_service_after_text.png` -> `/screenshots/0605-0606-latest-webp/mashang/033_customer_service_after_text.webp`
