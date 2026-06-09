@@ -1,36 +1,94 @@
-# 0605 当前素材清洗报告
+# screenshots-0605-current-clean report
 
-- source: `data/screenshots-0605-0606-latest.json`
-- output: `data/screenshots-0605-current-clean.json`
-- rule: 每个页面只保留一张代表性截图；去重键为 `appKey + pageSlot/pageCategory/node`。
-- source_count: 177
-- output_count: 162
-- duplicate_groups: 11
-- removed_duplicates: 15
+- Source: manually retained files under `public/screenshots/0605-0606-latest-webp/`
+- Output screenshots: 100
+- Removed missing/deleted screenshots from data: 77
 
-## APP 分布
+## By app
+- 京东金融: 21
+- 分期乐: 26
+- 奇富借条: 14
+- 安逸花: 5
+- 小赢卡贷: 3
+- 度小满: 15
+- 拍拍贷借款: 12
+- 马上金融: 4
 
-| APP | source | output | removed |
-|---|---:|---:|---:|
-| 安逸花 | 14 | 13 | 1 |
-| 度小满 | 22 | 19 | 3 |
-| 分期乐 | 40 | 38 | 2 |
-| 京东金融 | 40 | 33 | 7 |
-| 马上金融 | 9 | 9 | 0 |
-| 拍拍贷借款 | 16 | 16 | 0 |
-| 奇富借条 | 28 | 26 | 2 |
-| 小赢卡贷 | 8 | 8 | 0 |
-
-## 重复组处理
-
-- jdjr::短视频/社区/短视频/财经内容页: kept `jdjr-0018`, removed `jdjr-0019`
-- jdjr::短视频/社区/短视频页: kept `jdjr-0027`, removed `jdjr-0025`, `jdjr-0026`, `jdjr-0029`
-- jdjr::短视频/社区/社区/推荐信息流: kept `jdjr-0033`, removed `jdjr-0040`
-- jdjr::短视频/社区/短视频/影视内容页: kept `jdjr-0043`, removed `jdjr-0048`
-- jdjr::活动/红包/签到/签到领现金活动页: kept `jdjr-0006`, removed `jdjr-0016`
-- qifu::首页/首屏/借钱首页-下滑一屏: kept `qifu-0002`, removed `qifu-0006`, `qifu-0011`
-- duxiaoman::借钱/额度页/借钱额度页: kept `duxiaoman-0032`, removed `duxiaoman-0021`
-- duxiaoman::首页/首屏/借钱额度页: kept `duxiaoman-0006`, removed `duxiaoman-0028`
-- duxiaoman::借钱/额度页/借钱页下滑/新人指南: kept `duxiaoman-0027`, removed `duxiaoman-0029`
-- fenqile::首页/首屏/客服/首页: kept `fenqile-0038`, removed `fenqile-0042`, `fenqile-0032`
-- anyihua::实名/人脸/授权/人脸识别/授信流程页: kept `anyihua-0001`, removed `anyihua-0002`
+## Removed from data because image file no longer exists
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0008 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0008_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0023 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0023_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0025 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0025_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0026 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0026_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0027 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0027_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0031 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0031_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0033 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0033_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0037 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0037_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0041 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0041_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0043 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0043_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0048 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0048_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0032 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0032_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0035 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0035_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0039 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0039_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0045 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0045_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0004 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0004_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0044 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0044_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0016 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0016_0605.webp
+- 京东金融 / latest-0605-0606-jdjr-jdjr-0038 / /screenshots/0605-0606-latest-webp/jdjr/jdjr-0038_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0040 / /screenshots/0605-0606-latest-webp/qifu/qifu-0040_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0004 / /screenshots/0605-0606-latest-webp/qifu/qifu-0004_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0006 / /screenshots/0605-0606-latest-webp/qifu/qifu-0006_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0011 / /screenshots/0605-0606-latest-webp/qifu/qifu-0011_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0022 / /screenshots/0605-0606-latest-webp/qifu/qifu-0022_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0024 / /screenshots/0605-0606-latest-webp/qifu/qifu-0024_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0027 / /screenshots/0605-0606-latest-webp/qifu/qifu-0027_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0028 / /screenshots/0605-0606-latest-webp/qifu/qifu-0028_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0029 / /screenshots/0605-0606-latest-webp/qifu/qifu-0029_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0032 / /screenshots/0605-0606-latest-webp/qifu/qifu-0032_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0007 / /screenshots/0605-0606-latest-webp/qifu/qifu-0007_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0017 / /screenshots/0605-0606-latest-webp/qifu/qifu-0017_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0033 / /screenshots/0605-0606-latest-webp/qifu/qifu-0033_0605.webp
+- 奇富借条 / latest-0605-0606-qifu-qifu-0046 / /screenshots/0605-0606-latest-webp/qifu/qifu-0046_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0007 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0007_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0032 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0032_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0039 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0039_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0012 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0012_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0018 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0018_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0017 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0017_0605.webp
+- 度小满 / latest-0605-0606-duxiaoman-duxiaoman-0028 / /screenshots/0605-0606-latest-webp/duxiaoman/duxiaoman-0028_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0031 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0031_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0032 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0032_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0034 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0034_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0038 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0038_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0042 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0042_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0046 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0046_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0013 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0013_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0022 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0022_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0015 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0015_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0027 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0027_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0030 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0030_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0047 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0047_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0009 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0009_0605.webp
+- 分期乐 / latest-0605-0606-fenqile-fenqile-0024 / /screenshots/0605-0606-latest-webp/fenqile/fenqile-0024_0605.webp
+- 拍拍贷借款 / latest-0605-0606-paipai-paipai-0003 / /screenshots/0605-0606-latest-webp/paipai/paipai-0003_0605.webp
+- 拍拍贷借款 / latest-0605-0606-paipai-paipai-0015 / /screenshots/0605-0606-latest-webp/paipai/paipai-0015_0605.webp
+- 拍拍贷借款 / latest-0605-0606-paipai-paipai-0017 / /screenshots/0605-0606-latest-webp/paipai/paipai-0017_0605.webp
+- 拍拍贷借款 / latest-0605-0606-paipai-paipai-0019 / /screenshots/0605-0606-latest-webp/paipai/paipai-0019_0605.webp
+- 马上金融 / latest-0605-0606-mashang-mashang-0016 / /screenshots/0605-0606-latest-webp/mashang/mashang-0016_0605.webp
+- 马上金融 / latest-0605-0606-mashang-mashang-0005 / /screenshots/0605-0606-latest-webp/mashang/mashang-0005_0605.webp
+- 马上金融 / latest-0605-0606-mashang-mashang-0021 / /screenshots/0605-0606-latest-webp/mashang/mashang-0021_0605.webp
+- 马上金融 / latest-0605-0606-mashang-mashang-0001 / /screenshots/0605-0606-latest-webp/mashang/mashang-0001_0605.webp
+- 马上金融 / latest-0605-0606-mashang-mashang-0023 / /screenshots/0605-0606-latest-webp/mashang/mashang-0023_0605.webp
+- 小赢卡贷 / latest-0605-0606-xiaoying-xiaoying-0006 / /screenshots/0605-0606-latest-webp/xiaoying/xiaoying-0006_0605.webp
+- 小赢卡贷 / latest-0605-0606-xiaoying-xiaoying-0005 / /screenshots/0605-0606-latest-webp/xiaoying/xiaoying-0005_0605.webp
+- 小赢卡贷 / latest-0605-0606-xiaoying-xiaoying-0009 / /screenshots/0605-0606-latest-webp/xiaoying/xiaoying-0009_0605.webp
+- 小赢卡贷 / latest-0605-0606-xiaoying-xiaoying-0014 / /screenshots/0605-0606-latest-webp/xiaoying/xiaoying-0014_0605.webp
+- 小赢卡贷 / latest-0605-0606-xiaoying-xiaoying-0017 / /screenshots/0605-0606-latest-webp/xiaoying/xiaoying-0017_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0027 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0027_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0002 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0002_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0007 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0007_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0008 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0008_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0011 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0011_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0016 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0016_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0020 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0020_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0022 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0022_0605.webp
+- 安逸花 / latest-0605-0606-anyihua-anyihua-0025 / /screenshots/0605-0606-latest-webp/anyihua/anyihua-0025_0605.webp
