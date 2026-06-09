@@ -694,7 +694,7 @@ function PageRowsView({ items, totalCount, onSelect }: { items: Screenshot[]; to
 function CompareThumb({ item, onSelect }: { item: Screenshot; label?: string; onSelect?: (item: Screenshot) => void }) {
   return (
     <button className="compareThumb imageOnlyThumb" onClick={() => onSelect?.(item)} aria-label={`${item.competitor} ${item.node}`} title={`${item.competitor} ${item.node}`}>
-      <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" />
+      <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" decoding="async" />
       <span className="thumbPageLabel">{item.node}</span>
     </button>
   )
@@ -749,7 +749,7 @@ function ScreenshotCard({ item, onSelect }: { item: Screenshot; onSelect?: (item
   return (
     <article className="shotCard evidenceShotCard" onClick={() => onSelect?.(item)}>
       <div className="shotImageWrap evidenceImageWrap">
-        {item.imagePath ? <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" /> : <span>暂无截图</span>}
+        {item.imagePath ? <img src={withBase(item.thumbnailPath || item.imagePath)} alt={`${item.competitor} ${item.node}`} loading="lazy" decoding="async" /> : <span>暂无截图</span>}
       </div>
       <div className="shotBody evidenceShotBody">
         <div className="row wrap">
@@ -788,7 +788,7 @@ function ScreenshotDetail({ item, onClose }: { item: Screenshot; onClose: () => 
       <article className="detailPanel evidenceDetailPanel">
         <button className="closeButton" onClick={onClose}>关闭</button>
         <div className="detailImage">
-          <img src={withBase(item.imagePath)} alt={`${item.competitor} ${item.node}`} />
+          <img src={withBase(item.imagePath)} alt={`${item.competitor} ${item.node}`} decoding="async" />
         </div>
         <div className="detailBody evidenceDetailBody">
           <div className="row wrap">
