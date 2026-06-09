@@ -80,3 +80,24 @@
 - `public/screenshots/0605-0606-latest-webp/xiaoying/063-活动6.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/063_xiaoying_manual.webp`
 - `public/screenshots/0605-0606-latest-webp/xiaoying/064-红包卡券.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/064_xiaoying_manual.webp`
 - `public/screenshots/0605-0606-latest-webp/xiaoying/067-wecom-temp-81166-3a6abd410554c12408787d21da7318ca.jpg` -> `/screenshots/0605-0606-latest-webp/xiaoying/067_xiaoying_manual.webp`
+
+## Mashang supplement 2026-06-09
+- Converted/copied WebP files: 16
+- Added records: 16
+- Mashang total after supplement: 20
+- `/Users/owinliu/.openclaw/workspace/competitor-screenshot-hub/public/screenshots/0605-0606-latest-webp/mashang/mashang-0014.png` -> `/screenshots/0605-0606-latest-webp/mashang/mashang-0014.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_home_top.png` -> `/screenshots/0605-0606-latest-webp/mashang/201_mashang_home_top_20260608.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_home_scroll_1.png` -> `/screenshots/0605-0606-latest-webp/mashang/202_mashang_home_scroll_20260608.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_mall_top.png` -> `/screenshots/0605-0606-latest-webp/mashang/203_mashang_mall_top_20260608.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_mall_scroll_1.png` -> `/screenshots/0605-0606-latest-webp/mashang/204_mashang_mall_scroll_20260608.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_my_top.png` -> `/screenshots/0605-0606-latest-webp/mashang/205_mashang_my_top_20260608.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/outputs/current_app_tab_inspection_20260608/point_package_runs/20260608_172209_recapture_validation_bottom_tabs/artifacts/mashang_my_scroll_1.png` -> `/screenshots/0605-0606-latest-webp/mashang/206_mashang_my_scroll_20260608.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/09_mashang_客服_客服-launch.png` -> `/screenshots/0605-0606-latest-webp/mashang/207_mashang_service_launch.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/10_mashang_客服_客服-bottom-108.png` -> `/screenshots/0605-0606-latest-webp/mashang/208_mashang_service_bottom_108.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/15_mashang_客服_客服-scroll-0.png` -> `/screenshots/0605-0606-latest-webp/mashang/209_mashang_service_scroll_0.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/17_mashang_消金_消金-launch.png` -> `/screenshots/0605-0606-latest-webp/mashang/210_mashang_finance_launch.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/18_mashang_消金_消金-bottom-108.png` -> `/screenshots/0605-0606-latest-webp/mashang/211_mashang_finance_bottom_108.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/23_mashang_消金_消金-scroll-0.png` -> `/screenshots/0605-0606-latest-webp/mashang/212_mashang_finance_scroll_0.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/25_mashang_风控_风控-launch.png` -> `/screenshots/0605-0606-latest-webp/mashang/213_mashang_risk_launch.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/26_mashang_风控_风控-bottom-108.png` -> `/screenshots/0605-0606-latest-webp/mashang/214_mashang_risk_bottom_108.webp`
+- `/Users/owinliu/.openclaw/workspace/competitor-radar-pipeline/batches/20260530-1543-mashang-dimension-gap-supplement-v1/curated/effective/31_mashang_风控_风控-scroll-0.png` -> `/screenshots/0605-0606-latest-webp/mashang/215_mashang_risk_scroll_0.webp`
