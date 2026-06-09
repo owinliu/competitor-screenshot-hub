@@ -54,7 +54,7 @@
       "去借款分支"
     ],
     "category": "credit",
-    "previewImagePath": "/golden-flow-previews-tiny/duxiaoman-consumer-finance-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/duxiaoman-consumer-finance-preview-v2-readable.webp"
   },
   {
     "flowId": "fenqile-consumer-finance",
@@ -109,7 +109,7 @@
       "后续授信提交"
     ],
     "category": "credit",
-    "previewImagePath": "/golden-flow-previews-tiny/fenqile-consumer-finance-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/fenqile-consumer-finance-preview-v2-readable.webp"
   },
   {
     "flowId": "duxiaoman-customer-complaint-flow",
@@ -165,7 +165,7 @@
       "任何授权/借款/支付动作"
     ],
     "category": "customer_service",
-    "previewImagePath": "/golden-flow-previews-tiny/duxiaoman-customer-complaint-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/duxiaoman-customer-complaint-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "qifu360-account-cancellation-flow",
@@ -225,7 +225,7 @@
       "提交注销申请"
     ],
     "category": "cancellation",
-    "previewImagePath": "/golden-flow-previews-tiny/qifu360-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/qifu360-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "fenqile-account-cancellation-flow",
@@ -280,7 +280,7 @@
       "最终确认注销"
     ],
     "category": "cancellation",
-    "previewImagePath": "/golden-flow-previews-tiny/fenqile-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/fenqile-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "duxiaoman-account-cancellation-flow",
@@ -332,7 +332,7 @@
       "最终提交注销"
     ],
     "category": "cancellation",
-    "previewImagePath": "/golden-flow-previews-tiny/duxiaoman-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/duxiaoman-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "jdjr-account-cancellation-flow",
@@ -384,7 +384,7 @@
       "最终提交注销"
     ],
     "category": "cancellation",
-    "previewImagePath": "/golden-flow-previews-tiny/jdjr-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/jdjr-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "ppdai-account-cancellation-flow",
@@ -435,7 +435,7 @@
       "最终提交注销"
     ],
     "category": "cancellation",
-    "previewImagePath": "/golden-flow-previews-tiny/ppdai-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/ppdai-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "xiaoying-account-cancellation-flow",
@@ -492,7 +492,7 @@
       "后续最终确认注销"
     ],
     "category": "cancellation",
-    "previewImagePath": "/golden-flow-previews-tiny/xiaoying-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/xiaoying-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "anyihua-account-cancellation-flow",
@@ -544,7 +544,7 @@
       "后续验证码/人脸/实名校验",
       "最终提交注销"
     ],
-    "previewImagePath": "/golden-flow-previews-tiny/anyihua-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/anyihua-account-cancellation-flow-preview-v2-readable.webp"
   },
   {
     "flowId": "mashang-account-cancellation-flow",
@@ -597,6 +597,6 @@
       "点击下一步",
       "后续实名/人脸/最终确认注销"
     ],
-    "previewImagePath": "/golden-flow-previews-tiny/mashang-account-cancellation-flow-preview-v2-tiny.webp"
+    "previewImagePath": "/golden-flow-previews-readable/mashang-account-cancellation-flow-preview-v2-readable.webp"
   }
 ]

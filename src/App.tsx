@@ -951,8 +951,8 @@ function Flows() {
         </label>
       </div>
       <div className="flowList">
-        {visibleDeliverables.map((deliverable) => (
-          <FlowCard key={deliverable.flowId} deliverable={deliverable} />
+        {visibleDeliverables.map((deliverable, index) => (
+          <FlowCard key={deliverable.flowId} deliverable={deliverable} priority={index < 3} />
         ))}
       </div>
       {visibleDeliverables.length === 0 && <div className="emptyState">没有匹配的流程，可以调整筛选条件。</div>}
@@ -975,13 +975,13 @@ function getFlowCategoryMeta(deliverable: FlowDeliverable) {
   return flowCategoryMeta[getFlowCategory(deliverable)]
 }
 
-function FlowCard({ deliverable }: { deliverable: FlowDeliverable }) {
+function FlowCard({ deliverable, priority = false }: { deliverable: FlowDeliverable; priority?: boolean }) {
   const flow = flows.find((item) => item.id === deliverable.flowId || (item.competitor === deliverable.competitor && item.flowName.includes('消金')))
 
-  return <GoldenFlowShowcase flow={flow} deliverable={deliverable} />
+  return <GoldenFlowShowcase flow={flow} deliverable={deliverable} priority={priority} />
 }
 
-function GoldenFlowShowcase({ flow, deliverable }: { flow?: Flow; deliverable: FlowDeliverable }) {
+function GoldenFlowShowcase({ flow, deliverable, priority = false }: { flow?: Flow; deliverable: FlowDeliverable; priority?: boolean }) {
   const mainPath = deliverable.primaryPath?.length ? deliverable.primaryPath : (flow?.nodes.map((node) => node.name) || [])
   const branches = deliverable.branchPaths || []
   const categoryMeta = getFlowCategoryMeta(deliverable)
@@ -1004,7 +1004,7 @@ function GoldenFlowShowcase({ flow, deliverable }: { flow?: Flow; deliverable: F
         <div className="flowMapStage">
           {deliverable.displayImagePath ? (
             <button className="flowMapButton" onClick={() => setViewerOpen(true)} aria-label={`打开${deliverable.flowName}原图`}>
-              <img src={withBase(previewImagePath || deliverable.displayImagePath)} alt={`${deliverable.flowName}流程证据图预览`} loading="lazy" decoding="async" />
+              <img src={withBase(previewImagePath || deliverable.displayImagePath)} alt={`${deliverable.flowName}流程证据图预览`} loading={priority ? 'eager' : 'lazy'} decoding={priority ? 'sync' : 'async'} fetchPriority={priority ? 'high' : 'auto'} />
               <span>点击查看原图</span>
             </button>
           ) : (
