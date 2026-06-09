@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { allLibraryScreenshots, current0605Screenshots, eightAppScreenshots, flowDeliverables, flows, screenshots, tasks as seedTasks } from './data'
+import { current0605Screenshots, flowDeliverables, flows, tasks as seedTasks } from './data'
 import { appReportSummaries, strictChangeRows } from './generated0530Report'
 import type { CaptureTask, Flow, FlowDeliverable, Screenshot } from './types'
 
@@ -339,16 +339,15 @@ function Library() {
   const [dimension, setDimension] = useState('all')
   const [evidenceValue, setEvidenceValue] = useState('all')
   const [reviewState, setReviewState] = useState('all')
-  const [dataset, setDataset] = useState('current0605')
   const [viewMode, setViewMode] = useState<'dimension' | 'app' | 'search'>('dimension')
   const [pageFamily, setPageFamily] = useState('all')
   const [selected, setSelected] = useState<Screenshot | null>(null)
-  const sourceItems = dataset === 'current0605' ? current0605Screenshots : dataset === 'evidence269' ? eightAppScreenshots : dataset === 'historical' ? screenshots : allLibraryScreenshots
+  const sourceItems = current0605Screenshots
   const browseItems = viewMode === 'search' ? sourceItems : sourceItems.filter((item) => item.displayDefault !== 'false')
   const appOptions = Array.from(new Map(sourceItems.map((item) => [item.appKey, item.competitor])).entries()).sort((a, b) => a[1].localeCompare(b[1], 'zh-Hans-CN'))
   const dimensions = Array.from(new Set(sourceItems.map((item) => item.finalDimension || item.flow).filter(Boolean))).sort()
   const evidenceOptions = Array.from(new Set(sourceItems.map((item) => item.evidenceValue).filter((item): item is string => Boolean(item)))).sort()
-  const filtered = filterScreenshots({ query, competitor, dimension, evidenceValue, reviewState, dataset, pageFamily })
+  const filtered = filterScreenshots({ query, competitor, dimension, evidenceValue, reviewState, pageFamily })
   const pageFamilies = buildPageFamilies(sourceItems)
 
   const reset = () => {
@@ -358,10 +357,6 @@ function Library() {
     setEvidenceValue('all')
     setReviewState('all')
     setPageFamily('all')
-  }
-
-  const switchDataset = (nextDataset: string) => {
-    setDataset(nextDataset)
   }
 
   const dimensionButtons = ['all', 'APP', '风控', '客服', '消金', '留存促活运营', '非金融内容/社区'].filter((item) => item === 'all' || dimensions.includes(item))
@@ -382,10 +377,8 @@ function Library() {
           <button className={viewMode === 'app' ? 'active' : ''} onClick={() => setViewMode('app')}>按页面对比</button>
           <button className={viewMode === 'search' ? 'active' : ''} onClick={() => setViewMode('search')}>自由搜索</button>
         </div>
-        <div className="libraryTimelineTabs" aria-label="按采集时间切换截图库">
-          <button className={dataset === 'current0605' ? 'active' : ''} onClick={() => switchDataset('current0605')}>0605当前素材</button>
-          <button className={dataset === 'evidence269' ? 'active' : ''} onClick={() => switchDataset('evidence269')}>269新素材</button>
-          <button className={dataset === 'historical' ? 'active' : ''} onClick={() => switchDataset('historical')}>库房历史</button>
+        <div className="libraryTimelineTabs" aria-label="当前截图库">
+          <button className="active">0605当前素材</button>
         </div>
       </div>
       <div className="librarySummaryLine">
@@ -707,10 +700,9 @@ function CompareThumb({ item, onSelect }: { item: Screenshot; label?: string; on
   )
 }
 
-function filterScreenshots(filters: { query?: string; competitor?: string; dimension?: string; evidenceValue?: string; reviewState?: string; dataset?: string; pageFamily?: string }) {
+function filterScreenshots(filters: { query?: string; competitor?: string; dimension?: string; evidenceValue?: string; reviewState?: string; pageFamily?: string }) {
   const q = (filters.query || '').trim().toLowerCase()
-  const sourceItems = filters.dataset === 'current0605' ? current0605Screenshots : filters.dataset === 'evidence269' ? eightAppScreenshots : filters.dataset === 'historical' ? screenshots : allLibraryScreenshots
-  return sourceItems.filter((item) => {
+  return current0605Screenshots.filter((item) => {
     const searchableText = [
       item.id,
       item.materialId,
