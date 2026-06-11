@@ -736,7 +736,7 @@ function getReadablePageTitle(raw = '', context = '') {
     .replace(/scroll-?\d*/gi, '下滑页')
     .replace(/bottom-?\d*/gi, '下滑页')
     .replace(/launch/gi, '启动页')
-    .replace(/[\/_-]+/g, ' ')
+    .replace(/[/_-]+/g, ' ')
     .trim()
 
   if (/scroll|bottom|下滑/.test(text) && !/下滑/.test(title) && !/消息页|隐私说明页|安全中心页|合同查看页/.test(title)) title += '下滑页'
