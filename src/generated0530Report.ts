@@ -22,54 +22,6 @@ export const strictChangeRows = [
   {
     "app": "分期乐",
     "appKey": "fenqile",
-    "materialId": "fenqile-0031",
-    "reviewId": "R0045",
-    "dimension": "客服",
-    "page": "首页推荐页",
-    "conclusion": "首页/618同视口，商品促销位变为满减返券、审批服务、618返券等金融/权益模块。",
-    "process": "页面事实：首页/618同视口，商品促销位变为满减返券、审批服务、618返券等金融/权益模块。\n判定理由：已完成 0530 与 0605 截图左右视觉复查，判定为同 APP、同页面/入口、同视口 strict 可比。\n边界说明：动态金额、登录态、系统时间、角标、开奖码等不单独归因为产品改版；错页/视口不一致样本已剔除。",
-    "impact": "中",
-    "managementUsable": true,
-    "managementNote": "首页大促内容策略转向金融权益与返券。（影响等级复核：中）",
-    "before": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0031/R0045_0530.png",
-    "after": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0031/R0045_0605.png",
-    "latestDate": "0605"
-  },
-  {
-    "app": "分期乐",
-    "appKey": "fenqile",
-    "materialId": "fenqile-0032",
-    "reviewId": "R0046",
-    "dimension": "客服",
-    "page": "首页推荐页",
-    "conclusion": "首页/618同视口，商品促销切换为影音会员、审批服务、满减返券等权益模块。",
-    "process": "页面事实：首页/618同视口，商品促销切换为影音会员、审批服务、满减返券等权益模块。\n判定理由：已完成 0530 与 0605 截图左右视觉复查，判定为同 APP、同页面/入口、同视口 strict 可比。\n边界说明：动态金额、登录态、系统时间、角标、开奖码等不单独归因为产品改版；错页/视口不一致样本已剔除。",
-    "impact": "中",
-    "managementUsable": true,
-    "managementNote": "权益和金融服务权重上升。（影响等级复核：中）",
-    "before": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0032/R0046_0530.png",
-    "after": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0032/R0046_0605.png",
-    "latestDate": "0605"
-  },
-  {
-    "app": "分期乐",
-    "appKey": "fenqile",
-    "materialId": "fenqile-0038",
-    "reviewId": "R0048",
-    "dimension": "客服",
-    "page": "首页推荐页",
-    "conclusion": "首页同视口，618活动位从家居/大牌满额等重排为超市金、审批、提额、笔笔返等。",
-    "process": "页面事实：首页同视口，618活动位从家居/大牌满额等重排为超市金、审批、提额、笔笔返等。\n判定理由：已完成 0530 与 0605 截图左右视觉复查，判定为同 APP、同页面/入口、同视口 strict 可比。\n边界说明：动态金额、登录态、系统时间、角标、开奖码等不单独归因为产品改版；错页/视口不一致样本已剔除。",
-    "impact": "中",
-    "managementUsable": true,
-    "managementNote": "618营销资源位转向金融权益。（影响等级复核：中）",
-    "before": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0038/R0048_0530.png",
-    "after": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0038/R0048_0605.png",
-    "latestDate": "0605"
-  },
-  {
-    "app": "分期乐",
-    "appKey": "fenqile",
     "materialId": "fenqile-0001",
     "reviewId": "R0170",
     "dimension": "消金",
@@ -417,22 +369,6 @@ export const strictChangeRows = [
     "managementNote": "额度中心强化会员提额权益转化。（影响等级复核：低）",
     "before": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0035/R0047_0530.png",
     "after": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0035/R0047_0605.png",
-    "latestDate": "0605"
-  },
-  {
-    "app": "分期乐",
-    "appKey": "fenqile",
-    "materialId": "fenqile-0042",
-    "reviewId": "R0049",
-    "dimension": "客服",
-    "page": "首页推荐页",
-    "conclusion": "首页同视口，部分商品活动改为提额、审批服务、爆款特权等权益卡片。",
-    "process": "页面事实：首页同视口，部分商品活动改为提额、审批服务、爆款特权等权益卡片。\n判定理由：已完成 0530 与 0605 截图左右视觉复查，判定为同 APP、同页面/入口、同视口 strict 可比。\n边界说明：动态金额、登录态、系统时间、角标、开奖码等不单独归因为产品改版；错页/视口不一致样本已剔除。",
-    "impact": "低",
-    "managementUsable": false,
-    "managementNote": "首页运营策略偏金融权益/提额服务。（影响等级复核：低）",
-    "before": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0042/R0049_0530.png",
-    "after": "/evidence/0530-0605-0606-all-mapped/fenqile/fenqile-0042/R0049_0605.png",
     "latestDate": "0605"
   },
   {
@@ -1352,13 +1288,13 @@ export const strictChangeRows = [
 export const appReportSummaries = [
   {
     "product": "分期乐",
-    "strictCount": 27,
-    "managementCount": 4,
+    "strictCount": 23,
+    "managementCount": 1,
     "high": 0,
-    "medium": 4,
-    "low": 23,
-    "mainStrategy": "分期乐 strict 对照多，但多数为消息/商品/PLUS 等页面的内容或状态变化；稳定页和商品列表类更新已按低影响处理，仅金融权益/审批服务/返券等承接方向变化保留中影响。 可分析维度：风控6、消金10、留存促活运营1、客服10。",
-    "reportBoundary": "全部候选复查 66 条：strict 30、错页 31、视口不一致 0、状态边界 5；HTML 去重保留 27 组。；影响等级已按“高=主任务/核心入口/新增转化位，中=模块替换/承接调整，低=轻微展示/动态数据”重算。；已修正稳定/无明显变化样本误判中影响的问题。"
+    "medium": 1,
+    "low": 22,
+    "mainStrategy": "分期乐本轮去除重复首页推荐/618活动流样本后，保留的变化主要集中在借款/还款、消息、我的页、PLUS/卡券/客服等可复核点位；仅首页频道推荐保留 1 条中影响作为代表，其余稳定页和内容状态变化按低影响处理。 可分析维度：风控6、消金10、留存促活运营1、客服6。",
+    "reportBoundary": "全部候选复查 66 条：strict 30、错页 31、视口不一致 0、状态边界 5；HTML 去重保留 27 组，本次展示层剔除 4 组重复首页推荐/618活动流样本，分期乐周期变化保留 23 组。；影响等级已按“高=主任务/核心入口/新增转化位，中=模块替换/承接调整，低=轻微展示/动态数据”重算。；已修正稳定/无明显变化样本误判中影响的问题。"
   },
   {
     "product": "度小满",
